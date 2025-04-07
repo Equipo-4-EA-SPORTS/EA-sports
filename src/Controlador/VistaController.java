@@ -3,7 +3,6 @@ package Controlador;
 import Vista.InicioSesion;
 
 public class VistaController {
-    //Comunicación
     private static ModeloController mc = new ModeloController();
 
 
