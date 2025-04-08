@@ -23,7 +23,7 @@ public class InicioSesion extends JFrame {
         COMENZARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vc.mostrarinicioSesion();
+                vc.mostrarinicioSesion(InicioSesion.this);
             }
         });
     }
