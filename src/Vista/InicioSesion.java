@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InicioSesion extends JFrame {
-    private JLabel tituloAB;
     private JButton fotoBoton;
     private JButton COMENZARButton;
     private JPanel PanelPrincipal;
