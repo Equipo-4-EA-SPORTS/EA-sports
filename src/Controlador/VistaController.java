@@ -5,6 +5,7 @@ import Vista.*;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class VistaController {
@@ -66,11 +67,20 @@ public class VistaController {
         vi.setVisible(true);
     }
 
+    public static void ventanaModificarEquipo(JFrame ventana) {
+        VentanaModificacionEquipo ve = new VentanaModificacionEquipo();
+        ve.setVisible(true);
+    }
+
     public static boolean inscribirEquipo(String nombre, LocalDate fecha) {
         return ModeloController.inscribirEquipo(nombre,fecha);
     }
 
     public static  boolean buscarEquipo(String nombre){
         return ModeloController.buscarEquipo(nombre);
+    }
+
+    public static List<String> listaEquipos(){
+        return ModeloController.listaEquipos();
     }
 }
