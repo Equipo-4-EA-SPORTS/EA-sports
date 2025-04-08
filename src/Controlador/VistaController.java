@@ -15,4 +15,9 @@ public class VistaController {
         InicioSesion inicioSesion = new InicioSesion();
         inicioSesion.setVisible(true);
     }
+
+
+    public void mostrarPanelUsuario() {
+
+    }
 }
