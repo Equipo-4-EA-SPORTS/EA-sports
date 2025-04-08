@@ -66,7 +66,7 @@ public class VentanaGestionEquipos extends JFrame {
                         //ELIMINAR EQUIPO
                         break;
                     case 3:
-                        //MODIFICAR EQUIPO
+                        VistaController.ventanaModificarEquipo(VentanaGestionEquipos.this);
                         break;
                 }
             }
