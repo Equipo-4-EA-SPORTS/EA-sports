@@ -17,6 +17,7 @@ public class UsuarioAdmin extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         setSize(500,500);
+        setContentPane(tituloAB);
 
         USUARIOButton.addActionListener(new ActionListener() {
             @Override

@@ -3,6 +3,8 @@ package Controlador;
 import Vista.InicioSesion;
 import Vista.UsuarioAdmin;
 
+import javax.swing.*;
+
 public class VistaController {
     private static ModeloController mc = new ModeloController();
 
@@ -17,8 +19,8 @@ public class VistaController {
     }
 
 
-    public void mostrarinicioSesion() {
-
+    public void mostrarinicioSesion(JFrame ventana) {
+        ventana.dispose();
     }
 
     public void mostrarInicio() {
@@ -29,5 +31,10 @@ public class VistaController {
 //Usuario
     public void mostrarPanelUsuario() {
 
+    }
+
+
+    public void iniciarSesionUsuario(String usr, String con){
+        ModeloController.inciarSesionUsuario(usr,con);
     }
 }
