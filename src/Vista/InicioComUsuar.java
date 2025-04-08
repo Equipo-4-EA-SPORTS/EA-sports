@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class InicioComUsuar {
+public class InicioComUsuar extends JFrame {
     private JPanel Pprincipal;
     private JTextField tfUsuario;
     private JTextField tfContrase;

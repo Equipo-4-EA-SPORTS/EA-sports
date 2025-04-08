@@ -1,5 +1,6 @@
 package Controlador;
 
+import Vista.InicioComUsuar;
 import Vista.InicioSesion;
 import Vista.UsuarioAdmin;
 
@@ -7,23 +8,24 @@ public class VistaController {
     private static ModeloController mc = new ModeloController();
 
     public static void usuario() {
-        UsuarioAdmin usuarioAdmin = new UsuarioAdmin();
-        usuarioAdmin.setVisible(true);
+        InicioComUsuar inicioUsuario = new InicioComUsuar();
+        inicioUsuario.setVisible(true);
     }
 
     public static void admin() {
-        InicioSesion inicioSesion = new InicioSesion();
-        inicioSesion.setVisible(false);
+
     }
 
 
     public void mostrarinicioSesion() {
+    UsuarioAdmin usuarioAdmin = new UsuarioAdmin();
+    usuarioAdmin.setVisible(true);
 
     }
 
     public void mostrarInicio() {
-        InicioSesion inicioSesion = new InicioSesion();
-        inicioSesion.setVisible(true);
+        InicioSesion inicio = new InicioSesion();
+        inicio.setVisible(true);
     }
 
 //Usuario
