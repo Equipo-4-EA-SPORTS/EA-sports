@@ -6,12 +6,15 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InicioSesion extends JFrame {
+public class VinicioSesion extends JFrame {
     private JButton fotoBoton;
-    private JButton COMENZARButton;
+    private JButton bComenzar;
     private JPanel PanelPrincipal;
-    private static VistaController vc = new VistaController();
-    public InicioSesion() {
+
+
+    private static VistaController vc;
+
+    public VinicioSesion(VistaController vc) {
         setTitle("EA-SPORTS");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 500);
@@ -20,11 +23,13 @@ public class InicioSesion extends JFrame {
 
         add(PanelPrincipal); // Agregar el panel principal a la ventana
 
-        COMENZARButton.addActionListener(new ActionListener() {
+        bComenzar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vc.mostrarinicioSesion();
             }
         });
+
+
     }
-    }
+}

@@ -1,18 +1,28 @@
 package Controlador;
 
-import Vista.InicioSesion;
+import Vista.VinicioSesion;
 
-public class VistaController {
-    //Comunicación
-    private static ModeloController mc = new ModeloController();
+public class VistaController
+{
+    //Ventanas
+    private VinicioSesion vi;
 
+    // Comunicación con el "jefe" del modelo
+    private ModeloController modeloController;
 
-    public void mostrarinicioSesion() {
+    public VistaController(ModeloController modeloController) {
+        this.modeloController = modeloController;
 
+        //Vista principal
+        vi = new VinicioSesion(this);
+        vi.setVisible(true);
     }
 
-    public void mostrarInicio() {
-        InicioSesion inicioSesion = new InicioSesion();
-        inicioSesion.setVisible(true);
+    //Vista de usuario o admin
+    public void mostrarinicioSesion()
+    {
+        //crear la vista siguiente, set a true y disposear vi
+
+
     }
 }

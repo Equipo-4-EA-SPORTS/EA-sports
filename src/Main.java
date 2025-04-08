@@ -3,8 +3,8 @@ import Controlador.VistaController;
 
 public class Main {
     public static void main(String[] args) {
-    VistaController vc = new VistaController();
-    vc.mostrarInicio();
-
+        ModeloController mc = new ModeloController();
+        VistaController vc = new VistaController(mc);
+        mc.setVistaController(vc);
     }
 }
