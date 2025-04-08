@@ -25,6 +25,10 @@ public class Jugador {
         this.sueldo = sueldo;
         this.roles = roles;
     }
+
+
+
+
     public Jugador(){}
     public int getIdJugador() {
         return idJugador;
