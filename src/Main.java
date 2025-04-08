@@ -1,5 +1,5 @@
-import Controlador.ModeloController;
 import Controlador.VistaController;
+import Vista.VentanaAdministrador;
 
 public class Main {
     public static void main(String[] args) {

@@ -3,10 +3,7 @@ package Controlador;
 import Modelo.UsuarioDAO;
 
 public class UsuarioController {
-    public static void inciarSesionusUario(String usr,String con){
-        UsuarioDAO.iniciarSesion(usr,con,"usuario");
+    public static boolean inciarSesionusUario(String usr,String con, String tipoUsr){
+        return UsuarioDAO.iniciarSesion(usr,con,tipoUsr);
     };
-    public static void inciarSesionAdmin(String usr,String con){
-        UsuarioDAO.iniciarSesion(usr,con,"administrador");
-    }
 }

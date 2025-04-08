@@ -18,7 +18,7 @@ public class UsuarioDAO {
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,nombre);
             ps.setString(2,contra);
-            ps.setString(3,usr);
+            ps.setString(3,usr.toLowerCase());
 
             ResultSet rs = ps.executeQuery();
 

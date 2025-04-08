@@ -8,27 +8,29 @@ import java.awt.event.ActionListener;
 
 public class UsuarioAdmin extends JFrame {
     private JLabel tituloAB;
-    private JButton USUARIOButton;
-    private JButton ADMINISTRADORButton;
     private JButton button1;
+    private JButton USUARIObutton;
+    private JButton ADMINISTRADORButton;
+    private JPanel pPrincipal;
 
     public UsuarioAdmin() {
         setTitle("INICIO SESIÓN");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        setSize(500,500);
-        setContentPane(tituloAB);
+        setContentPane(pPrincipal);
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
 
-        USUARIOButton.addActionListener(new ActionListener() {
+        USUARIObutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.usuario();
+                VistaController.usuario(UsuarioAdmin.this,USUARIObutton.getText());
             }
         });
         ADMINISTRADORButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.admin();
+                VistaController.usuario(UsuarioAdmin.this,ADMINISTRADORButton.getText());
             }
         });
     }
