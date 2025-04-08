@@ -46,8 +46,8 @@ public class VentanaUsuario extends JFrame {
         });
 
         Jsalir.addActionListener(new ActionListener(){
-           @Override
-           public void actionPerformed(ActionEvent e) {System.exit(0);}
+            @Override
+            public void actionPerformed(ActionEvent e) {System.exit(0);}
         });
 
         ACEPTARButton.addActionListener(new ActionListener() {
