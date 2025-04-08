@@ -38,13 +38,6 @@ public class VistaController {
         return ModeloController.inciarSesionUsuario(usr,con,tipoUsr);
     }
 
-    public static void ventanaInformesEquipos(JFrame ventana) {
-        ventana.dispose();
-    }
-    public static void ventanaVerResultadosUltimJornada(JFrame ventana) {
-        ventana.dispose();
-    }
-
     public static void ventanaAdministrador(JFrame ventana,String nombre) {
         ventana.dispose();
         VentanaAdministrador va = new VentanaAdministrador(nombre);

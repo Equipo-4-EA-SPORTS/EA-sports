@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 
 public class VentanaUsuario extends JFrame {
     private JPanel pPrincipal;
-    private JComboBox comboBox1;
-    private JButton ACEPTARButton;
 
     public VentanaUsuario(String nombre) {
         setContentPane(pPrincipal);
@@ -42,28 +40,6 @@ public class VentanaUsuario extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 VistaController.mostrarinicioSesion(VentanaUsuario.this);
-            }
-        });
-
-        Jsalir.addActionListener(new ActionListener(){
-           @Override
-           public void actionPerformed(ActionEvent e) {System.exit(0);}
-        });
-
-        ACEPTARButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switch(comboBox1.getSelectedIndex()){
-                    case 0:
-                        JOptionPane.showMessageDialog(pPrincipal, "ERROR. Debes de seleccionar una opcion","Error",JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case 1:
-                        VistaController.ventanaInformesEquipos(VentanaUsuario.this); //Falta por crear
-                        break;
-                    case 2:
-                        VistaController.ventanaVerResultadosUltimJornada(VentanaUsuario.this); //Falta por crear
-
-                }
             }
         });
 
