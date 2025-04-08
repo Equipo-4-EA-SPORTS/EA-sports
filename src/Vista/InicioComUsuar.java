@@ -19,7 +19,7 @@ public class InicioComUsuar {
         bIniciar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vc.mostrarPanelUsuario();
+                vc.mostrarPanelUsuario(); //nombre de la siguiente vista
             }
         });
     }

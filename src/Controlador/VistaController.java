@@ -16,7 +16,7 @@ public class VistaController {
         inicioSesion.setVisible(true);
     }
 
-
+//Usuario
     public void mostrarPanelUsuario() {
 
     }
