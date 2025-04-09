@@ -7,6 +7,7 @@ public class VentanaConfirmacion extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JLabel text;
     private boolean confirmado = false;
 
     public VentanaConfirmacion() {
@@ -15,6 +16,8 @@ public class VentanaConfirmacion extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         setSize(575, 150);
         setLocationRelativeTo(null);
+
+
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
