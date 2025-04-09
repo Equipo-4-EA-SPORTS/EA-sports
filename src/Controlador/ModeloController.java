@@ -20,4 +20,7 @@ public class ModeloController {
     public static List<String> listaEquipos(){
         return EquipoController.listaEquipos();
     }
+    public static boolean eliminarEquipo(String equipoSeleccionado) {
+        return EquipoController.eliminarEquipo(equipoSeleccionado);
+    }
 }

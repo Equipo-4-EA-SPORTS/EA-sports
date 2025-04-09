@@ -1,0 +1,92 @@
+package Vista;
+
+import Controlador.VistaController;
+
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.List;
+
+public class VentanaEliminarEquipo extends JDialog {
+    private JPanel contentPane;
+    private JComboBox cbEquipos;
+    private JButton bBorrarEquipo;
+    private JButton bCancel;
+
+    public VentanaEliminarEquipo(JFrame ventana) {
+        setContentPane(contentPane);
+        setModal(true);
+        getRootPane().setDefaultButton(bBorrarEquipo);
+        setLocationRelativeTo(ventana);
+        setSize(550,300);
+
+        List<String> listaEquipos = VistaController.listaEquipos();
+        System.out.println(listaEquipos);
+        cbEquipos.addItem("Haz click para descubrir las opciones");
+        if (listaEquipos.size()>0) {
+            for (int i = 0; i < listaEquipos.size(); i++) {
+                cbEquipos.insertItemAt(listaEquipos.get(i),i+1);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(contentPane, "Error. No hay equipos para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+        bBorrarEquipo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onOK();
+            }
+        });
+
+        bCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
+
+        // call onCancel() when cross is clicked
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                onCancel();
+            }
+        });
+
+        // call onCancel() on ESCAPE
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    }
+
+    private void onOK() {
+        String equipoSeleccionado = (String) cbEquipos.getSelectedItem();
+
+        if (equipoSeleccionado != null && !equipoSeleccionado.equals("Haz click para descubrir las opciones")) {
+
+            VentanaConfirmacion ventanaconfirmacion = new VentanaConfirmacion(this);
+            ventanaconfirmacion.setVisible(true); // Bloquea hasta que el usuario cierre el diálogo
+
+            if (ventanaconfirmacion.isConfirmado()) {
+                boolean eliminado = VistaController.eliminarEquipo(equipoSeleccionado);
+
+                if (eliminado) {
+                    JOptionPane.showMessageDialog(contentPane, "Equipo eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    dispose(); // Cierra la ventana
+                } else {
+                    JOptionPane.showMessageDialog(contentPane, "Error al eliminar el equipo.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(contentPane, "Selecciona un equipo válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    private void onCancel() {
+        // add your code here if necessary
+        dispose();
+    }
+
+}

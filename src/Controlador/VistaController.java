@@ -4,9 +4,7 @@ import Vista.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class VistaController {
     private static ModeloController mc = new ModeloController();
@@ -50,11 +48,6 @@ public class VistaController {
         VentanaAdministrador va = new VentanaAdministrador(nombre);
         va.setVisible(true);
     }
-    public static void ventanaUsuario(JFrame ventana,String nombre) {
-        ventana.dispose();
-        VentanaUsuario vu = new VentanaUsuario(nombre);
-        vu.setVisible(true);
-    }
 
     public static void ventanaGestionEquipos(JFrame ventana,String nombre) {
         ventana.dispose();
@@ -76,11 +69,20 @@ public class VistaController {
         return ModeloController.inscribirEquipo(nombre,fecha);
     }
 
+    public static void VentanaEliminarEquipo(JFrame ventana) {
+        VentanaEliminarEquipo ve = new VentanaEliminarEquipo(ventana);
+        ve.setVisible(true);
+    }
+
     public static  boolean buscarEquipo(String nombre){
         return ModeloController.buscarEquipo(nombre);
     }
 
     public static List<String> listaEquipos(){
         return ModeloController.listaEquipos();
+    }
+
+    public static boolean eliminarEquipo(String equipoSeleccionado) {
+        return ModeloController.eliminarEquipo(equipoSeleccionado);
     }
 }
