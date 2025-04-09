@@ -14,9 +14,9 @@ public class VentanaGestionJugadores extends JFrame {
 
     public VentanaGestionJugadores(String nombre) {
         setTitle("Administrador");
-        setLocationRelativeTo(null);
         setResizable(false);
         setSize(400, 200);
+        setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
 

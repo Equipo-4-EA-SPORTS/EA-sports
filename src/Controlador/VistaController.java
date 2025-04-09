@@ -27,9 +27,10 @@ public class VistaController {
         inscribir.setVisible(true);
 
     }
+    /*
     public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat) {
         return ModeloController.inscribirJugador();
-    }
+    }*/
 
     public static void eliminarJugador(JFrame ventana) {
         ventana.dispose();

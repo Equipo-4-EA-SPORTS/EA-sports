@@ -26,10 +26,10 @@ public class VentanaInscribirJugadores extends JFrame {
     public VentanaInscribirJugadores(JFrame ventana) {
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
-        setLocationRelativeTo(ventana);
         setTitle("Inscribir Equipo");
         setSize(400, 200);
         setResizable(false);
+        setLocationRelativeTo(null);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -56,7 +56,7 @@ public class VentanaInscribirJugadores extends JFrame {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() throws FechaInvalidaException {
+    private void onOK()  {
         String nombre = nombreTF.getText();
         if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(null, "ERROR: El nombre es un campo obligatorio");
@@ -71,15 +71,6 @@ public class VentanaInscribirJugadores extends JFrame {
             JOptionPane.showMessageDialog(null, "ERROR: La nacionalidad es un campo obligatorio");
         }
 //VALIDACIOND DE LA FECHA
-        LocalDate fechaParseada = LocalDate.parse(fechaTF.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-        LocalDate fechaMax = LocalDate.now();
-
-        LocalDate fechaMin = LocalDate.parse("02/06/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-        if (fechaParseada.isEqual(fechaMin) || fechaParseada.isEqual(fechaMax) || fechaParseada.isBefore(fechaMin) || fechaParseada.isAfter(fechaMax)) {throw new FechaInvalidaException();}
-
-
         String nickname = nicknameTF.getText();
         if (nickname.isEmpty()) {
             JOptionPane.showMessageDialog(null, " ERROR: El nickname es un campo obligatorio");
@@ -96,7 +87,7 @@ public class VentanaInscribirJugadores extends JFrame {
         /* Si pasa las validaciones se manda a insertar */
 
 
-        VistaController.inscribirJugador(nombre, apellido, nacionalidad, fechaParseada, nickname, sueldoFloat);
+        //VistaController.inscribirJugador(nombre, apellido, nacionalidad, fechaParseada, nickname, sueldoFloat);
 
     }
 

@@ -14,9 +14,9 @@ public class VentanaGestionEquipos extends JFrame {
     public VentanaGestionEquipos(String nombre) {
         setContentPane(pPrincipal);
         setTitle("Administrador");
-        setLocationRelativeTo(null);
         setResizable(false);
-        setSize(400,200);
+        setSize(800,400);
+        setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
 
