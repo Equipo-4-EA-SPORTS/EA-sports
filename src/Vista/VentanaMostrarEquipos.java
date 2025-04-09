@@ -4,6 +4,7 @@ import Controlador.VistaController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.event.*;
 import java.util.List;
 
@@ -32,6 +33,10 @@ public class VentanaMostrarEquipos extends JDialog {
 
         tablaEquipos.setModel(modelo);
         tablaEquipos.setEnabled(false); // Para que no se pueda editar
+
+        //Ordenar
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+        tablaEquipos.setRowSorter(sorter);
 
         bCerrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
