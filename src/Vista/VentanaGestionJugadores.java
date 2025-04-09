@@ -60,7 +60,7 @@ public class VentanaGestionJugadores extends JFrame {
                         VistaController.mostrarinscribirJugador(VentanaGestionJugadores.this);
                         break;
                     case 2:
-                        VistaController.eliminarJugador(VentanaGestionJugadores.this);
+                        VistaController.eliminarJugador(opcionesMenu.getSelectedItem().toString());
                         break;
                     case 3:
                         VistaController.modificarJugador(VentanaGestionJugadores.this);

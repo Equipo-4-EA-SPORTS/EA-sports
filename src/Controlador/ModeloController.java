@@ -11,10 +11,20 @@ public class ModeloController {
     public static boolean inciarSesionUsuario(String usr, String con, String tipoUsr){
         return UsuarioController.inciarSesionusUario(usr, con,tipoUsr);
     }
+    //Apartado Jugador
     public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat){
         return JugadorController.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat);
     }
-
+    public static boolean buscarJugador(String nombre){
+        return JugadorController.buscarJugador(nombre);
+    }
+    public static List<String> listaJugadores(){
+        return JugadorController.listaJugadores();
+    }
+    public static boolean eliminarJugador(String jugadorSeleccionado) {
+        return JugadorController.eliminarJugador(jugadorSeleccionado);
+    }
+//Apartado Equipos
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){
         return EquipoController.inscribirEquipo(nombre,fecha);
     }

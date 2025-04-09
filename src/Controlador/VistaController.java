@@ -21,24 +21,6 @@ public class VistaController {
         ventanaSeleccionUsuario.setVisible(true);
     }
 
-    public static void mostrarinscribirJugador(JFrame ventana) {
-        ventana.dispose();
-        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
-        inscribir.setVisible(true);
-
-    }
-    /*
-    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat) {
-        return ModeloController.inscribirJugador();
-    }*/
-
-    public static void eliminarJugador(JFrame ventana) {
-        ventana.dispose();
-    }
-
-    public static void modificarJugador(JFrame ventana) {
-        ventana.dispose();
-    }
 
     public void mostrarInicio() {
         InicioSesion inicioSesion = new InicioSesion();
@@ -80,6 +62,7 @@ public class VistaController {
         VentanaGestionEquipos vge = new VentanaGestionEquipos(nombre);
         vge.setVisible(true);
     }
+    //Apartado Equipos
 
     public static void ventanaInscribirEquipo(JFrame ventana) {
         VentanaInscribirEquipo vi = new VentanaInscribirEquipo(ventana);
@@ -124,13 +107,46 @@ public class VistaController {
     public static boolean eliminarEquipo(String equipoSeleccionado) {
         return ModeloController.eliminarEquipo(equipoSeleccionado);
     }
-
-    public static boolean ventanaConfirmacion(){
-        VentanaConfirmacion vc = new VentanaConfirmacion();
+//Ventana de confirmacion empleada en Jugadores y Equipos
+    public static boolean ventanaConfirmacion(String titulo){
+        VentanaConfirmacion vc = new VentanaConfirmacion(titulo);
         vc.setVisible(true);
         return vc.isConfirmado();
     }
+    //Apartado Jugadores
+    public static void mostrarinscribirJugador(JFrame ventana) {
+        ventana.dispose();
+        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
+        inscribir.setVisible(true);
+
+    }
+    /*
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat) {
+        return ModeloController.inscribirJugador();
+    }*/
 
 
+
+    public static void modificarJugador(JFrame ventana) {
+        ventana.dispose();
+    }
+
+    public static boolean VentanaEliminarJugador() {
+        VentanaEliminarJugador ve = new VentanaEliminarJugador();
+        List<String> listaJugadores = ModeloController.listaJugadores();
+        ve.setVisible(!listaJugadores.isEmpty());
+        return !listaJugadores.isEmpty();
+    }
+    public static  boolean buscarJugador(String nombre){
+        return ModeloController.buscarJugador(nombre);
+    }
+
+    public static List<String> listaJugadores(){
+        return ModeloController.listaJugadores();
+    }
+
+    public static boolean eliminarJugador(String jugadorSeleccionado) {
+        return ModeloController.eliminarJugador(jugadorSeleccionado);
+    }
 
 }
