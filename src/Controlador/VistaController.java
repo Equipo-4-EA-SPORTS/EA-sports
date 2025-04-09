@@ -51,8 +51,8 @@ public class VistaController {
 
     public static void ventanaUsuario(JFrame ventana,String nombre) {
         ventana.dispose();
-        //VentanaUsuario vu = new VentanaUsuario(nombre);
-        //vu.setVisible(true);
+        VentanaUsuario vu = new VentanaUsuario(nombre);
+        vu.setVisible(true);
     }
 
 
