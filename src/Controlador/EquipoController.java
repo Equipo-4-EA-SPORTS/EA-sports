@@ -22,6 +22,9 @@ public class EquipoController {
     public static boolean eliminarEquipo(String equipoSeleccionado) {
         return EquipoDAO.eliminarEquipo(equipoSeleccionado);
     }
+    public static List<String[]> obtenerEquiposConFechas(){
+        return EquipoDAO.obtenerEquiposConFechas();
+    }
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         return EquipoDAO.modificarEquipo(nuevoNombre,nuevaFecha,nombre);

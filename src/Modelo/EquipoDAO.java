@@ -96,6 +96,31 @@ public class EquipoDAO {
         }
         return eliminado;
     }
+
+    public static List<String[]> obtenerEquiposConFechas() {
+        List<String[]> equipos = new ArrayList<>();
+
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT nombre, fechafund FROM equipos";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                String fecha = rs.getDate("fechafund").toString();
+                equipos.add(new String[]{nombre, fecha});
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return equipos;
+    }
+
+
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         boolean actualizado = false;
 
