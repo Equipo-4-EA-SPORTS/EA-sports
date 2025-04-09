@@ -124,17 +124,61 @@ public class EquipoDAO {
 
         return false;
     }
-    public static boolean modificarEquipo(String nuevoNombre){
+    public static boolean modificarEquipo(String nuevoNombre,String nombre){
+        boolean actualizado = false;
         try{
+
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String sentencia = "UPDATE equipos SET nombre = ? Where nombre = ?";
+
+            PreparedStatement ps = con.prepareStatement(sentencia);
+            ps.setString(1,nuevoNombre);
+            ps.setString(2,nombre);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas>0){
+                actualizado = true;
+            }
+
+            BaseDatos.cerrarConexion();
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
 
-        return false;
+        return actualizado;
     }
-    public static boolean modificarEquipo(LocalDate nuevaFecha){
+    public static boolean modificarEquipo(LocalDate nuevaFecha,String nombre){
         try{
+
+            boolean actualizado = false;
+            try{
+
+                BaseDatos.abrirConexion();
+                Connection con = BaseDatos.getCon();
+
+                String sentencia = "UPDATE equipos SET fechafund = ? Where nombre = ?";
+
+                PreparedStatement ps = con.prepareStatement(sentencia);
+                ps.setDate(1,java.sql.Date.valueOf(nuevaFecha));
+                ps.setString(2,nombre);
+
+                int filasAfectadas = ps.executeUpdate();
+
+                if (filasAfectadas>0){
+                    actualizado = true;
+                }
+
+                BaseDatos.cerrarConexion();
+
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+            }
+
+            return actualizado;
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");

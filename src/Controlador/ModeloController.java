@@ -32,10 +32,10 @@ public class ModeloController {
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         return EquipoController.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
     }
-    public static boolean modificarEquipo(String nuevoNombre){
-        return EquipoController.modificarEquipo(nuevoNombre);
+    public static boolean modificarEquipo(String nuevoNombre, String nombre){
+        return EquipoController.modificarEquipo(nuevoNombre,nombre);
     }
-    public static boolean modificarEquipo(LocalDate nuevaFecha){
-        return EquipoController.modificarEquipo(nuevaFecha);
+    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
+        return EquipoController.modificarEquipo(nuevaFecha,nombre);
     }
 }
