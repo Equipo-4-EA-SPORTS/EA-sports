@@ -68,10 +68,14 @@ public class VentanaGestionEquipos extends JFrame {
                         }
                         break;
                     case 3:
-                        VistaController.ventanaModificarEquipo(VentanaGestionEquipos.this);
+                        if (!VistaController.ventanaModificarEquipo()){
+                            JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                     case 4:
-                        VistaController.VentanaMostrarEquipos(VentanaGestionEquipos.this);
+                        if (!VistaController.VentanaMostrarEquipos()){
+                            JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                 }
             }
