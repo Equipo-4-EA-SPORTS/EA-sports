@@ -92,7 +92,6 @@ public class VentanaInscribirEquipo extends JDialog {
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
     }
 

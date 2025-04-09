@@ -1,5 +1,7 @@
 package Controlador;
 
+import Modelo.Jugador;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +10,9 @@ public class ModeloController {
 
     public static boolean inciarSesionUsuario(String usr, String con, String tipoUsr){
         return UsuarioController.inciarSesionusUario(usr, con,tipoUsr);
+    }
+    public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat){
+        return JugadorController.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat);
     }
 
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){

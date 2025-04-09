@@ -21,6 +21,24 @@ public class VistaController {
         ventanaSeleccionUsuario.setVisible(true);
     }
 
+    public static void mostrarinscribirJugador(JFrame ventana) {
+        ventana.dispose();
+        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
+        inscribir.setVisible(true);
+
+    }
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat) {
+        return ModeloController.inscribirJugador();
+    }
+
+    public static void eliminarJugador(JFrame ventana) {
+        ventana.dispose();
+    }
+
+    public static void modificarJugador(JFrame ventana) {
+        ventana.dispose();
+    }
+
     public void mostrarInicio() {
         InicioSesion inicioSesion = new InicioSesion();
         inicioSesion.setVisible(true);
