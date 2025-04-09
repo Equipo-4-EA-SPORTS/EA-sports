@@ -4,9 +4,7 @@ import Vista.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class VistaController {
     private static ModeloController mc = new ModeloController();
@@ -21,6 +19,24 @@ public class VistaController {
         ventana.dispose();
         UsuarioAdmin ventanaSeleccionUsuario = new UsuarioAdmin();
         ventanaSeleccionUsuario.setVisible(true);
+    }
+
+    public static void mostrarinscribirJugador(JFrame ventana) {
+        ventana.dispose();
+        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
+        inscribir.setVisible(true);
+
+    }
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat) {
+        return ModeloController.inscribirJugador();
+    }
+
+    public static void eliminarJugador(JFrame ventana) {
+        ventana.dispose();
+    }
+
+    public static void modificarJugador(JFrame ventana) {
+        ventana.dispose();
     }
 
     public void mostrarInicio() {

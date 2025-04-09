@@ -10,6 +10,46 @@ public class Jugador {
     private LocalDate fechaNac;
     private String nickname;
     private double sueldo;
+//Constructores
 
+    public Jugador( String apellido, String nombre, String nacionalidad, String nickname, LocalDate fechaNac, double sueldo) {
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.nacionalidad = nacionalidad;
+        this.nickname = nickname;
+        this.fechaNac = fechaNac;
+        this.sueldo = sueldo;
+    }
+    public Jugador(){}
 
+    //Getters y Setters
+
+    public int getIdJugador() {return idJugador;}
+
+    public void setIdJugador(int idJugador) {this.idJugador = idJugador;}
+
+    public String getNombre() {return nombre;}
+
+    public void setNombre(String nombre) {this.nombre = nombre;}
+
+    public String getNacionalidad() {return nacionalidad;}
+
+    public void setNacionalidad(String nacionalidad) {this.nacionalidad = nacionalidad;}
+
+    public String getApellido() {return apellido;}
+
+    public void setApellido(String apellido) {this.apellido = apellido;}
+
+    public LocalDate getFechaNac() {return fechaNac;}
+
+    public void setFechaNac(LocalDate fechaNac) {this.fechaNac = fechaNac;}
+
+    public String getNickname() {return nickname;}
+
+    public void setNickname(String nickname) {this.nickname = nickname;}
+
+    public double getSueldo() {return sueldo;}
+
+    public void setSueldo(double sueldo) {this.sueldo = sueldo;}
 }
+
