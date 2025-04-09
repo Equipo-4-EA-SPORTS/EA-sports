@@ -45,6 +45,7 @@
                 <item value="Inscribir Equipo"/>
                 <item value="Eliminar Equipo"/>
                 <item value="Modificar Equipo"/>
+                <item value="Mostrar Equipos"/>
               </model>
             </properties>
           </component>

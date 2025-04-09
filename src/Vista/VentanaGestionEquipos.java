@@ -70,6 +70,9 @@ public class VentanaGestionEquipos extends JFrame {
                     case 3:
                         VistaController.ventanaModificarEquipo(VentanaGestionEquipos.this);
                         break;
+                    case 4:
+                        VistaController.VentanaMostrarEquipos(VentanaGestionEquipos.this);
+                        break;
                 }
             }
         });

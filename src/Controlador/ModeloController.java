@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.EquipoDAO;
 import Modelo.Jugador;
 
 import java.time.LocalDate;
@@ -27,6 +28,9 @@ public class ModeloController {
     }
     public static boolean eliminarEquipo(String equipoSeleccionado) {
         return EquipoController.eliminarEquipo(equipoSeleccionado);
+    }
+    public static List<String[]> obtenerEquiposConFechas(){
+        return EquipoController.obtenerEquiposConFechas();
     }
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
