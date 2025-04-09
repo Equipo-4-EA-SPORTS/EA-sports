@@ -11,6 +11,7 @@ public class VentanaGestionJugadores extends JFrame {
     private JButton ACEPTARbutton;
     private JComboBox opcionesMenu;
     private JLabel tituloAB;
+    private JPanel pPrincipal;
 
     public VentanaGestionJugadores(String nombre) {
         setTitle("Administrador");
@@ -60,13 +61,19 @@ public class VentanaGestionJugadores extends JFrame {
                         VistaController.mostrarinscribirJugador(VentanaGestionJugadores.this);
                         break;
                     case 2:
-                        VistaController.eliminarJugador(VentanaGestionJugadores.this);
+                        if (!VistaController.VentanaEliminarJugador(VentanaGestionJugadores.this)) {
+                            JOptionPane.showMessageDialog(pPrincipal, "No hay jugadores para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                     case 3:
-                        VistaController.modificarJugador(VentanaGestionJugadores.this);
+
+                        break;
+                    case 4:
+
                         break;
                 }
             }
         });
     }
 }
+
