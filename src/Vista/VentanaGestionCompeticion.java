@@ -6,12 +6,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaAdministrador extends javax.swing.JFrame {
-    private JPanel pPrincipal;
+public class VentanaGestionCompeticion extends JFrame {
     private JComboBox comboBox1;
-    private JButton ACEPTARButton;
+    private JButton ACEPTARbutton;
+    private JButton VOLVERbutton;
+    private JPanel pPrincipal;
 
-    public VentanaAdministrador(String nombre) {
+    public VentanaGestionCompeticion(String nombre) {
+
         setContentPane(pPrincipal);
         setTitle("Administrador");
         setResizable(false);
@@ -41,7 +43,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         JcambiarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.mostrarinicioSesion(VentanaAdministrador.this);
+                VistaController.mostrarinicioSesion(VentanaGestionCompeticion.this);
             }
         });
 
@@ -52,24 +54,10 @@ public class VentanaAdministrador extends javax.swing.JFrame {
             }
         });
 
-
-        ACEPTARButton.addActionListener(new ActionListener() {
+        VOLVERbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (comboBox1.getSelectedIndex()) {
-                    case 0:
-                        JOptionPane.showMessageDialog(pPrincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case 1:
-                        VistaController.ventanaGestionEquipos(VentanaAdministrador.this,nombre);
-                        break;
-                    case 2:
-                        //VENTANA GESTION JUGADORES
-                        break;
-                    case 3:
-                        VistaController.ventanaGestionCompeticion(VentanaAdministrador.this,nombre);
-                        break;
-                }
+                VistaController.ventanaAdministrador(VentanaGestionCompeticion.this,"administrdor");
             }
         });
     }

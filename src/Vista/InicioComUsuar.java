@@ -5,6 +5,8 @@ import Controlador.VistaController;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class InicioComUsuar extends JFrame {
@@ -14,7 +16,6 @@ public class InicioComUsuar extends JFrame {
     private JButton bIniciar;
     private JCheckBox checkRecord;
     private JLabel textoTitulo;
-    private static VistaController vc = new VistaController();
 
     public InicioComUsuar(String tipoUsr) {
         setTitle("Inicio Com Usuario normal");
@@ -38,27 +39,43 @@ public class InicioComUsuar extends JFrame {
         bIniciar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(tfUsuario.getText().equals("") || tfContrase.getText().equals("")) {
-                    JOptionPane.showMessageDialog(pPrincipal,"ERROR, todos los campos son obligatorios");
-                }
-                else {
-                    if (VistaController.inciarSesionUsuario(tfUsuario.getText(),tfContrase.getText(),tipoUsr)){
-                        switch (tipoUsr){
-                            case "ADMINISTRADOR":
-                                VistaController.ventanaAdministrador(InicioComUsuar.this,tfUsuario.getText());
-                                break;
-                            case "USUARIO":
-                                VistaController.ventanaUsuario(InicioComUsuar.this,tfUsuario.getText());
-                                break;
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(pPrincipal, "Usuario o Contraseña incorrectas","Error",JOptionPane.ERROR_MESSAGE);
-                        tfUsuario.setText("");
-                        tfContrase.setText("");
-                    }
+                verificarUsuario(tipoUsr);
+            }
+        });
+        tfContrase.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    verificarUsuario(tipoUsr);
                 }
             }
         });
+
+
     }
+    public void verificarUsuario(String tipoUsr){
+        if(tfUsuario.getText().equals("") || tfContrase.getText().equals("")) {
+            JOptionPane.showMessageDialog(pPrincipal,"ERROR, todos los campos son obligatorios");
+        }
+        else {
+            if (VistaController.inciarSesionUsuario(tfUsuario.getText(),tfContrase.getText(),tipoUsr)){
+                switch (tipoUsr){
+                    case "ADMINISTRADOR":
+                        VistaController.ventanaAdministrador(InicioComUsuar.this,tfUsuario.getText());
+                        break;
+                    case "USUARIO":
+                        VistaController.ventanaUsuario(InicioComUsuar.this,tfUsuario.getText());
+                        break;
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(pPrincipal, "Usuario o Contraseña incorrectas","Error",JOptionPane.ERROR_MESSAGE);
+                tfUsuario.setText("");
+                tfContrase.setText("");
+            }
+        }
+    }
+
+
 }

@@ -104,7 +104,7 @@ public class EquipoDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "SELECT nombre, fechafund FROM equipos ORDER BY nombre";
+            String plantilla = "SELECT nombre, fechafund FROM equipos";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ResultSet rs = ps.executeQuery();
 
