@@ -31,6 +31,7 @@ public class EquipoDAO {
             if(filas>0){
                 encontrado=true;
             }
+            BaseDatos.cerrarConexion();
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
@@ -51,9 +52,12 @@ public class EquipoDAO {
             if(rs.next()){
                 encontrado=true;
             }
+
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
+            BaseDatos.cerrarConexion();
+        }catch (Exception e){}
         return encontrado;
     }
 
@@ -70,7 +74,7 @@ public class EquipoDAO {
             while(rs.next()){
                 equipos.add(rs.getString(1));
             }
-
+            BaseDatos.cerrarConexion();
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
@@ -95,5 +99,52 @@ public class EquipoDAO {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return eliminado;
+    }
+
+    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
+        boolean actualizado = false;
+
+        try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String sentencia = "UPDATE equipos SET nombre = ?, fechafund = ? Where nombre = ?";
+
+            PreparedStatement ps = con.prepareStatement(sentencia);
+            ps.setString(1,nuevoNombre);
+            ps.setDate(2,java.sql.Date.valueOf(nuevaFecha));
+            ps.setString(3,nombre);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas>0){
+                actualizado = true;
+            }
+
+            BaseDatos.cerrarConexion();
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+
+        return false;
+    }
+    public static boolean modificarEquipo(String nuevoNombre){
+        try{
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+
+        return false;
+    }
+    public static boolean modificarEquipo(LocalDate nuevaFecha){
+        try{
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+
+        return false;
     }
 }
