@@ -26,10 +26,10 @@ public class EquipoController {
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         return EquipoDAO.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
     }
-    public static boolean modificarEquipo(String nuevoNombre){
-        return EquipoDAO.modificarEquipo(nuevoNombre);
+    public static boolean modificarEquipo(String nuevoNombre, String nombre){
+        return EquipoDAO.modificarEquipo(nuevoNombre,nombre);
     }
-    public static boolean modificarEquipo(LocalDate nuevaFecha){
-        return EquipoDAO.modificarEquipo(nuevaFecha);
+    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
+        return EquipoDAO.modificarEquipo(nuevaFecha,nombre);
     }
 }

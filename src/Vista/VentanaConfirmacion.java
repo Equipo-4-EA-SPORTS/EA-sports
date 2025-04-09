@@ -9,7 +9,7 @@ public class VentanaConfirmacion extends JDialog {
     private JButton buttonCancel;
     private boolean confirmado = false; // nuevo atributo
 
-    public VentanaConfirmacion(JDialog ventana) {
+    public VentanaConfirmacion() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -44,6 +44,6 @@ public class VentanaConfirmacion extends JDialog {
     }
 
     public boolean isConfirmado() {
-        return confirmado;
+        return true;
     }
 }

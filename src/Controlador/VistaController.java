@@ -96,18 +96,20 @@ public class VistaController {
     }
 
 
-    public static void VentanaEliminarEquipo(JFrame ventana) {
-        VentanaEliminarEquipo ve = new VentanaEliminarEquipo(ventana);
-        ve.setVisible(true);
+    public static boolean VentanaEliminarEquipo () {
+        VentanaEliminarEquipo ve = new VentanaEliminarEquipo();
+        List<String> listaEquipos = ModeloController.listaEquipos();
+        ve.setVisible(!listaEquipos.isEmpty());
+        return !listaEquipos.isEmpty();
     }
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         return ModeloController.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
     }
-    public static boolean modificarEquipo(String nuevoNombre){
-        return ModeloController.modificarEquipo(nuevoNombre);
+    public static boolean modificarEquipo(String nuevoNombre,String nombre){
+        return ModeloController.modificarEquipo(nuevoNombre,nombre);
     }
-    public static boolean modificarEquipo(LocalDate nuevaFecha){
-        return ModeloController.modificarEquipo(nuevaFecha);
+    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
+        return ModeloController.modificarEquipo(nuevaFecha,nombre);
 
     }
 
@@ -121,6 +123,12 @@ public class VistaController {
 
     public static boolean eliminarEquipo(String equipoSeleccionado) {
         return ModeloController.eliminarEquipo(equipoSeleccionado);
+    }
+
+    public static boolean ventanaConfirmacion(){
+        VentanaConfirmacion vc = new VentanaConfirmacion();
+        vc.setVisible(true);
+        return vc.isConfirmado();
     }
 
 
