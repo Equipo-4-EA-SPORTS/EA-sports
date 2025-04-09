@@ -86,9 +86,11 @@ public class VistaController {
         vi.setVisible(true);
     }
 
-    public static void ventanaModificarEquipo(JFrame ventana) {
-        VentanaModificacionEquipo ve = new VentanaModificacionEquipo(ventana);
-        ve.setVisible(true);
+    public static boolean ventanaModificarEquipo() {
+        VentanaModificacionEquipo ve = new VentanaModificacionEquipo();
+        List<String> listaEquipos = ModeloController.listaEquipos();
+        ve.setVisible(!listaEquipos.isEmpty());
+        return !listaEquipos.isEmpty();
     }
 
     public static boolean inscribirEquipo(String nombre, LocalDate fecha) {
@@ -103,9 +105,11 @@ public class VistaController {
         return !listaEquipos.isEmpty();
     }
 
-    public static void VentanaMostrarEquipos(JFrame ventana) {
+    public static boolean VentanaMostrarEquipos() {
         VentanaMostrarEquipos ve = new VentanaMostrarEquipos();
-        ve.setVisible(true);
+        List<String> listaEquipos = ModeloController.listaEquipos();
+        ve.setVisible(!listaEquipos.isEmpty());
+        return !listaEquipos.isEmpty();
     }
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){

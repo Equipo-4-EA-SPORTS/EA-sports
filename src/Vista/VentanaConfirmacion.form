@@ -63,7 +63,7 @@
             </constraints>
             <properties>
               <font name="JetBrains Mono" size="20" style="1"/>
-              <text value="Estas seguro que desea eliminar el equipo ?"/>
+              <text value="Estas seguro que desea eliminar el equipo?"/>
             </properties>
           </component>
         </children>

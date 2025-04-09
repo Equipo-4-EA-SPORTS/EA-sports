@@ -7,18 +7,18 @@ public class VentanaConfirmacion extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private boolean confirmado = false; // nuevo atributo
+    private boolean confirmado = false;
 
     public VentanaConfirmacion() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        setSize(500, 300);
+        setSize(575, 150);
         setLocationRelativeTo(null);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                confirmado = true; // el usuario confirma
+                confirmado = true;
                 dispose();
             }
         });
@@ -44,6 +44,6 @@ public class VentanaConfirmacion extends JDialog {
     }
 
     public boolean isConfirmado() {
-        return true;
+        return confirmado;
     }
 }
