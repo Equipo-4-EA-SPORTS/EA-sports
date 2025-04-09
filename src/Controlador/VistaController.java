@@ -144,6 +144,12 @@ public class VistaController {
         return vc.isConfirmado();
     }
 
+    public static void ventanaGestionCompeticion(JFrame ventana, String nombre) {
+        ventana.dispose();
+        VentanaGestionCompeticion vge = new VentanaGestionCompeticion(nombre);
+        vge.setVisible(true);
+    }
+
 
 
 }

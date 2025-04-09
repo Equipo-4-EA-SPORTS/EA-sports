@@ -10,6 +10,7 @@ public class VentanaGestionEquipos extends JFrame {
     private JButton ACEPTARbutton;
     private JComboBox comboBox1;
     private JPanel pPrincipal;
+    private JButton VOLVERbutton;
 
     public VentanaGestionEquipos(String nombre) {
         setContentPane(pPrincipal);
@@ -81,5 +82,11 @@ public class VentanaGestionEquipos extends JFrame {
             }
         });
 
+        VOLVERbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.ventanaAdministrador(VentanaGestionEquipos.this,"administrdor");
+            }
+        });
     }
 }

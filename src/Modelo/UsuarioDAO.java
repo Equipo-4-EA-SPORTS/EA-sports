@@ -1,5 +1,6 @@
 package Modelo;
 
+import javax.sound.midi.Track;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ public class UsuarioDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "SELECT nombre FROM usuarios WHERE nombre = ? AND contrasena = ? AND tipousuario = ?";
+            String plantilla = "SELECT nombre FROM USUARIOS WHERE nombre = ? AND contrasena = ? AND tipousuario = ?";
 
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setString(1,nombre);
