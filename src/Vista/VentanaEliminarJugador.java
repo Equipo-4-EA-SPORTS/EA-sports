@@ -18,7 +18,7 @@ public class VentanaEliminarJugador extends JDialog{
         setContentPane(pPrincipal);
         setModal(true);
         getRootPane().setDefaultButton(bBorrarJugador);
-        setSize(575,150);
+        setSize(575,200);
         setLocationRelativeTo(null);
 
         List<String> listaJugadores = VistaController.listaJugadores();
@@ -27,8 +27,6 @@ public class VentanaEliminarJugador extends JDialog{
         for (int i = 0; i < listaJugadores.size(); i++) {
             cbJugadores.insertItemAt(listaJugadores.get(i),i+1);
         }
-
-
 
         bBorrarJugador.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -63,8 +61,8 @@ public class VentanaEliminarJugador extends JDialog{
 
         if (jugadorSeleccionado != null && !jugadorSeleccionado.equals("Haz click para descubrir las opciones")) {
 
-            if (VistaController.ventanaConfirmacion()) {
-                boolean eliminado = VistaController.eliminarEquipo(jugadorSeleccionado);
+            if (VistaController.ventanaConfirmacion("jugador")) {
+                boolean eliminado = VistaController.eliminarJugador(jugadorSeleccionado);
 
                 if (eliminado) {
                     JOptionPane.showMessageDialog(pPrincipal, "Jugador eliminado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);

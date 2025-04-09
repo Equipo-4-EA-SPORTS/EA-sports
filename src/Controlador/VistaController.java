@@ -153,8 +153,8 @@ public class VistaController {
         return ModeloController.obtenerEquiposConFechas();
     }
 
-    public static boolean ventanaConfirmacion(){
-        VentanaConfirmacion vc = new VentanaConfirmacion();
+    public static boolean ventanaConfirmacion(String title){
+        VentanaConfirmacion vc = new VentanaConfirmacion(title);
         vc.setVisible(true);
         return vc.isConfirmado();
     }
@@ -162,6 +162,12 @@ public class VistaController {
     public static void ventanaGestionCompeticion(JFrame ventana, String nombre) {
         ventana.dispose();
         VentanaGestionCompeticion vge = new VentanaGestionCompeticion(nombre);
+        vge.setVisible(true);
+    }
+
+    public static void ventanaGestionJugadores(JFrame ventana, String nombre) {
+        ventana.dispose();
+        VentanaGestionJugadores vge = new VentanaGestionJugadores(nombre);
         vge.setVisible(true);
     }
 

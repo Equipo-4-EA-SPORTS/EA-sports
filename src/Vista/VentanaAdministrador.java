@@ -64,7 +64,8 @@ public class VentanaAdministrador extends javax.swing.JFrame {
                         VistaController.ventanaGestionEquipos(VentanaAdministrador.this,nombre);
                         break;
                     case 2:
-                        //VENTANA GESTION JUGADORES
+                        VistaController.ventanaGestionJugadores(VentanaAdministrador.this,nombre);
+
                         break;
                     case 3:
                         VistaController.ventanaGestionCompeticion(VentanaAdministrador.this,nombre);

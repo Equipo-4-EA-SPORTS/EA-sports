@@ -14,6 +14,7 @@ public class VentanaGestionJugadores extends JFrame {
     private JPanel pPrincipal;
 
     public VentanaGestionJugadores(String nombre) {
+        setContentPane(pPrincipal);
         setTitle("Administrador");
         setResizable(false);
         setSize(400, 200);

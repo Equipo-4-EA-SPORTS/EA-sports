@@ -61,7 +61,7 @@ public class VentanaEliminarEquipo extends JDialog {
 
         if (equipoSeleccionado != null && !equipoSeleccionado.equals("Haz click para descubrir las opciones")) {
 
-            if (VistaController.ventanaConfirmacion()) {
+            if (VistaController.ventanaConfirmacion("equipo")) {
                 boolean eliminado = VistaController.eliminarEquipo(equipoSeleccionado);
 
                 if (eliminado) {
