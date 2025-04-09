@@ -10,7 +10,6 @@ public class InicioSesion extends JFrame {
     private JButton fotoBoton;
     private JButton COMENZARButton;
     private JPanel PanelPrincipal;
-    private static VistaController vc = new VistaController();
     public InicioSesion() {
         setContentPane(PanelPrincipal);
         setTitle("EA-SPORTS");
@@ -23,7 +22,7 @@ public class InicioSesion extends JFrame {
         COMENZARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vc.mostrarinicioSesion(InicioSesion.this);
+                VistaController.mostrarinicioSesion(InicioSesion.this);
             }
         });
     }
