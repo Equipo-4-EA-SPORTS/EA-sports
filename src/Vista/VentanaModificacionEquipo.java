@@ -1,9 +1,12 @@
 package Vista;
 
 import Controlador.VistaController;
+import Excepciones.*;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,25 +20,31 @@ public class VentanaModificacionEquipo extends JDialog {
     private JRadioButton nuevoNombreRadioButton;
     private JRadioButton nuevaFechaDeFundacionRadioButton;
 
-    public VentanaModificacionEquipo() {
+    private LocalDate fechaParseada;
+    private LocalDate fechaMax = LocalDate.now();
+    private LocalDate fechaMin = LocalDate.parse("02/06/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+    public VentanaModificacionEquipo(JFrame ventana) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+        setResizable(false);
+        setSize(500,250);
+        setLocationRelativeTo(null);
 
 
         List<String> listaEquipos = VistaController.listaEquipos();
         System.out.println(listaEquipos);
         equipos.addItem("Haz click para descubrir las opciones");
         if (listaEquipos.size()>0) {
-            System.out.println("hola");
             for (int i = 0; i < listaEquipos.size(); i++) {
-                System.out.println("adios");
                 equipos.insertItemAt(listaEquipos.get(i),i+1);
             }
         }
         else {
             JOptionPane.showMessageDialog(contentPane, "Error. No hay equipos para modificar.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -63,22 +72,92 @@ public class VentanaModificacionEquipo extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        nuevoNombreRadioButton.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (nuevoNombreRadioButton.isSelected()){
+                    nuevoNombre.setEditable(true);
+                }
+                else {
+                    nuevoNombre.setEditable(false);
+                }
+            }
+        });
+        nuevaFechaDeFundacionRadioButton.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (nuevaFechaDeFundacionRadioButton.isSelected()){
+                    nuevaFecha.setEditable(true);
+                }
+                else {
+                    nuevaFecha.setEditable(false);
+                }
+            }
+        });
     }
 
     private void onOK() {
-        // add your code here
+
+
+        boolean actualizado = false;
+        try{
+
+            switch (equipos.getSelectedIndex()){
+                case 0:
+                    throw new OpcionIncorrectaException();
+                default:
+                    if (nuevoNombreRadioButton.isSelected() && nuevaFechaDeFundacionRadioButton.isSelected()){
+                        if (nuevoNombre.getText().isEmpty() || nuevaFecha.getText().isEmpty()){
+                            throw new CampoObligatorioException();
+                        }
+                        fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        actualizado =  VistaController.modificarEquipo(nuevoNombre.getText(), fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
+                    } else if (nuevoNombreRadioButton.isSelected()) {
+                        if (nuevoNombre.getText().isEmpty()){
+                            throw new CampoObligatorioException();
+                        }
+                        actualizado = VistaController.modificarEquipo(nuevoNombre.getText(),equipos.getItemAt(equipos.getSelectedIndex()).toString());
+                    } else if (nuevaFechaDeFundacionRadioButton.isSelected()) {
+                        if (nuevaFecha.getText().isEmpty()){
+                            throw new CampoObligatorioException();
+                        }
+                        fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        actualizado = VistaController.modificarEquipo(fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
+                    }else{
+                        throw new OpcionSeleccionarObligatorioException();
+                    }
+
+                    if (actualizado){
+                        JOptionPane.showMessageDialog(contentPane, "El Equipo se ha actualizado correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(contentPane,"No se ha podido actualizar el equipo","Error",-1);
+
+                    }
+
+            }
+        }
+        catch (CampoObligatorioException e){
+            JOptionPane.showMessageDialog(contentPane,"Error, los campos seleccionados son obligatorios","Error",-1);
+        }
+        catch (OpcionSeleccionarObligatorioException e){
+            JOptionPane.showMessageDialog(contentPane,"Error, debe seleccionar al menos un campo de los de abajo","Error",-1);
+
+        }
+        catch (OpcionIncorrectaException e){
+            JOptionPane.showMessageDialog(contentPane,"Error, debes de seleccionar una opcion","Error",-1);
+        }
+        catch (Exception e){
+            System.out.printf(e.getMessage());
+        }
+
+
         dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
         dispose();
-    }
-
-    public static void main(String[] args) {
-        VentanaModificacionEquipo dialog = new VentanaModificacionEquipo();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
     }
 }

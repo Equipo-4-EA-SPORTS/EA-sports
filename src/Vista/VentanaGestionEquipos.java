@@ -14,9 +14,9 @@ public class VentanaGestionEquipos extends JFrame {
     public VentanaGestionEquipos(String nombre) {
         setContentPane(pPrincipal);
         setTitle("Administrador");
-        setLocationRelativeTo(null);
         setResizable(false);
         setSize(400,200);
+        setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -63,10 +63,15 @@ public class VentanaGestionEquipos extends JFrame {
                         VistaController.ventanaInscribirEquipo(VentanaGestionEquipos.this);
                         break;
                     case 2:
-                        //ELIMINAR EQUIPO
+                        if (!VistaController.VentanaEliminarEquipo()){
+                            JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                     case 3:
                         VistaController.ventanaModificarEquipo(VentanaGestionEquipos.this);
+                        break;
+                    case 4:
+                        VistaController.VentanaMostrarEquipos(VentanaGestionEquipos.this);
                         break;
                 }
             }

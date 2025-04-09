@@ -28,10 +28,10 @@ public class VentanaInscribirEquipo extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        setLocationRelativeTo(ventana);
         setTitle("Inscribir Equipo");
         setSize(400, 200);
         setResizable(false);
+        setLocationRelativeTo(null);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -92,7 +92,6 @@ public class VentanaInscribirEquipo extends JDialog {
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
     }
 

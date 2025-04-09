@@ -4,9 +4,7 @@ import Vista.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class VistaController {
     private static ModeloController mc = new ModeloController();
@@ -21,6 +19,25 @@ public class VistaController {
         ventana.dispose();
         UsuarioAdmin ventanaSeleccionUsuario = new UsuarioAdmin();
         ventanaSeleccionUsuario.setVisible(true);
+    }
+
+    public static void mostrarinscribirJugador(JFrame ventana) {
+        ventana.dispose();
+        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
+        inscribir.setVisible(true);
+
+    }
+    /*
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat) {
+        return ModeloController.inscribirJugador();
+    }*/
+
+    public static void eliminarJugador(JFrame ventana) {
+        ventana.dispose();
+    }
+
+    public static void modificarJugador(JFrame ventana) {
+        ventana.dispose();
     }
 
     public void mostrarInicio() {
@@ -50,11 +67,13 @@ public class VistaController {
         VentanaAdministrador va = new VentanaAdministrador(nombre);
         va.setVisible(true);
     }
+
     public static void ventanaUsuario(JFrame ventana,String nombre) {
         ventana.dispose();
         VentanaUsuario vu = new VentanaUsuario(nombre);
         vu.setVisible(true);
     }
+
 
     public static void ventanaGestionEquipos(JFrame ventana,String nombre) {
         ventana.dispose();
@@ -68,12 +87,35 @@ public class VistaController {
     }
 
     public static void ventanaModificarEquipo(JFrame ventana) {
-        VentanaModificacionEquipo ve = new VentanaModificacionEquipo();
+        VentanaModificacionEquipo ve = new VentanaModificacionEquipo(ventana);
         ve.setVisible(true);
     }
 
     public static boolean inscribirEquipo(String nombre, LocalDate fecha) {
         return ModeloController.inscribirEquipo(nombre,fecha);
+    }
+
+
+    public static boolean VentanaEliminarEquipo () {
+        VentanaEliminarEquipo ve = new VentanaEliminarEquipo();
+        List<String> listaEquipos = ModeloController.listaEquipos();
+        ve.setVisible(!listaEquipos.isEmpty());
+        return !listaEquipos.isEmpty();
+    }
+
+    public static void VentanaMostrarEquipos(JFrame ventana) {
+        VentanaMostrarEquipos ve = new VentanaMostrarEquipos();
+        ve.setVisible(true);
+    }
+
+    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
+        return ModeloController.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
+    }
+    public static boolean modificarEquipo(String nuevoNombre,String nombre){
+        return ModeloController.modificarEquipo(nuevoNombre,nombre);
+    }
+    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
+        return ModeloController.modificarEquipo(nuevaFecha,nombre);
     }
 
     public static  boolean buscarEquipo(String nombre){
@@ -83,4 +125,21 @@ public class VistaController {
     public static List<String> listaEquipos(){
         return ModeloController.listaEquipos();
     }
+
+    public static boolean eliminarEquipo(String equipoSeleccionado) {
+        return ModeloController.eliminarEquipo(equipoSeleccionado);
+    }
+
+    public static List<String[]> obtenerEquiposConFechas(){
+        return ModeloController.obtenerEquiposConFechas();
+    }
+
+    public static boolean ventanaConfirmacion(){
+        VentanaConfirmacion vc = new VentanaConfirmacion();
+        vc.setVisible(true);
+        return vc.isConfirmado();
+    }
+
+
+
 }
