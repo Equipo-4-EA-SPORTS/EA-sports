@@ -10,14 +10,14 @@ public class VentanaConfirmacion extends JDialog {
     private JLabel text;
     private boolean confirmado = false;
 
-    public VentanaConfirmacion() {
+    public VentanaConfirmacion(String titulo) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        setSize(575, 150);
+        pack();
         setLocationRelativeTo(null);
 
-
+        text.setText("¿Estas seguro de que quiere eliminar el "+titulo+"?");
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
