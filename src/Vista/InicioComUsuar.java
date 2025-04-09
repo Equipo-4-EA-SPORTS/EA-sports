@@ -48,6 +48,7 @@ public class InicioComUsuar extends JFrame {
                                 VistaController.ventanaAdministrador(InicioComUsuar.this,tfUsuario.getText());
                                 break;
                             case "USUARIO":
+                                VistaController.ventanaUsuario(InicioComUsuar.this,tfUsuario.getText());
                                 break;
                         }
                     }
