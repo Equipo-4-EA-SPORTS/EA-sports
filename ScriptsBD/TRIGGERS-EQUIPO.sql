@@ -1,21 +1,3 @@
-CREATE OR REPLACE TRIGGER maxEquipos
-    BEFORE INSERT ON EQUIPOS
-    FOR EACH ROW
-    DECLARE
-        v_filas NUMBER;
-        e_maxEquipos exception;
-    BEGIN
-        Select COUNT(*) INTO v_filas
-        FROM EQUIPOS;
-
-        IF v_filas>6 THEN
-            raise e_maxEquipos;
-        end if;
-
-    EXCEPTION
-        WHEN e_maxEquipos THEN
-            RAISE_APPLICATION_ERROR(-20001,'NO SE PUEDEN INSERTAR MAS EQUIPOS');
-    END maxEquipos;
 
 CREATE OR REPLACE TRIGGER equiposFechaFundInterval
     BEFORE INSERT OR UPDATE OF fechafund ON EQUIPOS
@@ -51,4 +33,6 @@ CREATE OR REPLACE TRIGGER nombreDuplicadoEquipo
             WHEN e_nombreDuplicado THEN
                 RAISE_APPLICATION_ERROR(-20003,'YA EXISTE UN EQUIPO CON ESE NOMBRE');
     end;
+
+
 
