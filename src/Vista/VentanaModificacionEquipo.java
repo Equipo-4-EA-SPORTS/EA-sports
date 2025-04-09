@@ -30,7 +30,7 @@ public class VentanaModificacionEquipo extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         setResizable(false);
         setSize(500,250);
-        setLocationRelativeTo(ventana);
+        setLocationRelativeTo(null);
 
 
         List<String> listaEquipos = VistaController.listaEquipos();

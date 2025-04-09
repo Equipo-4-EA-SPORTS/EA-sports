@@ -31,7 +31,6 @@ public class EquipoDAO {
             if(filas>0){
                 encontrado=true;
             }
-            BaseDatos.cerrarConexion();
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
@@ -52,12 +51,9 @@ public class EquipoDAO {
             if(rs.next()){
                 encontrado=true;
             }
-
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
-            BaseDatos.cerrarConexion();
-        }catch (Exception e){}
         return encontrado;
     }
 
@@ -74,7 +70,7 @@ public class EquipoDAO {
             while(rs.next()){
                 equipos.add(rs.getString(1));
             }
-            BaseDatos.cerrarConexion();
+
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
@@ -100,7 +96,6 @@ public class EquipoDAO {
         }
         return eliminado;
     }
-
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         boolean actualizado = false;
 

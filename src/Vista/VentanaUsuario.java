@@ -14,9 +14,9 @@ public class VentanaUsuario extends javax.swing.JFrame {
     public VentanaUsuario(String nombre) {
         setContentPane(Pprincipal);
         setTitle("Usuario");
-        setLocationRelativeTo(null);
         setResizable(false);
         setSize(400,200);
+        setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
 

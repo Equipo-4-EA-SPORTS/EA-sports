@@ -14,9 +14,9 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     public VentanaAdministrador(String nombre) {
         setContentPane(pPrincipal);
         setTitle("Administrador");
-        setLocationRelativeTo(null);
         setResizable(false);
         setSize(400,200);
+        setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
 
