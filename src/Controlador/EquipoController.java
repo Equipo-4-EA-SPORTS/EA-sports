@@ -10,7 +10,6 @@ import java.util.List;
 public class EquipoController {
 
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){
-
         return EquipoDAO.inscribirEquipo(nombre,fecha);
     }
 
@@ -19,6 +18,9 @@ public class EquipoController {
     }
     public static List<String> listaEquipos(){
         return EquipoDAO.listaEquipos();
+    }
+    public static boolean eliminarEquipo(String equipoSeleccionado) {
+        return EquipoDAO.eliminarEquipo(equipoSeleccionado);
     }
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){

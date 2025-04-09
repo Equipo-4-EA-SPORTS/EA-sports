@@ -52,8 +52,11 @@ public class EquipoDAO {
             if(rs.next()){
                 encontrado=true;
             }
-            BaseDatos.cerrarConexion();
 
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+            BaseDatos.cerrarConexion();
         }catch (Exception e){}
         return encontrado;
     }
@@ -75,10 +78,27 @@ public class EquipoDAO {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
-
-
-
         return equipos;
+    }
+
+    public static boolean eliminarEquipo(String equipoSeleccionado){
+        boolean eliminado = false;
+        try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "DELETE FROM equipos WHERE nombre = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,equipoSeleccionado);
+
+            int filas = ps.executeUpdate();
+            if(filas > 0){
+                eliminado = true;
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return eliminado;
     }
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
