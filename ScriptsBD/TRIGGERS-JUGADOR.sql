@@ -29,7 +29,8 @@ EXCEPTION
 END;
 
 CREATE OR REPLACE TRIGGER maxJugadoresEquipo
-BEFORE INSERT OR UPDATE ON JUGADORES
+    BEFORE INSERT OR UPDATE ON JUGADORES
+    FOR EACH ROW
 DECLARE
     v_jugadoresEquipo NUMBER;
     e_demaisadosEquipos exception;
@@ -42,7 +43,7 @@ BEGIN
         RAISE e_demaisadosEquipos;
     end if;
 
-    EXCEPTION
-        WHEN e_demaisadosEquipos THEN
-            RAISE_APPLICATION_ERROR(-20004,'NO SE PUEDEN INSERTAR MAS JUGADORES, MAX: 6');
+EXCEPTION
+    WHEN e_demaisadosEquipos THEN
+        RAISE_APPLICATION_ERROR(-20004,'NO SE PUEDEN INSERTAR MAS JUGADORES, MAX: 6');
 END;

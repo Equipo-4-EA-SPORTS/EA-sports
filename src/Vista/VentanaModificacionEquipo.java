@@ -127,7 +127,7 @@ public class VentanaModificacionEquipo extends JDialog {
                         throw new OpcionSeleccionarObligatorioException();
                     }
 
-                    if (!actualizado){
+                    if (actualizado){
                         JOptionPane.showMessageDialog(contentPane, "El Equipo se ha actualizado correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                         dispose();
                     }
