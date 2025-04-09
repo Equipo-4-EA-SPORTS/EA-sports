@@ -12,7 +12,7 @@ public class VentanaEliminarEquipo extends JDialog {
     private JButton bBorrarEquipo;
     private JButton bCancel;
 
-    public VentanaEliminarEquipo(JFrame ventana) {
+    public VentanaEliminarEquipo() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(bBorrarEquipo);
@@ -20,16 +20,12 @@ public class VentanaEliminarEquipo extends JDialog {
         setLocationRelativeTo(null);
 
         List<String> listaEquipos = VistaController.listaEquipos();
-        System.out.println(listaEquipos);
+
         cbEquipos.addItem("Haz click para descubrir las opciones");
-        if (listaEquipos.size()>0) {
-            for (int i = 0; i < listaEquipos.size(); i++) {
-                cbEquipos.insertItemAt(listaEquipos.get(i),i+1);
-            }
+        for (int i = 0; i < listaEquipos.size(); i++) {
+            cbEquipos.insertItemAt(listaEquipos.get(i),i+1);
         }
-        else {
-            JOptionPane.showMessageDialog(contentPane, "Error. No hay equipos para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+
 
 
         bBorrarEquipo.addActionListener(new ActionListener() {
@@ -65,10 +61,7 @@ public class VentanaEliminarEquipo extends JDialog {
 
         if (equipoSeleccionado != null && !equipoSeleccionado.equals("Haz click para descubrir las opciones")) {
 
-            VentanaConfirmacion ventanaconfirmacion = new VentanaConfirmacion(this);
-            ventanaconfirmacion.setVisible(true); // Bloquea hasta que el usuario cierre el diálogo
-
-            if (ventanaconfirmacion.isConfirmado()) {
+            if (VistaController.ventanaConfirmacion()) {
                 boolean eliminado = VistaController.eliminarEquipo(equipoSeleccionado);
 
                 if (eliminado) {

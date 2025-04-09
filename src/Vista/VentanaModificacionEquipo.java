@@ -98,7 +98,6 @@ public class VentanaModificacionEquipo extends JDialog {
 
     private void onOK() {
 
-        fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         boolean actualizado = false;
         try{
@@ -111,17 +110,19 @@ public class VentanaModificacionEquipo extends JDialog {
                         if (nuevoNombre.getText().isEmpty() || nuevaFecha.getText().isEmpty()){
                             throw new CampoObligatorioException();
                         }
+                        fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                         actualizado =  VistaController.modificarEquipo(nuevoNombre.getText(), fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     } else if (nuevoNombreRadioButton.isSelected()) {
                         if (nuevoNombre.getText().isEmpty()){
                             throw new CampoObligatorioException();
                         }
-                        actualizado = VistaController.modificarEquipo(nuevoNombre.getText());
+                        actualizado = VistaController.modificarEquipo(nuevoNombre.getText(),equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     } else if (nuevaFechaDeFundacionRadioButton.isSelected()) {
                         if (nuevaFecha.getText().isEmpty()){
                             throw new CampoObligatorioException();
                         }
-                        actualizado = VistaController.modificarEquipo(fechaParseada);
+                        fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        actualizado = VistaController.modificarEquipo(fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     }else{
                         throw new OpcionSeleccionarObligatorioException();
                     }
