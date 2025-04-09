@@ -12,18 +12,18 @@ public class InicioSesion extends JFrame {
     private JPanel PanelPrincipal;
     private static VistaController vc = new VistaController();
     public InicioSesion() {
+        setContentPane(PanelPrincipal);
         setTitle("EA-SPORTS");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 500);
         setLocationRelativeTo(null);
         setResizable(false);
 
-        add(PanelPrincipal); // Agregar el panel principal a la ventana
 
         COMENZARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vc.mostrarinicioSesion();
+                vc.mostrarinicioSesion(InicioSesion.this);
             }
         });
     }

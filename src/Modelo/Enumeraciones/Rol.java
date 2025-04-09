@@ -1,5 +1,5 @@
 package Modelo.Enumeraciones;
 
 public enum Rol {
-duelista,centinela,controlador,iniciador
+    DUELISTA,CENTINELA,CONTROLADOR,INICIADOR,ASESINO,MAGO
 }

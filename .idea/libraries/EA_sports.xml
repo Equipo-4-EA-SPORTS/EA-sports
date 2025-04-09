@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="EA-sports">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Parte de BD.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Parte de ED.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
