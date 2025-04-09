@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaUsuario extends JFrame {
-    private JPanel pPrincipal;
+public class VentanaUsuario extends javax.swing.JFrame {
+    private JPanel Pprincipal;
     private JComboBox comboBox1;
     private JButton ACEPTARButton;
 
     public VentanaUsuario(String nombre) {
-        setContentPane(pPrincipal);
+        setContentPane(Pprincipal);
         setTitle("Usuario");
         setLocationRelativeTo(null);
         setResizable(false);
@@ -45,27 +45,28 @@ public class VentanaUsuario extends JFrame {
             }
         });
 
-        Jsalir.addActionListener(new ActionListener(){
-           @Override
-           public void actionPerformed(ActionEvent e) {System.exit(0);}
+        Jsalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
         });
+
 
         ACEPTARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch(comboBox1.getSelectedIndex()){
+                switch (comboBox1.getSelectedIndex()) {
                     case 0:
-                        JOptionPane.showMessageDialog(pPrincipal, "ERROR. Debes de seleccionar una opcion","Error",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(Pprincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 1:
-                        VistaController.ventanaInformesEquipos(VentanaUsuario.this); //Falta por crear
+                        VistaController.ventanaInformesEquipos(VentanaUsuario.this);//Falta por crear
                         break;
                     case 2:
-                        VistaController.ventanaVerResultadosUltimJornada(VentanaUsuario.this); //Falta por crear
-
+                        VistaController.ventanaVerResultadosUltimJornada(VentanaUsuario.this);//Falta por crear
                 }
             }
         });
-
     }
 }
