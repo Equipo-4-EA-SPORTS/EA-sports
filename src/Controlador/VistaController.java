@@ -38,6 +38,7 @@ public class VistaController {
         ve.setVisible(!listaJugadores.isEmpty());
         return !listaJugadores.isEmpty();
     }
+    public
 
     public static  boolean buscarJugador(String nombre){
         return ModeloController.buscarJugador(nombre);
@@ -53,6 +54,10 @@ public class VistaController {
 
     public static void modificarJugador(JFrame ventana) {
         ventana.dispose();
+    }
+
+    public static List<String[]> obtenerJugadores(){
+        return ModeloController.obtenerJugadores();
     }
 
     public void mostrarInicio() {

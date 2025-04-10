@@ -70,6 +70,9 @@ public class VentanaGestionJugadores extends JFrame {
 
                         break;
                     case 4:
+                        if (!VistaController.VentanaMostrarJugadores(VentanaGestionJugadores.this)) {
+                            JOptionPane.showMessageDialog(pPrincipal, "No hay jugadores para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
 
                         break;
                 }

@@ -27,6 +27,9 @@ public class ModeloController {
     public static boolean eliminarJugador(String jugadorSeleccionado) {
         return JugadorController.eliminarJugador(jugadorSeleccionado);
     }
+    public static List<String[]> obtenerJugadores(){
+        return JugadorController.obtenerJugadores();
+    }
 //Equipos
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){
         return EquipoController.inscribirEquipo(nombre,fecha);

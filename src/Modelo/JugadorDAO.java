@@ -95,4 +95,30 @@ public class JugadorDAO {
         }
         return eliminado;
     }
+
+    public static List<String[]> obtenerJugadores(){
+        List<String[]> jugadores = new ArrayList<>();
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo FROM jugadores";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String nombre = rs.getString("nombre");
+                String apellido = rs.getString("apellido");
+                String nacionalidad = rs.getString("nacionalidad");
+                String fechanac = rs.getDate("fechanac").toString();
+                String nickname = rs.getString("nickname");
+                String sueldo = String.valueOf(rs.getFloat("sueldo"));
+                String rol = rs.getString("rol");
+                String idequipo = String.valueOf(rs.getInt("idequipo"));
+
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return jugadores;
+    }
 }
