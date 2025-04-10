@@ -60,5 +60,24 @@ public class VentanaGestionCompeticion extends JFrame {
                 VistaController.ventanaAdministrador(VentanaGestionCompeticion.this,nombre);
             }
         });
+        ACEPTARbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch (comboBox1.getSelectedIndex()) {
+                    case 0:
+                        JOptionPane.showMessageDialog(pPrincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case 1:
+                        //GESTION DE ENFRENTAMIENTOS
+                        break;
+                    case 2:
+                        //GESTION DE JORNADAS
+                        break;
+                    case 3:
+                        VistaController.abrirCompeticion();
+                        break;
+                }
+            }
+        });
     }
 }

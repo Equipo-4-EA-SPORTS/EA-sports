@@ -1,5 +1,7 @@
 package Modelo;
 
+import Controlador.ModeloController;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -202,4 +204,6 @@ public class EquipoDAO {
         }
         return actualizado;
     }
+
+
 }

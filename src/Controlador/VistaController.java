@@ -171,6 +171,22 @@ public class VistaController {
         vge.setVisible(true);
     }
 
+    public static void abrirCompeticion(){
+        ModeloController.abrirCompeticion();
+    }
+
+    public static void crearCompeticion(){
+        ModeloController.crearCompeticion();
+    }
+
+    public static int verificarCompeticionCreada(){
+        return ModeloController.verificarCompeticionCreada();
+    }
+
+    public static boolean estadoCompeticion() {
+        return ModeloController.estadoCompeticion();
+    }
+
 
 
 }
