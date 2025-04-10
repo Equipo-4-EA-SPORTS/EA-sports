@@ -16,7 +16,7 @@ public class VentanaMostrarEquipos extends JDialog {
     public VentanaMostrarEquipos() {
         setContentPane(contentPane);
         setModal(true);
-        pack();
+        setSize(400,250);
         setLocationRelativeTo(null);
 
         // Configurar columnas
@@ -34,7 +34,6 @@ public class VentanaMostrarEquipos extends JDialog {
         tablaEquipos.setModel(modelo);
         tablaEquipos.setEnabled(false); // Para que no se pueda editar
 
-        //Ordenar
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
         tablaEquipos.setRowSorter(sorter);
 

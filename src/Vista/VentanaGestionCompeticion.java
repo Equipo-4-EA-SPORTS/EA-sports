@@ -3,21 +3,21 @@ package Vista;
 import Controlador.VistaController;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaGestionJugadores extends JFrame {
+public class VentanaGestionCompeticion extends JFrame {
+    private JComboBox comboBox1;
     private JButton ACEPTARbutton;
-    private JComboBox opcionesMenu;
-    private JLabel tituloAB;
+    private JButton VOLVERbutton;
     private JPanel pPrincipal;
 
-    public VentanaGestionJugadores(String nombre) {
+    public VentanaGestionCompeticion(String nombre) {
+
         setContentPane(pPrincipal);
         setTitle("Administrador");
         setResizable(false);
-        setSize(400, 200);
+        setSize(400,200);
         setLocationRelativeTo(null);
 
         JMenuBar menuBar = new JMenuBar();
@@ -39,42 +39,26 @@ public class VentanaGestionJugadores extends JFrame {
         menuBar.add(JotrasOpciones);
 
         setJMenuBar(menuBar);
+
         JcambiarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.mostrarinicioSesion(VentanaGestionJugadores.this);
+                VistaController.mostrarinicioSesion(VentanaGestionCompeticion.this);
             }
         });
+
         Jsalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        ACEPTARbutton.addActionListener(new ActionListener() {
+
+        VOLVERbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (opcionesMenu.getSelectedIndex()) {
-                    case 0:
-                        JOptionPane.showMessageDialog(null, "ERROR: Debes seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case 1:
-                        VistaController.mostrarinscribirJugador(VentanaGestionJugadores.this);
-                        break;
-                    case 2:
-                        if (!VistaController.VentanaEliminarJugador(VentanaGestionJugadores.this)) {
-                            JOptionPane.showMessageDialog(pPrincipal, "No hay jugadores para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case 3:
-
-                        break;
-                    case 4:
-
-                        break;
-                }
+                VistaController.ventanaAdministrador(VentanaGestionCompeticion.this,"administrdor");
             }
         });
     }
 }
-

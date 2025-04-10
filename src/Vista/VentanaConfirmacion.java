@@ -7,18 +7,21 @@ public class VentanaConfirmacion extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private boolean confirmado = false; // nuevo atributo
+    private JLabel text;
+    private boolean confirmado = false;
 
-    public VentanaConfirmacion() {
+    public VentanaConfirmacion(String titulo) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        setSize(500, 300);
+        pack();
         setLocationRelativeTo(null);
+
+        text.setText("¿Estas seguro de que quiere eliminar el "+titulo+"?");
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                confirmado = true; // el usuario confirma
+                confirmado = true;
                 dispose();
             }
         });
@@ -44,6 +47,6 @@ public class VentanaConfirmacion extends JDialog {
     }
 
     public boolean isConfirmado() {
-        return true;
+        return confirmado;
     }
 }

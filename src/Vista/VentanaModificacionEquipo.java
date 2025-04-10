@@ -24,7 +24,7 @@ public class VentanaModificacionEquipo extends JDialog {
     private LocalDate fechaMax = LocalDate.now();
     private LocalDate fechaMin = LocalDate.parse("02/06/2020", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-    public VentanaModificacionEquipo(JFrame ventana) {
+    public VentanaModificacionEquipo() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -34,17 +34,10 @@ public class VentanaModificacionEquipo extends JDialog {
 
 
         List<String> listaEquipos = VistaController.listaEquipos();
-        System.out.println(listaEquipos);
         equipos.addItem("Haz click para descubrir las opciones");
-        if (listaEquipos.size()>0) {
-            for (int i = 0; i < listaEquipos.size(); i++) {
-                equipos.insertItemAt(listaEquipos.get(i),i+1);
-            }
+        for (int i = 0; i < listaEquipos.size(); i++) {
+            equipos.insertItemAt(listaEquipos.get(i),i+1);
         }
-        else {
-            JOptionPane.showMessageDialog(contentPane, "Error. No hay equipos para modificar.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -127,7 +120,7 @@ public class VentanaModificacionEquipo extends JDialog {
                         throw new OpcionSeleccionarObligatorioException();
                     }
 
-                    if (!actualizado){
+                    if (actualizado){
                         JOptionPane.showMessageDialog(contentPane, "El Equipo se ha actualizado correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
                         dispose();
                     }
