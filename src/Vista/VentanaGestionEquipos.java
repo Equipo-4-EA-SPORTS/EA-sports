@@ -61,16 +61,29 @@ public class VentanaGestionEquipos extends JFrame {
                         JOptionPane.showMessageDialog(pPrincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 1:
-                        VistaController.ventanaInscribirEquipo(VentanaGestionEquipos.this);
+                        if (VistaController.estadoCompeticion()){
+                            VistaController.ventanaInscribirEquipo(VentanaGestionEquipos.this);
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(pPrincipal,"No se pueden inscribir equipos si la competicion esta cerrda");
+                        }
                         break;
                     case 2:
-                        if (!VistaController.VentanaEliminarEquipo()){
-                            JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+                        if (VistaController.estadoCompeticion()){
+                            if (!VistaController.VentanaEliminarEquipo()){
+                                JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }else {
+                            JOptionPane.showMessageDialog(pPrincipal,"No se pueden eliminar equipos si la competicion esta cerrda");
                         }
                         break;
                     case 3:
-                        if (!VistaController.ventanaModificarEquipo()){
-                            JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+                        if (VistaController.estadoCompeticion()){
+                            if (!VistaController.ventanaModificarEquipo()){
+                                JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(pPrincipal,"No se pueden modificar equipos si la competicion esta cerrda");
                         }
                         break;
                     case 4:
