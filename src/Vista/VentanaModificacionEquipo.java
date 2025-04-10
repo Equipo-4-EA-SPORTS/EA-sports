@@ -126,7 +126,6 @@ public class VentanaModificacionEquipo extends JDialog {
                     }
                     else {
                         JOptionPane.showMessageDialog(contentPane,"No se ha podido actualizar el equipo","Error",-1);
-
                     }
 
             }
@@ -142,11 +141,8 @@ public class VentanaModificacionEquipo extends JDialog {
             JOptionPane.showMessageDialog(contentPane,"Error, debes de seleccionar una opcion","Error",-1);
         }
         catch (Exception e){
-            System.out.printf(e.getMessage());
+            JOptionPane.showMessageDialog(contentPane,e.getMessage(),"Error",-1);
         }
-
-
-        dispose();
     }
 
     private void onCancel() {

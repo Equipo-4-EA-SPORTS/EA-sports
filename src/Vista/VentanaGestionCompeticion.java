@@ -57,7 +57,7 @@ public class VentanaGestionCompeticion extends JFrame {
         VOLVERbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.ventanaAdministrador(VentanaGestionCompeticion.this,"administrdor");
+                VistaController.ventanaAdministrador(VentanaGestionCompeticion.this,nombre);
             }
         });
     }

@@ -141,13 +141,12 @@ public class EquipoDAO {
                 actualizado = true;
             }
 
-            BaseDatos.cerrarConexion();
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
 
-        return false;
+        return actualizado;
     }
     public static boolean modificarEquipo(String nuevoNombre,String nombre){
         boolean actualizado = false;
@@ -168,47 +167,39 @@ public class EquipoDAO {
                 actualizado = true;
             }
 
-            BaseDatos.cerrarConexion();
 
         }catch (Exception e){
+            e.printStackTrace(); // Opcional: lo imprime en consola
+
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
 
         return actualizado;
     }
     public static boolean modificarEquipo(LocalDate nuevaFecha,String nombre){
+
+        boolean actualizado = false;
         try{
 
-            boolean actualizado = false;
-            try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
 
-                BaseDatos.abrirConexion();
-                Connection con = BaseDatos.getCon();
+            String sentencia = "UPDATE equipos SET fechafund = ? Where nombre = ?";
 
-                String sentencia = "UPDATE equipos SET fechafund = ? Where nombre = ?";
+            PreparedStatement ps = con.prepareStatement(sentencia);
+            ps.setDate(1,java.sql.Date.valueOf(nuevaFecha));
+            ps.setString(2,nombre);
 
-                PreparedStatement ps = con.prepareStatement(sentencia);
-                ps.setDate(1,java.sql.Date.valueOf(nuevaFecha));
-                ps.setString(2,nombre);
+            int filasAfectadas = ps.executeUpdate();
 
-                int filasAfectadas = ps.executeUpdate();
-
-                if (filasAfectadas>0){
-                    actualizado = true;
-                }
-
-                BaseDatos.cerrarConexion();
-
-            }catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+            if (filasAfectadas>0){
+                actualizado = true;
             }
 
-            return actualizado;
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
-
-        return false;
+        return actualizado;
     }
 }

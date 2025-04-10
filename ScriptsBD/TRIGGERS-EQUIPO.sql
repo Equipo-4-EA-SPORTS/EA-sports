@@ -25,24 +25,39 @@ END;
 */
 
 CREATE OR REPLACE TRIGGER nombreDuplicadoEquipo
-BEFORE INSERT OR UPDATE OF nombre ON EQUIPOS
-FOR EACH ROW
-DECLARE
-    e_nombreDuplicado exception;
-    v_filasSeleccionadas NUMBER;
+    FOR INSERT OR UPDATE ON EQUIPOS
+    COMPOUND TRIGGER
+
+    -- Variables del trigger compuesto
+    v_nombre equipos.nombre%TYPE;
+    e_nombreduplicado EXCEPTION;
+
+BEFORE EACH ROW IS
 BEGIN
-    SELECT COUNT(*) INTO v_filasSeleccionadas
-    FROM EQUIPOS
-    WHERE lower(nombre) = lower(:NEW.nombre);
-    
-    IF v_filasSeleccionadas>0 THEN
-        RAISE e_nombreDuplicado;
+    IF INSERTING OR (UPDATING AND :NEW.nombre != :OLD.nombre) THEN
+        v_nombre := :NEW.nombre;
     END IF;
+END BEFORE EACH ROW;
+
+    AFTER STATEMENT IS
+        v_total NUMBER;
+    BEGIN
+        IF v_nombre IS NOT NULL THEN
+            SELECT COUNT(*) INTO v_total
+            FROM EQUIPOS
+            WHERE LOWER(nombre) = LOWER(v_nombre);
+
+            IF v_total > 1 THEN
+                RAISE e_nombreduplicado;
+            END IF;
+        END IF;
 
     EXCEPTION
-        WHEN e_nombreDuplicado THEN
-            RAISE_APPLICATION_ERROR(-20002,'YA EXISTE UN EQUIPO CON ESE NOMBRE');
-END;
+        WHEN e_nombreduplicado THEN
+            RAISE_APPLICATION_ERROR(-20002, 'YA EXISTE UN EQUIPO CON EL NOMBRE: ' || v_nombre);
+    END AFTER STATEMENT;
+
+    END nombreDuplicadoEquipo;
 
 
 
