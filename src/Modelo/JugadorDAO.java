@@ -115,6 +115,8 @@ public class JugadorDAO {
                 String rol = rs.getString("rol");
                 String idequipo = String.valueOf(rs.getInt("idequipo"));
 
+                jugadores.add(new String[]{nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo});
+
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");

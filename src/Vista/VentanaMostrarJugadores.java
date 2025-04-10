@@ -16,11 +16,11 @@ public class VentanaMostrarJugadores extends JDialog {
     public VentanaMostrarJugadores() {
        setContentPane(pPrincipal);
        setModal(true);
-       setSize(400,250);
+       setSize(800,400);
        setLocationRelativeTo(null);
 
        //Configurar Columnas
-        String[] columnas = {"Nombre","Apellido","Nacionalidad","Fecha de Nacimiento","NickName","Sueldo","Rol","Equipo"};
+        String[] columnas = {"Nombre","Apellido","Nacionalidad","FechaNacimiento","NickName","Sueldo","Rol","Equipo"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
         //Obtener lista de jugadores desde el controlador

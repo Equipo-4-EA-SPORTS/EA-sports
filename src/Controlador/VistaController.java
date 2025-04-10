@@ -38,7 +38,12 @@ public class VistaController {
         ve.setVisible(!listaJugadores.isEmpty());
         return !listaJugadores.isEmpty();
     }
-    public
+    public static boolean VentanaMostrarJugadores(JFrame ventana) {
+        VentanaMostrarJugadores ve = new VentanaMostrarJugadores();
+        List<String> listaJugadores = ModeloController.listaJugadores();
+        ve.setVisible(!listaJugadores.isEmpty());
+        return !listaJugadores.isEmpty();
+    }
 
     public static  boolean buscarJugador(String nombre){
         return ModeloController.buscarJugador(nombre);
