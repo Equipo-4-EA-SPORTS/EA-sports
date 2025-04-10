@@ -27,7 +27,7 @@ public class VentanaInscribirJugadores extends JFrame {
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
         setTitle("Inscribir Equipo");
-        setSize(400, 200);
+        setSize(500, 350);
         setResizable(false);
         setLocationRelativeTo(null);
 

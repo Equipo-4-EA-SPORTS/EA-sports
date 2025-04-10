@@ -85,7 +85,7 @@ public class VentanaGestionEquipos extends JFrame {
         VOLVERbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.ventanaAdministrador(VentanaGestionEquipos.this,"administrdor");
+                VistaController.ventanaAdministrador(VentanaGestionEquipos.this,nombre);
             }
         });
     }
