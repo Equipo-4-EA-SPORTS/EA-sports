@@ -16,7 +16,7 @@ public class VentanaEliminarEquipo extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(bBorrarEquipo);
-        setSize(550,300);
+        setSize(575,150);
         setLocationRelativeTo(null);
 
         List<String> listaEquipos = VistaController.listaEquipos();

@@ -63,6 +63,13 @@ public class VentanaAdministrador extends javax.swing.JFrame {
                     case 1:
                         VistaController.ventanaGestionEquipos(VentanaAdministrador.this,nombre);
                         break;
+                    case 2:
+                        VistaController.ventanaGestionJugadores(VentanaAdministrador.this,nombre);
+
+                        break;
+                    case 3:
+                        VistaController.ventanaGestionCompeticion(VentanaAdministrador.this,nombre);
+                        break;
                 }
             }
         });

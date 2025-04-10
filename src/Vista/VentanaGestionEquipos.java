@@ -10,6 +10,7 @@ public class VentanaGestionEquipos extends JFrame {
     private JButton ACEPTARbutton;
     private JComboBox comboBox1;
     private JPanel pPrincipal;
+    private JButton VOLVERbutton;
 
     public VentanaGestionEquipos(String nombre) {
         setContentPane(pPrincipal);
@@ -68,11 +69,24 @@ public class VentanaGestionEquipos extends JFrame {
                         }
                         break;
                     case 3:
-                        VistaController.ventanaModificarEquipo(VentanaGestionEquipos.this);
+                        if (!VistaController.ventanaModificarEquipo()){
+                            JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
+                    case 4:
+                        if (!VistaController.VentanaMostrarEquipos()){
+                            JOptionPane.showMessageDialog(pPrincipal,"No hay equipos para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                 }
             }
         });
 
+        VOLVERbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.ventanaAdministrador(VentanaGestionEquipos.this,"administrdor");
+            }
+        });
     }
 }
