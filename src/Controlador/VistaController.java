@@ -20,7 +20,7 @@ public class VistaController {
         UsuarioAdmin ventanaSeleccionUsuario = new UsuarioAdmin();
         ventanaSeleccionUsuario.setVisible(true);
     }
-//Jugadores
+    //Jugadores
     public static void mostrarinscribirJugador(JFrame ventana) {
         ventana.dispose();
         VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
@@ -28,9 +28,9 @@ public class VistaController {
 
     }
 
-    /*public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat) {
-        return ModeloController.inscribirJugador();
-    }*/
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo) {
+        return ModeloController.inscribirJugador(nombre, apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
+    }
 
     public static boolean VentanaEliminarJugador(JFrame ventana) {
         VentanaEliminarJugador ve = new VentanaEliminarJugador();
@@ -55,6 +55,14 @@ public class VistaController {
         ventana.dispose();
     }
 
+
+    public static boolean buscarNickname(String nickname) {
+        return ModeloController.buscarNickname(nickname);
+    }
+
+    public static List<String> obtenerRoles(String equipoSeleccionado) {
+        return ModeloController.obtenerRoles(equipoSeleccionado);}
+
     public static boolean VentanaMostrarJugadores() {
         VentanaMostrarJugadores ve = new VentanaMostrarJugadores();
         List<String[]> listaJugadores = ModeloController.obtenerJugadores();
@@ -76,12 +84,13 @@ public class VistaController {
         return ModeloController.listaEquipos();
     }
 
+
     public void mostrarInicio() {
         InicioSesion inicioSesion = new InicioSesion();
         inicioSesion.setVisible(true);
     }
 
-//Usuario
+    //Usuario
     public void mostrarPanelUsuario() {
 
     }

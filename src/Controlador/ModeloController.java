@@ -8,9 +8,9 @@ public class ModeloController {
     public static boolean inciarSesionUsuario(String usr, String con, String tipoUsr){
         return UsuarioController.inciarSesionusUario(usr, con,tipoUsr);
     }
-//Jugadores
-    public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat){
-        return JugadorController.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat);
+    //Jugadores
+    public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo){
+        return JugadorController.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
     }
     public static boolean buscarJugador(String nombre){
         return JugadorController.buscarJugador(nombre);
@@ -23,10 +23,14 @@ public class ModeloController {
     public static boolean eliminarJugador(String jugadorSeleccionado) {
         return JugadorController.eliminarJugador(jugadorSeleccionado);
     }
+
+    //Equipos
+
     public static List<String[]> obtenerJugadores(){
         return JugadorController.obtenerJugadores();
     }
 //Equipos
+
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){
         return EquipoController.inscribirEquipo(nombre,fecha);
     }
@@ -59,7 +63,7 @@ public class ModeloController {
     }
 
     public static void crearCompeticion(){
-         CompeticionController.crearCompeticion();
+        CompeticionController.crearCompeticion();
     }
 
     public static int verificarCompeticionCreada(){
@@ -67,5 +71,13 @@ public class ModeloController {
     }
     public static boolean estadoCompeticion() {
         return CompeticionController.estadoCompeticion();
+    }
+
+    public static boolean buscarNickname(String nickname) {
+        return JugadorController.buscarNickname(nickname);
+    }
+
+    public static List<String> obtenerRoles(String equipoSeleccionado) {
+        return JugadorController.obtenerRoles(equipoSeleccionado);
     }
 }
