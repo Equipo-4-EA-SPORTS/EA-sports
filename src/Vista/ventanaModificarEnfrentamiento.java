@@ -5,21 +5,21 @@ import java.awt.event.*;
 
 public class ventanaModificarEnfrentamiento extends JDialog {
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
+    private JButton bOK;
+    private JButton bCancel;
 
     public ventanaModificarEnfrentamiento() {
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+        getRootPane().setDefaultButton(bOK);
 
-        buttonOK.addActionListener(new ActionListener() {
+        bOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener() {
+        bCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
@@ -51,10 +51,4 @@ public class ventanaModificarEnfrentamiento extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        ventanaModificarEnfrentamiento dialog = new ventanaModificarEnfrentamiento();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
 }

@@ -95,5 +95,4 @@ public class CompeticionDAO {
         return estado;
     }
 
-
 }

@@ -81,6 +81,7 @@ public class VentanaGestionCompeticion extends JFrame {
                         }
                         break;
                 }
+
             }
         });
     }

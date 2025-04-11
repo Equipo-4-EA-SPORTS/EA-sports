@@ -9,7 +9,7 @@ public class VentanaGestionEnfrentamientos extends JFrame {
     private JPanel pPrincipal;
     private JButton bAceptar;
     private JButton bVolver;
-    private JComboBox comboBox1;
+    private JComboBox comboBox;
 
     public VentanaGestionEnfrentamientos(String nombre) {
         setContentPane(pPrincipal);
@@ -63,7 +63,7 @@ public class VentanaGestionEnfrentamientos extends JFrame {
         bAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (comboBox1.getSelectedIndex()){
+                switch (comboBox.getSelectedIndex()){
                     case 0:
                         JOptionPane.showMessageDialog(pPrincipal, "ERROR. Debes de seleccionar una opción", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
@@ -99,6 +99,7 @@ public class VentanaGestionEnfrentamientos extends JFrame {
                         break;
                 }
             }
+
         });
 
     }
