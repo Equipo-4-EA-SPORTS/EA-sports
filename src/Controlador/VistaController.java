@@ -57,12 +57,23 @@ public class VistaController {
 
     public static boolean VentanaMostrarJugadores() {
         VentanaMostrarJugadores ve = new VentanaMostrarJugadores();
-        List<String> listaJugadores = ModeloController.listaJugadores();
+        List<String[]> listaJugadores = ModeloController.obtenerJugadores();
         ve.setVisible(!listaJugadores.isEmpty());
         return !listaJugadores.isEmpty();
     }
     public static List<String[]> obtenerJugadores() {
         return ModeloController.obtenerJugadores();
+    }
+
+    public static boolean VentanaMostrarEquipos() {
+        VentanaMostrarEquipos ve = new VentanaMostrarEquipos();
+        List<String> listaEquipos = ModeloController.listaEquipos();
+        ve.setVisible(!listaEquipos.isEmpty());
+        return !listaEquipos.isEmpty();
+    }
+
+    public static List<String> listaEquipos(){
+        return ModeloController.listaEquipos();
     }
 
     public void mostrarInicio() {
@@ -130,12 +141,6 @@ public class VistaController {
         return !listaEquipos.isEmpty();
     }
 
-    public static boolean VentanaMostrarEquipos() {
-        VentanaMostrarEquipos ve = new VentanaMostrarEquipos();
-        List<String> listaEquipos = ModeloController.listaEquipos();
-        ve.setVisible(!listaEquipos.isEmpty());
-        return !listaEquipos.isEmpty();
-    }
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         return ModeloController.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
@@ -147,13 +152,11 @@ public class VistaController {
         return ModeloController.modificarEquipo(nuevaFecha,nombre);
     }
 
-    public static  boolean buscarEquipo(String nombre){
+    public static boolean buscarEquipo(String nombre){
         return ModeloController.buscarEquipo(nombre);
     }
 
-    public static List<String> listaEquipos(){
-        return ModeloController.listaEquipos();
-    }
+
 
     public static boolean eliminarEquipo(String equipoSeleccionado) {
         return ModeloController.eliminarEquipo(equipoSeleccionado);

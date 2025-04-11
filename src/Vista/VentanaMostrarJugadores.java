@@ -20,7 +20,7 @@ public class VentanaMostrarJugadores extends JDialog {
         setLocationRelativeTo(null);
 
         // Configurar columnas
-        String[] columnas = {"Nombre", "Apellido","Nacionalidad","FechaNacimiento","Nickname","Sueldo","Rol","IdEquipo"};
+        String[] columnas = {"Nombre", "Apellido","Nacionalidad","FechaNacimiento","Nickname","Sueldo","Rol","Equipo"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
         // Obtener lista de equipos desde el controlador
