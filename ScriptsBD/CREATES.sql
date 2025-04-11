@@ -9,7 +9,7 @@ DROP TABLE usuarios CASCADE CONSTRAINTS;
 CREATE TABLE competiciones (
     idComp NUMBER GENERATED ALWAYS AS IDENTITY  
     (START WITH 1 INCREMENT BY 1),
-    estado VARCHAR2(10),
+    estado VARCHAR2(10) DEFAULT 'cerrado',
     
     CONSTRAINT competicion_idComp_pk PRIMARY KEY (idComp),
     CONSTRAINT competicion_estado_ck CHECK(estado IN ('abierto','cerrado'))

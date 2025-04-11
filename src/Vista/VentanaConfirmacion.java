@@ -14,7 +14,8 @@ public class VentanaConfirmacion extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        pack();
+        setResizable(false);
+        setSize(650, 150);
         setLocationRelativeTo(null);
 
         text.setText("¿Estas seguro de que quiere eliminar el "+titulo+"?");
