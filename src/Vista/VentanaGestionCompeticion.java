@@ -74,9 +74,14 @@ public class VentanaGestionCompeticion extends JFrame {
                         //GESTION DE JORNADAS
                         break;
                     case 3:
-                        VistaController.abrirCompeticion();
+                        if (VistaController.abrirCompeticion()){
+                            JOptionPane.showMessageDialog(null, "Competición abierta correctamente");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo abrir la competición", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                 }
+
             }
         });
     }
