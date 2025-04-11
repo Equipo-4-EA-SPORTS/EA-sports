@@ -1,5 +1,7 @@
 package Modelo;
 
+import Controlador.ModeloController;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -120,57 +122,38 @@ public class JugadorDAO {
         return existe;
     }
 
-    public static List<String> obtenerRoles(String equipoSeleccionado) {
-        List<String> roles = Arrays.asList("DUELISTA", "CENTINELA, CONTROLADOR, INICIADOR, ASESINO, MAGO");
-
+    public static List<String[]> obtenerJugadores() {
+        List<String[]> jugadores = new ArrayList<>();
 
         try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-
-            String plantilla = "SELECT j.rol FROM jugadores j JOIN equipos e ON j.idequipo = e.idequipo WHERE e.nombre = ?;";
+            String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo  FROM jugadores";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1, equipoSeleccionado);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
-                roles.add(rs.getString("rol"));
+                String nombre = rs.getString("nombre");
+                String apellido = rs.getString("apellido");
+                String nacionalidad = rs.getString("nacionalidad");
+                String fechaNac = String.valueOf(rs.getDate("fechaNac"));
+                String nickname = rs.getString("nickname");
+                String sueldo = String.valueOf(rs.getFloat("sueldo"));
+                String rol = rs.getString("rol");
+                String idequipo = EquipoDAO.buscarEquipoPK(rs.getInt("idequipo"));
+
+                jugadores.add(new String[]{nombre, apellido, nacionalidad, fechaNac, nickname, sueldo, rol, idequipo});
             }
 
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
-        return roles;
+    return jugadores;
     }
-        public static List<String[]> obtenerJugadores() {
-            List<String[]> jugadores = new ArrayList<>();
 
-            try {
-                BaseDatos.abrirConexion();
-                Connection con = BaseDatos.getCon();
-
-                String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo  FROM jugadores";
-                PreparedStatement ps = con.prepareStatement(plantilla);
-                ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    String nombre = rs.getString("nombre");
-                    String apellido = rs.getString("apellido");
-                    String nacionalidad = rs.getString("nacionalidad");
-                    String fechaNac = String.valueOf(rs.getDate("fechaNac"));
-                    String nickname = rs.getString("nickname");
-                    String sueldo = String.valueOf(rs.getFloat("sueldo"));
-                    String rol = rs.getString("rol");
-                    String idequipo = EquipoDAO.buscarEquipoPK(rs.getInt("idequipo"));
-
-                    jugadores.add(new String[]{nombre, apellido, nacionalidad, fechaNac, nickname, sueldo, rol, idequipo});
-                }
-
-            }catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
-        }
-        return jugadores;
+    public static List<String> obtenerRoles(String equipoSeleccionado){
+        return EquipoDAO.obtenerRoles(equipoSeleccionado);
 
     }
 }

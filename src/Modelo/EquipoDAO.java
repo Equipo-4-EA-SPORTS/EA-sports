@@ -1,19 +1,14 @@
 package Modelo;
 
-import Controlador.ModeloController;
-
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.sql.PreparedStatement;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
 public class EquipoDAO {
-
     public static boolean inscribirEquipo(String nombre,LocalDate fecha){
         boolean encontrado=false;
 
@@ -39,7 +34,6 @@ public class EquipoDAO {
         }
         return encontrado;
     }
-
     public static boolean buscarEquipo(String nombre){
         boolean encontrado=false;
         try{
@@ -58,7 +52,6 @@ public class EquipoDAO {
         }
         return encontrado;
     }
-
     public static String buscarEquipoPK(int id){
         String nombreEquipo = "";
         try{
@@ -77,7 +70,6 @@ public class EquipoDAO {
         }
         return nombreEquipo;
     }
-
     public static List<String> listaEquipos(){
         List<String> equipos = new ArrayList<>();
 
@@ -97,7 +89,6 @@ public class EquipoDAO {
         }
         return equipos;
     }
-
     public static boolean eliminarEquipo(String equipoSeleccionado){
         boolean eliminado = false;
         try{
@@ -117,7 +108,6 @@ public class EquipoDAO {
         }
         return eliminado;
     }
-
     public static List<String[]> obtenerEquiposConFechas() {
         List<String[]> equipos = new ArrayList<>();
 
@@ -140,8 +130,6 @@ public class EquipoDAO {
         }
         return equipos;
     }
-
-
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         boolean actualizado = false;
 
@@ -223,6 +211,86 @@ public class EquipoDAO {
         }
         return actualizado;
     }
+    public static int obtenerPKequipo(String nombre){
+        int idEquipo = 0;
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT idEquipo FROM equipos Where nombre=?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,nombre);
+            ResultSet rs = ps.executeQuery();
 
 
+            if (rs.next()) {
+                idEquipo = rs.getInt("idEquipo");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return idEquipo;
+    }
+    public static List<String> obtenerRoles(String nombreEquipo){
+        List<String> listaRoles = new ArrayList<>();
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT idRol FROM equipoRoles Where idEquipo = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1,EquipoDAO.obtenerPKequipo(nombreEquipo));
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                String nombreRol = obtenerRolPK(rs.getInt("idRol"));
+            }
+
+
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+
+        return listaRoles;
+    }
+    public static void añadirRolesDefaultEquipo(String nombre){
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "INSERT INTO equipoRoles (idEquipo,idRol) VALUES(?,?)";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1,EquipoDAO.obtenerPKequipo(nombre));
+
+            for (int i = 1; i<7; i++){
+                ps.setInt(2, i);
+                ps.executeUpdate();
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+    }
+
+    public static String obtenerRolPK(int idRol){
+        String rol = "";
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT rol FROM roles WHERE idRol = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1,idRol);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                rol = rs.getString("rol");
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return rol;
+    }
 }

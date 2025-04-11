@@ -63,19 +63,19 @@ public class VentanaInscribirJugadores extends JFrame {
         equiposCB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                actualizarRoles();
+                if (equiposCB.getSelectedIndex() != 0){
+                    actualizarRoles();
+                }
             }
         });
     }
 
     private void actualizarRoles() {
         String equipoSeleccionado = (String) equiposCB.getSelectedItem();
-        if (equipoSeleccionado != null && !equipoSeleccionado.equals("Selecciona un equipo")) {
-            List<String> rolesDisponibles = VistaController.obtenerRoles(equipoSeleccionado);
-            rolCB.removeAllItems();
-            for (String rol : rolesDisponibles) {
-                rolCB.addItem(rol);
-            }
+        List<String> rolesDisponibles = VistaController.obtenerRoles(equipoSeleccionado);
+        rolCB.removeAllItems();
+        for (String rol : rolesDisponibles) {
+            rolCB.addItem(rol);
         }
     }
 

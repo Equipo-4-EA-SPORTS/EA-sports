@@ -12,7 +12,13 @@ import java.util.List;
 public class EquipoController {
 
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){
-        return EquipoDAO.inscribirEquipo(nombre,fecha);
+        boolean insertado = false;
+        insertado = EquipoDAO.inscribirEquipo(nombre,fecha);
+
+        if (insertado){
+            EquipoDAO.añadirRolesDefaultEquipo(nombre);
+        }
+        return insertado;
     }
 
     public static boolean buscarEquipo(String nombre){
@@ -27,7 +33,6 @@ public class EquipoController {
     public static List<String[]> obtenerEquiposConFechas(){
         return EquipoDAO.obtenerEquiposConFechas();
     }
-
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         return EquipoDAO.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
     }
@@ -36,6 +41,9 @@ public class EquipoController {
     }
     public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
         return EquipoDAO.modificarEquipo(nuevaFecha,nombre);
+    }
+    public static int obtenerPKequipo(String nombre){
+        return EquipoDAO.obtenerPKequipo(nombre);
     }
 
 }
