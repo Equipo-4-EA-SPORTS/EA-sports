@@ -80,4 +80,8 @@ public class ModeloController {
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return JugadorController.obtenerRoles(equipoSeleccionado);
     }
+
+    public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
+        JugadorController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
+    }
 }

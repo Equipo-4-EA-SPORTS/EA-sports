@@ -84,6 +84,10 @@ public class VistaController {
         return ModeloController.listaEquipos();
     }
 
+    public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
+        ModeloController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
+    }
+
 
     public void mostrarInicio() {
         InicioSesion inicioSesion = new InicioSesion();
