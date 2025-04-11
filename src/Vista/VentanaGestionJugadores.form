@@ -48,6 +48,7 @@
                 <item value="Inscribir Jugador"/>
                 <item value="Eliminar Jugador"/>
                 <item value="Modificar Jugador"/>
+                <item value="Mostrar todos los Jugadores"/>
               </model>
             </properties>
           </component>

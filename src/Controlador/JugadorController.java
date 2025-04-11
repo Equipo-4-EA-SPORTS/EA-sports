@@ -21,4 +21,5 @@ public class JugadorController {
     public static boolean eliminarJugador(String jugadorSeleccionado) {
         return JugadorDAO.eliminarJugador(jugadorSeleccionado);
     }
+    public static List<String[]> obtenerJugadores() {return JugadorDAO.obtenerJugadores();}
 }
