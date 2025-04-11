@@ -21,17 +21,27 @@ public class CompeticionDAO {
 
     }
 
-    public static void abrirCompeticion(){
+    public static boolean abrirCompeticion(){
+
+        boolean abierto = false;
+
         try{
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
             String plantilla = "UPDATE competiciones SET estado='abierto'";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.executeUpdate();
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                abierto = true;
+            }
+
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        return abierto;
     }
 
     public static void cerrarCompeticion(){

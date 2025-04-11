@@ -3,22 +3,21 @@ package Vista;
 import Controlador.VistaController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public class VentanaGestionCompeticion extends JFrame {
-    private JComboBox comboBox1;
-    private JButton ACEPTARbutton;
-    private JButton VOLVERbutton;
+public class VentanaGestionEnfrentamientos extends JFrame {
     private JPanel pPrincipal;
+    private JButton bAceptar;
+    private JButton bVolver;
+    private JComboBox comboBox1;
 
-    public VentanaGestionCompeticion(String nombre) {
-
+    public VentanaGestionEnfrentamientos(String nombre) {
         setContentPane(pPrincipal);
         setTitle("Administrador");
         setResizable(false);
         setSize(400,200);
         setLocationRelativeTo(null);
+        getRootPane().setDefaultButton(bAceptar);
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -43,7 +42,7 @@ public class VentanaGestionCompeticion extends JFrame {
         JcambiarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.mostrarinicioSesion(VentanaGestionCompeticion.this);
+                VistaController.mostrarinicioSesion(VentanaGestionEnfrentamientos.this);
             }
         });
 
@@ -54,34 +53,35 @@ public class VentanaGestionCompeticion extends JFrame {
             }
         });
 
-        VOLVERbutton.addActionListener(new ActionListener() {
+        bVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.ventanaAdministrador(VentanaGestionCompeticion.this,nombre);
+                VistaController.ventanaAdministrador(VentanaGestionEnfrentamientos.this,nombre);
             }
         });
-        ACEPTARbutton.addActionListener(new ActionListener() {
+
+        bAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (comboBox1.getSelectedIndex()) {
+                switch (comboBox1.getSelectedIndex()){
                     case 0:
                         JOptionPane.showMessageDialog(pPrincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 1:
-                        //GESTION DE ENFRENTAMIENTOS
+                        //ventana crear enfrentamiento
                         break;
                     case 2:
-                        //GESTION DE JORNADAS
+                        //ventana eliminar enfrentamiento
                         break;
                     case 3:
-                        if (VistaController.abrirCompeticion()){
-                            JOptionPane.showMessageDialog(null, "Competición abierta correctamente");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "No se pudo abrir la competición", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
+                        //ventana modificar enfrentamiento
+                        break;
+                    case 4:
+                        //ventana mostrar enfrentamiento
                         break;
                 }
             }
         });
     }
+
 }

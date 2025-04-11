@@ -51,8 +51,8 @@ public class ModeloController {
         return EquipoController.modificarEquipo(nuevaFecha,nombre);
     }
 
-    public static void abrirCompeticion(){
-        CompeticionController.abrirCompeticion();
+    public static boolean abrirCompeticion(){
+        return CompeticionController.abrirCompeticion();
     }
 
     public static void crearCompeticion(){
