@@ -123,9 +123,6 @@ public class JugadorDAO {
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         List<String> roles = Arrays.asList("DUELISTA", "CENTINELA, CONTROLADOR, INICIADOR, ASESINO, MAGO");
 
-    public static List<String[]> obtenerJugadores() {
-        List<String[]> jugadores = new ArrayList<>();
-
 
         try {
             BaseDatos.abrirConexion();
@@ -134,9 +131,9 @@ public class JugadorDAO {
 
             String plantilla = "SELECT j.rol FROM jugadores j JOIN equipos e ON j.idequipo = e.idequipo WHERE e.nombre = ?;";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1,equipoSeleccionado);
+            ps.setString(1, equipoSeleccionado);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 roles.add(rs.getString("rol"));
             }
 
@@ -145,26 +142,33 @@ public class JugadorDAO {
             throw new RuntimeException(e);
         }
         return roles;
+    }
+        public static List<String[]> obtenerJugadores() {
+            List<String[]> jugadores = new ArrayList<>();
 
-            String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo  FROM jugadores";
-            PreparedStatement ps = con.prepareStatement(plantilla);
-            ResultSet rs = ps.executeQuery();
+            try {
+                BaseDatos.abrirConexion();
+                Connection con = BaseDatos.getCon();
 
-            while (rs.next()) {
-                String nombre = rs.getString("nombre");
-                String apellido = rs.getString("apellido");
-                String nacionalidad = rs.getString("nacionalidad");
-                String fechaNac = String.valueOf(rs.getDate("fechaNac"));
-                String nickname = rs.getString("nickname");
-                String sueldo = String.valueOf(rs.getFloat("sueldo"));
-                String rol = rs.getString("rol");
-                String idequipo = EquipoDAO.buscarEquipoPK(rs.getInt("idequipo"));
+                String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo  FROM jugadores";
+                PreparedStatement ps = con.prepareStatement(plantilla);
+                ResultSet rs = ps.executeQuery();
 
-                jugadores.add(new String[]{nombre,apellido,nacionalidad, fechaNac, nickname,sueldo,rol,idequipo});
-            }
+                while (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    String apellido = rs.getString("apellido");
+                    String nacionalidad = rs.getString("nacionalidad");
+                    String fechaNac = String.valueOf(rs.getDate("fechaNac"));
+                    String nickname = rs.getString("nickname");
+                    String sueldo = String.valueOf(rs.getFloat("sueldo"));
+                    String rol = rs.getString("rol");
+                    String idequipo = EquipoDAO.buscarEquipoPK(rs.getInt("idequipo"));
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+                    jugadores.add(new String[]{nombre, apellido, nacionalidad, fechaNac, nickname, sueldo, rol, idequipo});
+                }
+
+            }catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return jugadores;
 

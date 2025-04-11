@@ -27,7 +27,7 @@ public class JugadorController {
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return JugadorDAO.obtenerRoles(equipoSeleccionado);
-
+    }
     public static List<String[]> obtenerJugadores() {
         return JugadorDAO.obtenerJugadores();
 
