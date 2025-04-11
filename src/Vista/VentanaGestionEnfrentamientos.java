@@ -65,22 +65,41 @@ public class VentanaGestionEnfrentamientos extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 switch (comboBox1.getSelectedIndex()){
                     case 0:
-                        JOptionPane.showMessageDialog(pPrincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(pPrincipal, "ERROR. Debes de seleccionar una opción", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 1:
-                        //ventana crear enfrentamiento
+                        if (VistaController.estadoCompeticion()) {
+                            VistaController.ventanaCrearEnfrentamiento();
+                        } else {
+                            JOptionPane.showMessageDialog(pPrincipal, "No se pueden crear enfrentamientos si la competición está cerrada");
+                        }
                         break;
                     case 2:
-                        //ventana eliminar enfrentamiento
+                        if (VistaController.estadoCompeticion()) {
+                            if (!VistaController.ventanaEliminarEnfrentamiento()) {
+                                JOptionPane.showMessageDialog(pPrincipal, "No hay enfrentamientos para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(pPrincipal, "No se pueden eliminar enfrentamientos si la competición está cerrada");
+                        }
                         break;
                     case 3:
-                        //ventana modificar enfrentamiento
+                        if (VistaController.estadoCompeticion()) {
+                            if (!VistaController.ventanaModificarEnfrentamiento()) {
+                                JOptionPane.showMessageDialog(pPrincipal, "No hay enfrentamientos para modificar", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(pPrincipal, "No se pueden modificar enfrentamientos si la competición está cerrada");
+                        }
                         break;
                     case 4:
-                        //ventana mostrar enfrentamiento
+                        if (!VistaController.ventanaMostrarEnfrentamientos()) {
+                            JOptionPane.showMessageDialog(pPrincipal, "No hay enfrentamientos para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
                 }
             }
         });
+
     }
 }
