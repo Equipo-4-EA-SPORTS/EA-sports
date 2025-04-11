@@ -19,10 +19,9 @@ CREATE TABLE jornadas(
     idJor NUMBER GENERATED ALWAYS AS IDENTITY  
     (START WITH 1 INCREMENT BY 1),
     fechaInicio DATE,
-    idComp NUMBER,
-    
-    CONSTRAINT jornada_idJor_pk PRIMARY KEY (idJor),
-    CONSTRAINT jornada_idComp_fk FOREIGN KEY (idComp) REFERENCES competiciones ON DELETE CASCADE
+    fechaFin DATE,
+
+    CONSTRAINT jornada_idJor_pk PRIMARY KEY (idJor)
 );
 
 

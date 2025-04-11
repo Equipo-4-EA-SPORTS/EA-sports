@@ -68,10 +68,10 @@ public class VentanaGestionCompeticion extends JFrame {
                         JOptionPane.showMessageDialog(pPrincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 1:
-                        //GESTION DE ENFRENTAMIENTOS
+                        VistaController.VentanaGestionEnfrentamientos(VentanaGestionCompeticion.this,nombre);
                         break;
                     case 2:
-                        //GESTION DE JORNADAS
+                        VistaController.ventanaGestionJornadas(VentanaGestionCompeticion.this,nombre);
                         break;
                     case 3:
                         if (VistaController.abrirCompeticion()){
