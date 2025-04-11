@@ -103,7 +103,7 @@ public class JugadorDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "SELECT nombre, apellido, nacionalidad, fechaNac, nickname, sueldo, rol, idequipo  FROM jugadores";
+            String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo  FROM jugadores";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ResultSet rs = ps.executeQuery();
 
@@ -111,11 +111,11 @@ public class JugadorDAO {
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellido");
                 String nacionalidad = rs.getString("nacionalidad");
-                String fechaNac = rs.getDate("fechafund").toString();
+                String fechaNac = String.valueOf(rs.getDate("fechaNac"));
                 String nickname = rs.getString("nickname");
                 String sueldo = String.valueOf(rs.getFloat("sueldo"));
                 String rol = rs.getString("rol");
-                String idequipo = String.valueOf(rs.getInt("idequipo"));
+                String idequipo = EquipoDAO.buscarEquipoPK(rs.getInt("idequipo"));
 
                 jugadores.add(new String[]{nombre,apellido,nacionalidad, fechaNac, nickname,sueldo,rol,idequipo});
             }
