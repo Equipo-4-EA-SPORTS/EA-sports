@@ -1,10 +1,6 @@
 package Controlador;
 
-import Modelo.EquipoDAO;
-import Modelo.Jugador;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class ModeloController {
@@ -26,6 +22,9 @@ public class ModeloController {
 
     public static boolean eliminarJugador(String jugadorSeleccionado) {
         return JugadorController.eliminarJugador(jugadorSeleccionado);
+    }
+    public static List<String[]> obtenerJugadores(){
+        return JugadorController.obtenerJugadores();
     }
 //Equipos
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){
@@ -53,5 +52,20 @@ public class ModeloController {
     }
     public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
         return EquipoController.modificarEquipo(nuevaFecha,nombre);
+    }
+
+    public static void abrirCompeticion(){
+        CompeticionController.abrirCompeticion();
+    }
+
+    public static void crearCompeticion(){
+         CompeticionController.crearCompeticion();
+    }
+
+    public static int verificarCompeticionCreada(){
+        return CompeticionController.verificarCompeticionCreada();
+    }
+    public static boolean estadoCompeticion() {
+        return CompeticionController.estadoCompeticion();
     }
 }

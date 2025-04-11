@@ -22,7 +22,13 @@ public class InicioSesion extends JFrame {
         COMENZARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.mostrarinicioSesion(InicioSesion.this);
+                int estado = VistaController.verificarCompeticionCreada();
+                if (estado>0) {
+                    VistaController.mostrarinicioSesion(InicioSesion.this);
+                } else {
+                    VistaController.crearCompeticion();
+                    VistaController.mostrarinicioSesion(InicioSesion.this);
+                }
             }
         });
     }

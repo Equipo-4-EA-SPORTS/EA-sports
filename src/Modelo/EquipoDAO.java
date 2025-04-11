@@ -1,5 +1,7 @@
 package Modelo;
 
+import Controlador.ModeloController;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -55,6 +57,25 @@ public class EquipoDAO {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return encontrado;
+    }
+
+    public static String buscarEquipoPK(int id){
+        String nombreEquipo = "";
+        try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+            String plantilla = "SELECT nombre FROM equipos WHERE id = ?";
+
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                nombreEquipo=rs.getString("nombre");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return nombreEquipo;
     }
 
     public static List<String> listaEquipos(){
@@ -202,4 +223,6 @@ public class EquipoDAO {
         }
         return actualizado;
     }
+
+
 }

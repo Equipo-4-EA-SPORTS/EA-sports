@@ -55,6 +55,16 @@ public class VistaController {
         ventana.dispose();
     }
 
+    public static boolean VentanaMostrarJugadores() {
+        VentanaMostrarJugadores ve = new VentanaMostrarJugadores();
+        List<String> listaJugadores = ModeloController.listaJugadores();
+        ve.setVisible(!listaJugadores.isEmpty());
+        return !listaJugadores.isEmpty();
+    }
+    public static List<String[]> obtenerJugadores() {
+        return ModeloController.obtenerJugadores();
+    }
+
     public void mostrarInicio() {
         InicioSesion inicioSesion = new InicioSesion();
         inicioSesion.setVisible(true);
@@ -169,6 +179,22 @@ public class VistaController {
         ventana.dispose();
         VentanaGestionJugadores vge = new VentanaGestionJugadores(nombre);
         vge.setVisible(true);
+    }
+
+    public static void abrirCompeticion(){
+        ModeloController.abrirCompeticion();
+    }
+
+    public static void crearCompeticion(){
+        ModeloController.crearCompeticion();
+    }
+
+    public static int verificarCompeticionCreada(){
+        return ModeloController.verificarCompeticionCreada();
+    }
+
+    public static boolean estadoCompeticion() {
+        return ModeloController.estadoCompeticion();
     }
 
 
