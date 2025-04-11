@@ -233,6 +233,4 @@ public class VistaController {
     public static boolean estadoCompeticion() {
         return ModeloController.estadoCompeticion();
     }
-
-
 }
