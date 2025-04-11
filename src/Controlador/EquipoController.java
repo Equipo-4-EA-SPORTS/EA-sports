@@ -2,6 +2,8 @@ package Controlador;
 
 import Modelo.Equipo;
 import Modelo.EquipoDAO;
+import Modelo.Jugador;
+import Modelo.JugadorDAO;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -35,4 +37,5 @@ public class EquipoController {
     public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
         return EquipoDAO.modificarEquipo(nuevaFecha,nombre);
     }
+
 }
