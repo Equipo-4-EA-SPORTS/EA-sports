@@ -84,9 +84,9 @@ public class ventanaCrearEnfrentamiento extends JDialog {
             LocalDate fechaSeleccionada = convertirStringAFecha(fecha);
 
             // Verificar si la fecha está dentro del rango de la jornada seleccionada
-            /*if (fechaSeleccionada.isBefore(jornada.getFechaInicio()) || fechaSeleccionada.isAfter(jornada.getFechaFin())) {
+            if (fechaSeleccionada.isBefore(jornada.getFechaInicio()) || fechaSeleccionada.isAfter(jornada.getFechaFin())) {
                 throw new FechaInvalidaException();
-            }*/
+            }
 
             // Asegurarse de que el número de equipos sea par y al menos 2
             if (listaEquipos.size() < 2) {
@@ -115,6 +115,7 @@ public class ventanaCrearEnfrentamiento extends JDialog {
             }
 
             JOptionPane.showMessageDialog(this, "Enfrentamientos creados correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose(); // Cerrar la ventana de creación de enfrentamientos
 
         } catch (CampoObligatorioException e) {
             JOptionPane.showMessageDialog(this, "Por favor ingrese una fecha y una hora", "Error", JOptionPane.ERROR_MESSAGE);

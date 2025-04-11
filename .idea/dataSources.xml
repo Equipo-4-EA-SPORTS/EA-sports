@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Base de datos - Equipo 4" uuid="07f3ee49-f413-4ffc-81a8-8b9e666ce7d4">
-      <driver-ref>oracle</driver-ref>
+    <data-source source="LOCAL" name="@ccsatserv.dnsdojo.com" uuid="9f89399b-833d-4496-b9db-2e987b3eb415">
+      <driver-ref>oracle.19</driver-ref>
       <synchronize>true</synchronize>
       <auto-commit>false</auto-commit>
       <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
