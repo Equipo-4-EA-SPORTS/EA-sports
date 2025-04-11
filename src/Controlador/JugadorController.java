@@ -20,11 +20,16 @@ public class JugadorController {
         return JugadorDAO.eliminarJugador(jugadorSeleccionado);
     }
 
+
     public static boolean buscarNickname(String nickname) {
         return JugadorDAO.buscarNickname(nickname);
     }
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return JugadorDAO.obtenerRoles(equipoSeleccionado);
+
+    public static List<String[]> obtenerJugadores() {
+        return JugadorDAO.obtenerJugadores();
+
     }
 }

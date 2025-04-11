@@ -64,7 +64,7 @@ public class EquipoDAO {
         try{
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
-            String plantilla = "SELECT nombre FROM equipos WHERE id = ?";
+            String plantilla = "SELECT nombre FROM equipos WHERE idEquipo = ?";
 
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setInt(1,id);
