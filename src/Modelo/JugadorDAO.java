@@ -40,15 +40,14 @@ public class JugadorDAO {
         return insertado;
     }
 
-    public static boolean buscarJugador(String nombre) {
+    public static boolean buscarJugador() {
         boolean encontrado = false;
         try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
-            String plantilla = "SELECT * FROM jugadores WHERE nombre = ?";
+            String plantilla = "SELECT * FROM jugadores";
 
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 encontrado = true;

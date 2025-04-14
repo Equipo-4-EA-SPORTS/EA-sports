@@ -38,8 +38,9 @@ public class VentanaModificacionJugador extends JFrame {
         setTitle("Modificar Jugador");
         getRootPane().setDefaultButton(buttonOK);
         setLocationRelativeTo(null);
+
         setResizable(false);
-        setSize(500, 500);
+        setSize(500, 450);
         add(panel);
 
         buttonOK.addActionListener(new ActionListener() {
@@ -227,14 +228,6 @@ public class VentanaModificacionJugador extends JFrame {
             JOptionPane.showMessageDialog(null, "ERROR: El sueldo es un campo obligatorio");
             return;
         }
-        try{
-
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "ERROR: El sueldo debe ser un número válido");
-            return;
-        }
-
         if (sueldoFloat < 1184) {
             JOptionPane.showMessageDialog(null, "ERROR: El sueldo debe ser igual o superior al SMI (1184€)");
             return;

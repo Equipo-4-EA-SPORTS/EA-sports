@@ -14,8 +14,8 @@ public class ModeloController {
     public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo){
         return JugadorController.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
     }
-    public static boolean buscarJugador(String nombre){
-        return JugadorController.buscarJugador(nombre);
+    public static boolean buscarJugador(){
+        return JugadorController.buscarJugador();
     }
 
     public static List<String> listaJugadores(){
@@ -91,5 +91,9 @@ public class ModeloController {
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return JugadorController.obtenerRoles(equipoSeleccionado);
+    }
+
+    public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
+        JugadorController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
     }
 }

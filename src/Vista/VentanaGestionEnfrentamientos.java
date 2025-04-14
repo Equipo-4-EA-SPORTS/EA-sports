@@ -59,7 +59,7 @@ public class VentanaGestionEnfrentamientos extends JFrame {
                 VistaController.ventanaAdministrador(VentanaGestionEnfrentamientos.this,nombre);
             }
         });
-
+/*
         bAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,6 +101,6 @@ public class VentanaGestionEnfrentamientos extends JFrame {
             }
 
         });
-
+*/
     }
 }

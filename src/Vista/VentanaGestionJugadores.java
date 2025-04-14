@@ -67,7 +67,11 @@ public class VentanaGestionJugadores extends JFrame {
                         }
                         break;
                     case 3:
-
+                        boolean encontrado = VistaController.buscarJugador();
+                        if (encontrado =true) {
+                            VistaController.mostrarModificarJugador(VentanaGestionJugadores.this);
+                        }else{JOptionPane.showMessageDialog(null, "ERROR: No hay jugadores para modificar");
+                        break;}
                         break;
                     case 4:
                         if (!VistaController.VentanaMostrarJugadores()){

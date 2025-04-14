@@ -10,8 +10,8 @@ public class JugadorController {
         return JugadorDAO.inscribirJugador(nombre, apellido, nacionalidad, fechaParseada, nickname, sueldoFloat, rol, equipo);
     }
 
-    public static boolean buscarJugador(String nombre) {
-        return JugadorDAO.buscarJugador(nombre);
+    public static boolean buscarJugador() {
+        return JugadorDAO.buscarJugador();
     }
 
     public static List<String> listaJugadores() {

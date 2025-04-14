@@ -39,8 +39,8 @@ public class VistaController {
         return !listaJugadores.isEmpty();
     }
 
-    public static  boolean buscarJugador(String nombre){
-        return ModeloController.buscarJugador(nombre);
+    public static  boolean buscarJugador(){
+        return ModeloController.buscarJugador();
     }
 
     public static List<String> listaJugadores(){
@@ -86,6 +86,11 @@ public class VistaController {
 
     public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
         ModeloController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
+    }
+
+    public static void mostrarModificarJugador(JFrame ventana) {
+        VentanaModificacionJugador mj = new VentanaModificacionJugador();
+        mj.setVisible(true);
     }
 
 
