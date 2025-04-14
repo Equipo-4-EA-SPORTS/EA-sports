@@ -1,20 +1,14 @@
 package Controlador;
 
-import Modelo.EquipoRolesDAO;
+import Modelo.EquipoDAO;
 import Modelo.JugadorDAO;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class JugadorController {
-    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo) {
-        boolean insertado =  JugadorDAO.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
-
-        if (insertado){
-            EquipoRolesDAO.eliminarRolEquipo(rol);
-        }
-
-        return insertado;
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo) {
+        return JugadorDAO.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
     }
 
     public static boolean buscarJugador(String nombre){
@@ -32,9 +26,15 @@ public class JugadorController {
         return JugadorDAO.buscarNickname(nickname);
     }
 
-
+    public static List<String> obtenerRoles(String equipoSeleccionado) {
+        return JugadorDAO.obtenerRoles(equipoSeleccionado);
+    }
     public static List<String[]> obtenerJugadores() {
         return JugadorDAO.obtenerJugadores();
 
+    }
+    //Comprobacion para cerrar Competicion(Jugadores)
+    public static boolean equiposConCantidadValidaDeJugadores() {
+        return JugadorDAO.equiposConCantidadValidaDeJugadores();
     }
 }

@@ -81,6 +81,12 @@ public class VentanaGestionCompeticion extends JFrame {
                             JOptionPane.showMessageDialog(null, "No se pudo abrir la competición", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         break;
+                    case 4:
+                        if(VistaController.ventanaConfirmacion("la Competicion")){
+                            VistaController.cerrarCompeticion();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se puedo abrir la competición", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                 }
 
             }

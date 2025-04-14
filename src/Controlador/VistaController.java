@@ -221,6 +221,10 @@ public class VistaController {
         return ModeloController.abrirCompeticion();
     }
 
+    public static boolean cerrarCompeticion(){
+        return ModeloController.cerrarCompeticion();
+    }
+
     public static void crearCompeticion(){
         ModeloController.crearCompeticion();
     }

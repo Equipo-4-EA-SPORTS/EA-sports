@@ -63,7 +63,7 @@ public class VentanaGestionEnfrentamientos extends JFrame {
         bAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (comboBox.getSelectedIndex()){
+                /*switch (comboBox.getSelectedIndex()){
                     case 0:
                         JOptionPane.showMessageDialog(pPrincipal, "ERROR. Debes de seleccionar una opción", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
@@ -97,7 +97,7 @@ public class VentanaGestionEnfrentamientos extends JFrame {
                             JOptionPane.showMessageDialog(pPrincipal, "No hay enfrentamientos para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                         break;
-                }
+                }*/
             }
 
         });*/

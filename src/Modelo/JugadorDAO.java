@@ -1,7 +1,5 @@
 package Modelo;
 
-import Controlador.ModeloController;
-
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JugadorDAO {
-    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo) {
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo) {
         boolean insertado = false;
         try{
             BaseDatos.abrirConexion();
@@ -28,7 +26,7 @@ public class JugadorDAO {
             ps.setString(5,nickname);
             ps.setFloat(6,sueldoFloat);
             ps.setString(7,rol);
-            ps.setInt(8,EquipoDAO.obtenerPKequipo(equipo));
+            ps.setInt(8,equipo);
             int filasInsertadas = ps.executeUpdate();
 
             if (filasInsertadas>0){
@@ -122,35 +120,88 @@ public class JugadorDAO {
         return existe;
     }
 
-    public static List<String[]> obtenerJugadores() {
-        List<String[]> jugadores = new ArrayList<>();
+    public static List<String> obtenerRoles(String equipoSeleccionado) {
+        List<String> roles = Arrays.asList("DUELISTA", "CENTINELA, CONTROLADOR, INICIADOR, ASESINO, MAGO");
+
 
         try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo  FROM jugadores";
+
+            String plantilla = "SELECT j.rol FROM jugadores j JOIN equipos e ON j.idequipo = e.idequipo WHERE e.nombre = ?;";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1, equipoSeleccionado);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                roles.add(rs.getString("rol"));
+            }
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return roles;
+    }
+        public static List<String[]> obtenerJugadores() {
+            List<String[]> jugadores = new ArrayList<>();
+
+            try {
+                BaseDatos.abrirConexion();
+                Connection con = BaseDatos.getCon();
+
+                String plantilla = "SELECT nombre, apellido, nacionalidad, fechanac, nickname, sueldo, rol, idequipo  FROM jugadores";
+                PreparedStatement ps = con.prepareStatement(plantilla);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    String apellido = rs.getString("apellido");
+                    String nacionalidad = rs.getString("nacionalidad");
+                    String fechaNac = String.valueOf(rs.getDate("fechaNac"));
+                    String nickname = rs.getString("nickname");
+                    String sueldo = String.valueOf(rs.getFloat("sueldo"));
+                    String rol = rs.getString("rol");
+                    String idequipo = EquipoDAO.buscarEquipoPK(rs.getInt("idequipo"));
+
+                    jugadores.add(new String[]{nombre, apellido, nacionalidad, fechaNac, nickname, sueldo, rol, idequipo});
+                }
+
+            }catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return jugadores;
+
+    }
+
+    //Comprobacion Para CerrarCoompeticion
+    public static boolean equiposConCantidadValidaDeJugadores() {
+        boolean valido = true;
+
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT idequipo, COUNT(*) AS cantidad FROM jugadores GROUP BY idequipo";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-                String nombre = rs.getString("nombre");
-                String apellido = rs.getString("apellido");
-                String nacionalidad = rs.getString("nacionalidad");
-                String fechaNac = String.valueOf(rs.getDate("fechaNac"));
-                String nickname = rs.getString("nickname");
-                String sueldo = String.valueOf(rs.getFloat("sueldo"));
-                String rol = rs.getString("rol");
-                String idequipo = EquipoDAO.buscarEquipoPK(rs.getInt("idequipo"));
+            while (rs.next() && valido) {
+                int cantidad = rs.getInt("cantidad");
 
-                jugadores.add(new String[]{nombre, apellido, nacionalidad, fechaNac, nickname, sueldo, rol, idequipo});
+                if (cantidad < 2 || cantidad > 6) {
+                    valido = false;
+                }
             }
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+            valido = false; // por si hay error, lo consideramos inválido
         }
-    return jugadores;
+
+        return valido;
     }
+
 
 }
 

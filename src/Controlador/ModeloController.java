@@ -1,7 +1,8 @@
 package Controlador;
 
-import Modelo.EquipoRolesDAO;
+import Modelo.EquipoDAO;
 import Modelo.JornadaDAO;
+import Modelo.JugadorDAO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,7 +13,7 @@ public class ModeloController {
         return UsuarioController.inciarSesionusUario(usr, con,tipoUsr);
     }
     //Jugadores
-    public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo){
+    public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo){
         return JugadorController.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
     }
     public static boolean buscarJugador(String nombre){
@@ -65,6 +66,22 @@ public class ModeloController {
     public static boolean abrirCompeticion(){
         return CompeticionController.abrirCompeticion();
     }
+    public static boolean cerrarCompeticion(){
+        return CompeticionController.cerrarCompeticion();
+    }
+    //Comprobacion para Competicion(Equipos)
+    public static boolean hayMasDeDosEquipos() {
+        return EquipoController.hayMasDeDosEquipos();
+    }
+    public static boolean hayCantidadParDeEquipos() {
+        return EquipoController.hayCantidadParDeEquipos();
+    }
+    //Comprobacion para Competicion(Jugadores)
+    public static boolean equiposConCantidadValidaDeJugadores() {
+        return JugadorController.equiposConCantidadValidaDeJugadores();
+    }
+
+
 
     public static void crearCompeticion(){
         CompeticionController.crearCompeticion();
@@ -91,6 +108,6 @@ public class ModeloController {
     }
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
-        return EquipoRolesController.obtenerRoles(equipoSeleccionado);
+        return JugadorController.obtenerRoles(equipoSeleccionado);
     }
 }
