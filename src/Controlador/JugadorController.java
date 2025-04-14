@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.EquipoDAO;
 import Modelo.JugadorDAO;
 
 import java.time.LocalDate;
@@ -31,5 +32,9 @@ public class JugadorController {
     public static List<String[]> obtenerJugadores() {
         return JugadorDAO.obtenerJugadores();
 
+    }
+    //Comprobacion para cerrar Competicion(Jugadores)
+    public static boolean equiposConCantidadValidaDeJugadores() {
+        return JugadorDAO.equiposConCantidadValidaDeJugadores();
     }
 }

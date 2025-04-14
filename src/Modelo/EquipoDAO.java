@@ -153,15 +153,39 @@ public class EquipoDAO {
 
             if (rs.next()) {
                 int cantidad = rs.getInt("total");
-                resultado = cantidad > 2;
+                resultado = cantidad >= 2;
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al verificar la cantidad de equipos");
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
 
         return resultado;
     }
+
+    public static boolean hayCantidadParDeEquipos() {
+        boolean resultado = false;
+
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT COUNT(*) AS total FROM equipos";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int cantidad = rs.getInt("total");
+                resultado = cantidad % 2 == 0;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+
+        return resultado;
+    }
+
 
 
 
