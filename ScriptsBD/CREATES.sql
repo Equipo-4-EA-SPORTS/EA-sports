@@ -5,7 +5,6 @@ DROP TABLE equipos CASCADE CONSTRAINTS;
 DROP TABLE competiciones CASCADE CONSTRAINTS;
 DROP TABLE usuarios CASCADE CONSTRAINTS;
 
-
 CREATE TABLE competiciones (
     idComp NUMBER GENERATED ALWAYS AS IDENTITY  
     (START WITH 1 INCREMENT BY 1),
@@ -19,13 +18,10 @@ CREATE TABLE jornadas(
     idJor NUMBER GENERATED ALWAYS AS IDENTITY  
     (START WITH 1 INCREMENT BY 1),
     fechaInicio DATE,
-    idComp NUMBER,
-    
-    CONSTRAINT jornada_idJor_pk PRIMARY KEY (idJor),
-    CONSTRAINT jornada_idComp_fk FOREIGN KEY (idComp) REFERENCES competiciones ON DELETE CASCADE
+    fechaFin DATE,
+
+    CONSTRAINT jornada_idJor_pk PRIMARY KEY (idJor)
 );
-
-
 
 CREATE TABLE equipos(
     idEquipo NUMBER GENERATED ALWAYS AS IDENTITY  

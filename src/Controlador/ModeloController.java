@@ -1,5 +1,7 @@
 package Controlador;
 
+import Modelo.JornadaDAO;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -58,8 +60,9 @@ public class ModeloController {
         return EquipoController.modificarEquipo(nuevaFecha,nombre);
     }
 
-    public static void abrirCompeticion(){
-        CompeticionController.abrirCompeticion();
+    //Competicion
+    public static boolean abrirCompeticion(){
+        return CompeticionController.abrirCompeticion();
     }
 
     public static void crearCompeticion(){
@@ -73,15 +76,20 @@ public class ModeloController {
         return CompeticionController.estadoCompeticion();
     }
 
+    //Jornada
+    public static boolean crearJornada(LocalDate fechaInicio) {
+        return JornadaController.crearJornada(fechaInicio);
+    }
+
+    public static boolean existeJornada (String numJornada){
+        return JornadaController.existeJornada(numJornada);
+    }
+
     public static boolean buscarNickname(String nickname) {
         return JugadorController.buscarNickname(nickname);
     }
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return JugadorController.obtenerRoles(equipoSeleccionado);
-    }
-
-    public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
-        JugadorController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
     }
 }

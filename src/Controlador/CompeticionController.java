@@ -5,8 +5,8 @@ import Modelo.EquipoDAO;
 
 public class CompeticionController {
 
-    public static void abrirCompeticion(){
-        CompeticionDAO.abrirCompeticion();
+    public static boolean abrirCompeticion(){
+        return CompeticionDAO.abrirCompeticion();
     }
 
     public static void crearCompeticion(){
@@ -17,7 +17,6 @@ public class CompeticionController {
         return CompeticionDAO.verificarCompeticionCreada();
 
     }
-
 
     public static boolean estadoCompeticion() {
         return CompeticionDAO.estadoCompeticion();
