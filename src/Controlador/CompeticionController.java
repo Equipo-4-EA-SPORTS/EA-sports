@@ -8,6 +8,9 @@ public class CompeticionController {
     public static boolean abrirCompeticion(){
         return CompeticionDAO.abrirCompeticion();
     }
+    public static boolean cerrarCompeticion(){
+        return CompeticionDAO.cerrarCompeticion();
+    }
 
     public static void crearCompeticion(){
         CompeticionDAO.crearCompeticion();

@@ -64,6 +64,9 @@ public class ModeloController {
     public static boolean abrirCompeticion(){
         return CompeticionController.abrirCompeticion();
     }
+    public static boolean cerrarCompeticion(){
+        return CompeticionController.cerrarCompeticion();
+    }
 
     public static void crearCompeticion(){
         CompeticionController.crearCompeticion();
