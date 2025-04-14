@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JugadorDAO {
-    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo) {
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo) {
         boolean insertado = false;
         try{
             BaseDatos.abrirConexion();
@@ -28,7 +28,7 @@ public class JugadorDAO {
             ps.setString(5,nickname);
             ps.setFloat(6,sueldoFloat);
             ps.setString(7,rol);
-            ps.setInt(8,equipo);
+            ps.setInt(8,EquipoDAO.obtenerPKequipo(equipo));
             int filasInsertadas = ps.executeUpdate();
 
             if (filasInsertadas>0){
@@ -152,9 +152,5 @@ public class JugadorDAO {
     return jugadores;
     }
 
-    public static List<String> obtenerRoles(String equipoSeleccionado){
-        return EquipoDAO.obtenerRoles(equipoSeleccionado);
-
-    }
 }
 

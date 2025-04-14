@@ -77,7 +77,7 @@ public class ventanaCrearEnfrentamiento extends JDialog {
             String fecha = tfFecha.getText();
             String hora = tfHora.getText();
             if (fecha.isEmpty() || hora.isEmpty()) {
-                throw new CampoObligatorioException();
+                throw new CampoObligatorioException("Por favor ingrese una fecha y una hora");
             }
 
             // Convertir fecha a Localdate
@@ -117,7 +117,7 @@ public class ventanaCrearEnfrentamiento extends JDialog {
             JOptionPane.showMessageDialog(this, "Enfrentamientos creados correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (CampoObligatorioException e) {
-            JOptionPane.showMessageDialog(this, "Por favor ingrese una fecha y una hora", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (FechaInvalidaException e) {
             JOptionPane.showMessageDialog(this, "La fecha y hora deben estar dentro de la jornada seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
         }

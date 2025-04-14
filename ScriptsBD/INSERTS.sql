@@ -7,11 +7,11 @@ INSERT INTO USUARIOS (TIPOUSUARIO,NOMBRE, CONTRASENA) VALUES ('usuario','usr2','
 INSERT INTO USUARIOS (TIPOUSUARIO,NOMBRE, CONTRASENA) VALUES ('usuario','usr3','usr3');
 
 
-INSERT INTO roles (rol) VALUES ('duelista');
-INSERT INTO roles (rol) VALUES ('centinela');
-INSERT INTO roles (rol) VALUES ('iniciador');
-INSERT INTO roles (rol) VALUES ('controlador');
-INSERT INTO roles (rol) VALUES ('asesino');
-INSERT INTO roles (rol) VALUES ('mago');
+INSERT INTO roles (rol) VALUES ('Duelista');
+INSERT INTO roles (rol) VALUES ('Centinela');
+INSERT INTO roles (rol) VALUES ('Iniciador');
+INSERT INTO roles (rol) VALUES ('Controlador');
+INSERT INTO roles (rol) VALUES ('Asesino');
+INSERT INTO roles (rol) VALUES ('Mago');
 
 

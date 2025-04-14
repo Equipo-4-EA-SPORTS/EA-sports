@@ -19,6 +19,7 @@ public class VentanaGestionCompeticion extends JFrame {
         setResizable(false);
         setSize(400,200);
         setLocationRelativeTo(null);
+        setTitle("Gestión de Competición");
 
         JMenuBar menuBar = new JMenuBar();
 

@@ -69,7 +69,7 @@ public class VentanaInscribirEquipo extends JDialog {
                 throw new EquipoExistenteException();
             }
             if (nombre.getText().isEmpty()) {
-                throw new CampoObligatorioException();
+                throw new CampoObligatorioException("Este campo es obligatorio");
             }
 
 
@@ -83,7 +83,7 @@ public class VentanaInscribirEquipo extends JDialog {
         }catch(EquipoExistenteException e){
             JOptionPane.showMessageDialog(contentPane, "Ya existe un Equipo con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
         }catch(CampoObligatorioException e){
-            JOptionPane.showMessageDialog(contentPane, "Este campo es obligatorio", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(contentPane, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }catch (FechaInvalidaException e){
             JOptionPane.showMessageDialog(contentPane,"Error, la fecha de fundacion no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
         }catch (DateTimeParseException e){

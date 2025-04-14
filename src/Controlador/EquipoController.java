@@ -1,9 +1,6 @@
 package Controlador;
 
-import Modelo.Equipo;
-import Modelo.EquipoDAO;
-import Modelo.Jugador;
-import Modelo.JugadorDAO;
+import Modelo.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -16,7 +13,7 @@ public class EquipoController {
         insertado = EquipoDAO.inscribirEquipo(nombre,fecha);
 
         if (insertado){
-            EquipoDAO.añadirRolesDefaultEquipo(nombre);
+            EquipoRolesDAO.añadirRolesDefaultEquipo(nombre);
         }
         return insertado;
     }

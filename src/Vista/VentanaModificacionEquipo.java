@@ -101,18 +101,18 @@ public class VentanaModificacionEquipo extends JDialog {
                 default:
                     if (nuevoNombreRadioButton.isSelected() && nuevaFechaDeFundacionRadioButton.isSelected()){
                         if (nuevoNombre.getText().isEmpty() || nuevaFecha.getText().isEmpty()){
-                            throw new CampoObligatorioException();
+                            throw new CampoObligatorioException("Error: Los campos seleccionados son obligatorios");
                         }
                         fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                         actualizado =  VistaController.modificarEquipo(nuevoNombre.getText(), fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     } else if (nuevoNombreRadioButton.isSelected()) {
                         if (nuevoNombre.getText().isEmpty()){
-                            throw new CampoObligatorioException();
+                            throw new CampoObligatorioException("Error: Los campos seleccionados son obligatorios");
                         }
                         actualizado = VistaController.modificarEquipo(nuevoNombre.getText(),equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     } else if (nuevaFechaDeFundacionRadioButton.isSelected()) {
                         if (nuevaFecha.getText().isEmpty()){
-                            throw new CampoObligatorioException();
+                            throw new CampoObligatorioException("Error: Los campos seleccionados son obligatorios");
                         }
                         fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                         actualizado = VistaController.modificarEquipo(fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
@@ -131,7 +131,7 @@ public class VentanaModificacionEquipo extends JDialog {
             }
         }
         catch (CampoObligatorioException e){
-            JOptionPane.showMessageDialog(contentPane,"Error, los campos seleccionados son obligatorios","Error",-1);
+            JOptionPane.showMessageDialog(contentPane,e.getMessage(),e.getMessage(),-1);
         }
         catch (OpcionSeleccionarObligatorioException e){
             JOptionPane.showMessageDialog(contentPane,"Error, debe seleccionar al menos un campo de los de abajo","Error",-1);

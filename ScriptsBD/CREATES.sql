@@ -2,6 +2,8 @@ DROP TABLE enfrentamientos CASCADE CONSTRAINTS;
 DROP TABLE jugadores CASCADE CONSTRAINTS;
 DROP TABLE jornadas CASCADE CONSTRAINTS;
 DROP TABLE equipos CASCADE CONSTRAINTS;
+DROP TABLE roles CASCADE CONSTRAINTS;
+DROP TABLE equipoRoles CASCADE CONSTRAINTS;
 DROP TABLE competiciones CASCADE CONSTRAINTS;
 DROP TABLE usuarios CASCADE CONSTRAINTS;
 
@@ -30,7 +32,16 @@ CREATE TABLE roles(
     rol VARCHAR2(50),
 
     CONSTRAINT roles_idRol_pk PRIMARY KEY (idRol),
-    CONSTRAINT roles_rol_ck CHECK (rol IN ('duelista','centinela','controlador','iniciador','asesino','mago'))
+    CONSTRAINT roles_rol_ck CHECK (rol IN ('Duelista','Centinela','Controlador','Iniciador','Asesino','Mago'))
+);
+
+CREATE TABLE equipos(
+    idEquipo NUMBER GENERATED ALWAYS AS IDENTITY  
+    (START WITH 1 INCREMENT BY 1),
+    nombre VARCHAR2(50),
+    fechaFund DATE,
+    
+    CONSTRAINT equipos_idEquipo_pk PRIMARY KEY (idEquipo)
 );
 
 CREATE TABLE equipoRoles(
@@ -45,14 +56,7 @@ CREATE TABLE equipoRoles(
         CONSTRAINT equipoRoles_idRol_fk FOREIGN KEY (idRol) REFERENCES roles
 );
 
-CREATE TABLE equipos(
-    idEquipo NUMBER GENERATED ALWAYS AS IDENTITY  
-    (START WITH 1 INCREMENT BY 1),
-    nombre VARCHAR2(50),
-    fechaFund DATE,
-    
-    CONSTRAINT equipos_idEquipo_pk PRIMARY KEY (idEquipo)
-);
+
 
 CREATE TABLE jugadores(
     idJugador NUMBER GENERATED ALWAYS AS IDENTITY  
