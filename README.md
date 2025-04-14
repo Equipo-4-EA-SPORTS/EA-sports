@@ -74,7 +74,15 @@ Tiene dos tipos de usuarios:
 
 # 📸 Capturas
 
-> Añadir alguna imagen del programa (tener las imagenes en una carpeta `/img`).
+Esta es la pantalla principal de la aplicación, donde se muestra el logo de EA Sports y el botón para comenzar.
+
+![Pantalla principal](imgReadme/inicioSesion.png)
+
+En esta ventana se muestran dos opciones
+  - Inicio de sesion como usuario
+  - Inicio de sesion como adminstrador
+
+![Selección de usuario](imgReadme/seleccionUsuario.png)
 
 
 ---
