@@ -7,16 +7,13 @@ Esta aplicación está pensada para gestionar competiciones de E-Sport. Permite 
   - Imanol Manero
   - Aimar Medina
 
-# RECURSOS UTILIZADOS
-  - IntelliJ DEA
-  - JUnit 5
-  - ChatGPT
-  - SQL Developer
-  - Visual Paradigm
-  - Trello
-  - Discord
-  - WhatsApp
+# TECNOLOGIAS UTILIZADAS
+![Java](https://img.shields.io/badge/Java-red?logo=coffeescript&logoColor=white) ![SQL](https://img.shields.io/badge/Oracle_SQL-white?logo=liquibase&logoColor=black) ![JUnit5](https://img.shields.io/badge/JUnit5-darkgreen?logo=jekyll&logoColor=white)  ![Trello](https://img.shields.io/badge/Trello-darkblue?logo=trello&logoColor=white)
+ ![IntelliJ Idea](https://img.shields.io/badge/IntelliJ_DEA-darkviolet?logo=intellijidea&logoColor=white) ![ChatGPT](https://img.shields.io/badge/ChatGPT-white?logo=openai&logoColor=black) ![Discord](https://img.shields.io/badge/Discord-blue?logo=discord&logoColor=white) ![WhatsAPP](https://img.shields.io/badge/WhatsAPP-darkgreen?logo=whatsapp&logoColor=white)
 
-# LENGUAJES UTILIZADOS
-  - Java
-  - SQL (oracle)
+
+
+
+
+
+
