@@ -152,7 +152,6 @@ public class EquipoDAO {
 
         return resultado;
     }
-
     public static boolean hayCantidadParDeEquipos() {
         boolean resultado = false;
 
@@ -175,10 +174,6 @@ public class EquipoDAO {
 
         return resultado;
     }
-
-
-
-
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         boolean actualizado = false;
 

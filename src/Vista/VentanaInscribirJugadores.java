@@ -37,6 +37,9 @@ public class VentanaInscribirJugadores extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
 
+        rolCB.setEnabled(false);
+
+
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -59,7 +62,6 @@ public class VentanaInscribirJugadores extends JFrame {
         setVisible(true);
 
         List<String> listaEquipos = VistaController.listaEquipos();
-        equiposCB.addItem("Selecciona un equipo");
         for (int i = 0; i < listaEquipos.size(); i++) {
             equiposCB.insertItemAt(listaEquipos.get(i), i + 1);
         }
@@ -68,18 +70,21 @@ public class VentanaInscribirJugadores extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (equiposCB.getSelectedIndex() != 0){
-                    actualizarRoles();
+                    actualizarRoles(equiposCB.getSelectedItem().toString());
                 }
             }
         });
     }
 
-    private void actualizarRoles() {
-        String equipoSeleccionado = (String) equiposCB.getSelectedItem();
-        List<String> rolesDisponibles = VistaController.obtenerRoles(equipoSeleccionado);
-        rolCB.removeAllItems();
-        for (String rol : rolesDisponibles) {
-            rolCB.addItem(rol);
+    private void actualizarRoles(String equipoSeleccionado) {
+        if (equiposCB.getSelectedIndex()!=0){
+            rolCB.setEnabled(true);
+            List<String> rolesDisponibles = VistaController.obtenerRoles(equipoSeleccionado);
+            rolCB.removeAllItems();
+            rolCB.addItem("Seleccione un rol");
+            for (int i = 0; i < rolesDisponibles.size(); i++) {
+                rolCB.insertItemAt(rolesDisponibles.get(i), i + 1);
+            }
         }
     }
 
