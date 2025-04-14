@@ -13,7 +13,7 @@ public class ModeloController {
         return UsuarioController.inciarSesionusUario(usr, con,tipoUsr);
     }
     //Jugadores
-    public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo){
+    public static  boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo){
         return JugadorController.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
     }
     public static boolean buscarJugador(String nombre){
@@ -108,6 +108,6 @@ public class ModeloController {
     }
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
-        return JugadorController.obtenerRoles(equipoSeleccionado);
+        return EquipoRolesController.obtenerRoles(equipoSeleccionado);
     }
 }

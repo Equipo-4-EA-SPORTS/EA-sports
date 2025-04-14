@@ -21,14 +21,13 @@ public class VistaController {
         ventanaSeleccionUsuario.setVisible(true);
     }
     //Jugadores
-    public static void mostrarinscribirJugador(JFrame ventana) {
-        ventana.dispose();
-        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
+    public static void mostrarinscribirJugador() {
+        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores();
         inscribir.setVisible(true);
 
     }
 
-    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo) {
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo) {
         return ModeloController.inscribirJugador(nombre, apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
     }
 
@@ -236,5 +235,12 @@ public class VistaController {
 
     public static boolean estadoCompeticion() {
         return ModeloController.estadoCompeticion();
+    }
+
+    public static void cerrarVentanas(JFrame ventana){
+        ventana.dispose();
+    }
+    public static void cerrarModales(JDialog modal){
+        modal.dispose();
     }
 }

@@ -59,7 +59,7 @@ public class VentanaGestionJugadores extends JFrame {
                         JOptionPane.showMessageDialog(null, "ERROR: Debes seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 1:
-                        VistaController.mostrarinscribirJugador(VentanaGestionJugadores.this);
+                        VistaController.mostrarinscribirJugador();
                         break;
                     case 2:
                         if (!VistaController.VentanaEliminarJugador(VentanaGestionJugadores.this)) {

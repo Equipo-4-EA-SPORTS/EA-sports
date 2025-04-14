@@ -1,9 +1,6 @@
 package Controlador;
 
-import Modelo.Equipo;
-import Modelo.EquipoDAO;
-import Modelo.Jugador;
-import Modelo.JugadorDAO;
+import Modelo.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -12,7 +9,13 @@ import java.util.List;
 public class EquipoController {
 
     public static boolean inscribirEquipo(String nombre, LocalDate fecha){
-        return EquipoDAO.inscribirEquipo(nombre,fecha);
+        boolean insertado = false;
+        insertado = EquipoDAO.inscribirEquipo(nombre,fecha);
+
+        if (insertado){
+            EquipoRolesDAO.añadirRolesDefaultEquipo(nombre);
+        }
+        return insertado;
     }
 
     public static boolean buscarEquipo(String nombre){
@@ -36,6 +39,9 @@ public class EquipoController {
     }
     public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
         return EquipoDAO.modificarEquipo(nuevaFecha,nombre);
+    }
+    public static int obtenerPKequipo(String nombre){
+        return EquipoDAO.obtenerPKequipo(nombre);
     }
     //Comprobacion para cerrar Competicion(Equipos)
     public static boolean hayMasDeDosEquipos() {

@@ -7,6 +7,11 @@ INSERT INTO USUARIOS (TIPOUSUARIO,NOMBRE, CONTRASENA) VALUES ('usuario','usr2','
 INSERT INTO USUARIOS (TIPOUSUARIO,NOMBRE, CONTRASENA) VALUES ('usuario','usr3','usr3');
 
 
-INSERT INTO JUGADORES (nombre,idEquipo) VALUES ('Prueba1',21);
+INSERT INTO roles (rol) VALUES ('Duelista');
+INSERT INTO roles (rol) VALUES ('Centinela');
+INSERT INTO roles (rol) VALUES ('Iniciador');
+INSERT INTO roles (rol) VALUES ('Controlador');
+INSERT INTO roles (rol) VALUES ('Asesino');
+INSERT INTO roles (rol) VALUES ('Mago');
 
 

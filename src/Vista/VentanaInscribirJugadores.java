@@ -1,11 +1,15 @@
 package Vista;
 
 import Controlador.VistaController;
+import Excepciones.CampoObligatorioException;
+import Excepciones.FormatoIncorrectoException;
+import Excepciones.NombreDuplicadoExcepcion;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +29,7 @@ public class VentanaInscribirJugadores extends JFrame {
     private JComboBox<String> equiposCB;
 
 
-    public VentanaInscribirJugadores(JFrame ventana) {
+    public VentanaInscribirJugadores() {
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
         setTitle("Inscribir Equipo");
@@ -63,106 +67,120 @@ public class VentanaInscribirJugadores extends JFrame {
         equiposCB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                actualizarRoles();
+                if (equiposCB.getSelectedIndex() != 0){
+                    actualizarRoles();
+                }
             }
         });
     }
 
     private void actualizarRoles() {
         String equipoSeleccionado = (String) equiposCB.getSelectedItem();
-        if (equipoSeleccionado != null && !equipoSeleccionado.equals("Selecciona un equipo")) {
-            List<String> rolesDisponibles = VistaController.obtenerRoles(equipoSeleccionado);
-            rolCB.removeAllItems();
-            for (String rol : rolesDisponibles) {
-                rolCB.addItem(rol);
-            }
+        List<String> rolesDisponibles = VistaController.obtenerRoles(equipoSeleccionado);
+        rolCB.removeAllItems();
+        for (String rol : rolesDisponibles) {
+            rolCB.addItem(rol);
         }
     }
 
     private void onOK() {
-        String nombre = nombreTF.getText();
-        if (nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "ERROR: El nombre es un campo obligatorio");
-        }
-
-        String apellido = apellidoTf.getText();
-        if (apellido.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "ERROR: El apellido es un campo obligatorio");
-
-        }
-
-        String nacionalidad = nacionalidadTf.getText();
-        if (nacionalidad.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "ERROR: La nacionalidad es un campo obligatorio");
-        }
-        boolean existe = validarNacionalidad(nacionalidad);
-        if (existe = false){
-            JOptionPane.showMessageDialog(null, "ERROR: La nacionalidad no es correcta");
-        }
-        String nickname = nicknameTF.getText();
-        if (nickname.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "ERROR: El nickname es un campo obligatorio");
-
-        }
-
-        if (VistaController.buscarNickname(nickname)) {
-            JOptionPane.showMessageDialog(null, "ERROR: El nickname ya existe");
-
-        }
-
-        LocalDate fecha = null;
         try {
-            fecha = LocalDate.parse(fechaTF.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            if (fechaTF.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "ERROR: La fecha es un campo obligatorio");
+            String nombre = nombreTF.getText();
+            if (nombre.isEmpty()) {
+                throw new CampoObligatorioException("El nombre es un campo obligatorio");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR: Formato de fecha incorrecto (dd/MM/yyyy)");
-        }
 
-        int añonacimiento = fecha.getYear();
-        int añoactual = LocalDate.now().getYear();
-        if (añoactual - añonacimiento < 13) {
-            JOptionPane.showMessageDialog(null, "ERROR: El jugador debe de tener 13 años como mínimo");
-        }
+            String apellido = apellidoTf.getText();
+            if (apellido.isEmpty()) {
+                throw new CampoObligatorioException("El apellido es un campo obligatorio");
+            }
 
-        String rol = (String) rolCB.getSelectedItem();
-        if (rol == null || rol.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "ERROR: El rol es un campo obligatorio");
-            return;
-        }
+            String nacionalidad = nacionalidadTf.getText();
+            if (nacionalidad.isEmpty()) {
+                throw new CampoObligatorioException("La nacionalidad es un campo obligatorio");
+            }
 
-        String sueldo = sueldoTF.getText();
-        float sueldoFloat = Float.parseFloat(sueldo);
-        if (sueldo.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "ERROR: El sueldo es un campo obligatorio");
-            return;
-        }
-        try{
+            String nickname = nicknameTF.getText();
+            if (nickname.isEmpty()) {
+                throw new CampoObligatorioException("El nickname es un campo obligatorio");
+            }
+
+            if (VistaController.buscarNickname(nickname)) {
+                throw new NombreDuplicadoExcepcion("El nickname ya existe");
+            }
+
+            LocalDate fecha;
+            if (fechaTF.getText().isEmpty()) {
+                throw new CampoObligatorioException("La fecha es un campo obligatorio");
+            }
+
+            fecha = LocalDate.parse(fechaTF.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "ERROR: El sueldo debe ser un número válido");
-            return;
-        }
+            int añonacimiento = fecha.getYear();
+            int añoactual = LocalDate.now().getYear();
+            if (añoactual - añonacimiento < 13) {
+                throw new FormatoIncorrectoException("El jugador debe de tener 13 años como mínimo");
+            }
 
-        if (sueldoFloat < 1184) {
-            JOptionPane.showMessageDialog(null, "ERROR: El sueldo debe ser igual o superior al SMI (1184€)");
-            return;
-        }
+            String rol = (String) rolCB.getSelectedItem();
+            if (rol == null || rol.isEmpty()) {
+                throw new CampoObligatorioException("El rol es un campo obligatorio");
+            }
 
-        String equipo = (String) equiposCB.getSelectedItem();
-        int equipoSeleccionado = Integer.parseInt(equipo);
-        if (equipo == null || equipo.equals("Selecciona un equipo")) {
-            JOptionPane.showMessageDialog(null, "ERROR: Debes seleccionar un equipo");
-            return;
+            String sueldo = sueldoTF.getText();
+            if (sueldo.isEmpty()) {
+                throw new CampoObligatorioException("El sueldo es un campo obligatorio");
+            }
+
+            float sueldoFloat;
+            try {
+                sueldoFloat = Float.parseFloat(sueldo);
+            } catch (NumberFormatException e) {
+                throw new FormatoIncorrectoException("El sueldo debe ser un número válido");
+            }
+
+            if (sueldoFloat < 1184) {
+                throw new FormatoIncorrectoException("El sueldo debe ser igual o superior al SMI (1184€)");
+            }
+
+            String equipo = equiposCB.getSelectedItem().toString();
+            if (equipo == null || equipo.equals("Selecciona un equipo")) {
+                throw new CampoObligatorioException("Debes seleccionar un equipo");
+            }
+            if (VistaController.inscribirJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipo)){
+                JOptionPane.showMessageDialog(contentPane,"Se ha inscrito correctamente el jugador","Alerta",JOptionPane.INFORMATION_MESSAGE);
+                switch (JOptionPane.showConfirmDialog(contentPane,"Desea inscribir otro jugador?","Pregunta",JOptionPane.YES_NO_OPTION)){
+                    case 0:
+                        nombreTF.setText(null);
+                        fechaTF.setText(null);
+                        nicknameTF.setText(null);
+                        sueldoTF.setText(null);
+                        rolCB.setSelectedIndex(0);
+                        nacionalidadTf.setText(null);
+                        apellidoTf.setText(null);
+                        equiposCB.setSelectedIndex(0);
+                        break;
+                    case 1:
+                        dispose();
+                        break;
+                }
+            }
+
+            // Aquí podrías continuar con el guardado o lógica del jugador...
+
+        } catch (CampoObligatorioException e) {
+            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage());
+        } catch (NombreDuplicadoExcepcion e) {
+            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage());
+        } catch (FormatoIncorrectoException e) {
+            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage());
+        }catch (DateTimeParseException e){
+            JOptionPane.showMessageDialog(contentPane,"Error: Fecha con formato invalido");
         }
-        VistaController.inscribirJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(contentPane, "ERROR inesperado: " + e.getMessage());
+        }
     }
-    public static boolean validarNacionalidad(String nacionalidad) {
-        String[] paises = Locale.getISOCountries();
-        return Arrays.stream(paises)
-                .map(codigo -> new Locale("", codigo).getDisplayCountry())
-                .anyMatch(nombre -> nombre.equalsIgnoreCase(nacionalidad));
-    }
+
 }

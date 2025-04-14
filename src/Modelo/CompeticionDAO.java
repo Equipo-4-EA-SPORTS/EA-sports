@@ -70,12 +70,14 @@ public class CompeticionDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "SELECT COUNT(*) FROM competiciones";
+            String plantilla = "SELECT COUNT(*) cant FROM competiciones";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ResultSet filas = ps.executeQuery();
 
             if (filas.next()){
-                filasSelect = 1;
+                if (filas.getInt("cant")!=0){
+                    filasSelect=1;
+                }
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
