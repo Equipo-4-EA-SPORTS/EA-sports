@@ -173,5 +173,35 @@ public class JugadorDAO {
         return jugadores;
 
     }
+
+    //Comprobacion Para CerrarCoompeticion
+    public static boolean equiposConCantidadValidaDeJugadores() {
+        boolean valido = true;
+
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT idequipo, COUNT(*) AS cantidad FROM jugadores GROUP BY idequipo";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next() && valido) {
+                int cantidad = rs.getInt("cantidad");
+
+                if (cantidad < 2 || cantidad > 6) {
+                    valido = false;
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+            valido = false; // por si hay error, lo consideramos inválido
+        }
+
+        return valido;
+    }
+
+
 }
 

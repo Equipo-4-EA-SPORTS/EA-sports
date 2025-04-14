@@ -1,6 +1,8 @@
 package Controlador;
 
+import Modelo.EquipoDAO;
 import Modelo.JornadaDAO;
+import Modelo.JugadorDAO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -64,6 +66,22 @@ public class ModeloController {
     public static boolean abrirCompeticion(){
         return CompeticionController.abrirCompeticion();
     }
+    public static boolean cerrarCompeticion(){
+        return CompeticionController.cerrarCompeticion();
+    }
+    //Comprobacion para Competicion(Equipos)
+    public static boolean hayMasDeDosEquipos() {
+        return EquipoController.hayMasDeDosEquipos();
+    }
+    public static boolean hayCantidadParDeEquipos() {
+        return EquipoController.hayCantidadParDeEquipos();
+    }
+    //Comprobacion para Competicion(Jugadores)
+    public static boolean equiposConCantidadValidaDeJugadores() {
+        return JugadorController.equiposConCantidadValidaDeJugadores();
+    }
+
+
 
     public static void crearCompeticion(){
         CompeticionController.crearCompeticion();

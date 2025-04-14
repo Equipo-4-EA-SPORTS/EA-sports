@@ -140,6 +140,53 @@ public class EquipoDAO {
         }
         return equipos;
     }
+    public static boolean hayMasDeDosEquipos() {
+        boolean resultado = false;
+
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT COUNT(*) AS total FROM equipos";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int cantidad = rs.getInt("total");
+                resultado = cantidad >= 2;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+
+        return resultado;
+    }
+
+    public static boolean hayCantidadParDeEquipos() {
+        boolean resultado = false;
+
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT COUNT(*) AS total FROM equipos";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int cantidad = rs.getInt("total");
+                resultado = cantidad % 2 == 0;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+
+        return resultado;
+    }
+
+
 
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
@@ -223,6 +270,8 @@ public class EquipoDAO {
         }
         return actualizado;
     }
+
+
 
 
 }

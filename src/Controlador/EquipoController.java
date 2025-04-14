@@ -37,5 +37,12 @@ public class EquipoController {
     public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
         return EquipoDAO.modificarEquipo(nuevaFecha,nombre);
     }
+    //Comprobacion para cerrar Competicion(Equipos)
+    public static boolean hayMasDeDosEquipos() {
+        return EquipoDAO.hayMasDeDosEquipos();
+    }
+    public static boolean hayCantidadParDeEquipos() {
+        return EquipoDAO.hayCantidadParDeEquipos();
+    }
 
 }
