@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JugadorDAO {
-    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo) {
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo) {
         boolean insertado = false;
         try{
             BaseDatos.abrirConexion();
@@ -26,7 +26,7 @@ public class JugadorDAO {
             ps.setString(5,nickname);
             ps.setFloat(6,sueldoFloat);
             ps.setString(7,rol);
-            ps.setInt(8,equipo);
+            ps.setInt(8,EquipoDAO.obtenerPKequipo(equipo));
             int filasInsertadas = ps.executeUpdate();
 
             if (filasInsertadas>0){
@@ -120,30 +120,7 @@ public class JugadorDAO {
         return existe;
     }
 
-    public static List<String> obtenerRoles(String equipoSeleccionado) {
-        List<String> roles = Arrays.asList("DUELISTA", "CENTINELA, CONTROLADOR, INICIADOR, ASESINO, MAGO");
-
-
-        try {
-            BaseDatos.abrirConexion();
-            Connection con = BaseDatos.getCon();
-
-
-            String plantilla = "SELECT j.rol FROM jugadores j JOIN equipos e ON j.idequipo = e.idequipo WHERE e.nombre = ?;";
-            PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1, equipoSeleccionado);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                roles.add(rs.getString("rol"));
-            }
-
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return roles;
-    }
-        public static List<String[]> obtenerJugadores() {
+    public static List<String[]> obtenerJugadores() {
             List<String[]> jugadores = new ArrayList<>();
 
             try {
