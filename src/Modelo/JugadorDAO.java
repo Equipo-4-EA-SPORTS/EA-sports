@@ -179,6 +179,72 @@ public class JugadorDAO {
         return valido;
     }
 
+    public static int obtenerPKjugador(String jugador){
+        int idJugador = 0;
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT idJugador FROM jugadores WHERE nombre = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,jugador);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                idJugador=rs.getInt("idJugador");
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return idJugador;
+    }
+
+    public static String obtenerRolJugador(String jugador){
+        String rol = "";
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "Select rol From jugadores WHERE idJugador = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1,obtenerPKjugador(jugador));
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                rol = rs.getString("rol");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return rol;
+    }
+    public static int obtenerEquipoJugador(int jugador){
+        int idEquipo = 0;
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT idEquipo FROM jugadores WHERE idJugador = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1,jugador);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                idEquipo=rs.getInt("idEquipo");
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return idEquipo;
+    }
+
+
+
+
 
 }
 
