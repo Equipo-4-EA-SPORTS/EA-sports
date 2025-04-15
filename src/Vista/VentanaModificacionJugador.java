@@ -178,9 +178,7 @@ public class VentanaModificacionJugador extends JFrame {
                 return;
             }
         } else {
-            nombre = null;
-        }
-
+            nombre = null;}
         String apellido = nuevoApellido.getText();
         if (nuevoApellidoRadioButton.isSelected()) {
             if (apellido.isEmpty()) {

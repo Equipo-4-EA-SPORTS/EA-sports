@@ -50,9 +50,6 @@ public class VistaController {
         return ModeloController.eliminarJugador(jugadorSeleccionado);
     }
 
-    public static void modificarJugador(JFrame ventana) {
-        ventana.dispose();
-    }
 
 
     public static boolean buscarNickname(String nickname) {
@@ -61,7 +58,6 @@ public class VistaController {
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return ModeloController.obtenerRoles(equipoSeleccionado);}
-
     public static boolean VentanaMostrarJugadores() {
         VentanaMostrarJugadores ve = new VentanaMostrarJugadores();
         List<String[]> listaJugadores = ModeloController.obtenerJugadores();

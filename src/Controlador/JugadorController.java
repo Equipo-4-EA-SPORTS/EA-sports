@@ -41,7 +41,6 @@ public class JugadorController {
     public static boolean equiposConCantidadValidaDeJugadores() {
         return JugadorDAO.equiposConCantidadValidaDeJugadores();
     }
-
     public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
         JugadorDAO.modificarJugador(nombre, apellido, nacionalidad, fecha,nickname, sueldoFloat, rol, equipoSeleccionado);
     }

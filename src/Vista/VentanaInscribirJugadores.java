@@ -28,7 +28,6 @@ public class VentanaInscribirJugadores extends JFrame {
     private JTextField apellidoTf;
     private JComboBox<String> equiposCB;
 
-
     public VentanaInscribirJugadores() {
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
