@@ -16,6 +16,7 @@ public class BaseDatos
         String password = "Jm12345";
         String url ="jdbc:oracle:thin:@ccsatserv.dnsdojo.com:1521/xepdb1";
         con = DriverManager.getConnection(url, user, password);
+        return null;
     }
 
     public static Connection getCon() throws Exception
