@@ -39,20 +39,36 @@ END;
 */
 
 CREATE OR REPLACE TRIGGER maxJugadoresEquipo
-BEFORE INSERT OR UPDATE ON JUGADORES
-FOR EACH ROW
-DECLARE
-    v_jugadoresEquipo NUMBER;
-    e_demaisadosEquipos exception;
-BEGIN
-    SELECT COUNT(*) INTO v_jugadoresEquipo
-    FROM JUGADORES
-    WHERE IDEQUIPO = :NEW.IDEQUIPO;
+FOR INSERT OR UPDATE ON jugadores
+COMPOUND TRIGGER
 
-    IF v_jugadoresEquipo >5 THEN
-        RAISE e_demaisadosEquipos;
-    end if;
-EXCEPTION
-    WHEN e_demaisadosEquipos THEN
-        RAISE_APPLICATION_ERROR(-20004,'NO SE PUEDEN INSERTAR MAS JUGADORES, MAX: 6');
-END;
+    v_idEquipo jugadores.idEquipo%TYPE;
+    e_max_jugadores EXCEPTION;
+
+BEFORE EACH ROW IS
+BEGIN
+
+    IF INSERTING OR (UPDATING AND :NEW.idEquipo != :OLD.idEquipo) THEN
+        v_idEquipo := :NEW.idEquipo;
+    END IF;
+END BEFORE EACH ROW;
+
+AFTER STATEMENT IS
+        v_total NUMBER;
+    BEGIN
+        IF v_idEquipo IS NOT NULL THEN
+            SELECT COUNT(*) INTO v_total
+            FROM jugadores
+            WHERE idEquipo = v_idEquipo;
+    
+            IF v_total > 6 THEN
+                RAISE e_max_jugadores;
+            END IF;
+        END IF;
+    
+    EXCEPTION
+        WHEN e_max_jugadores THEN
+            RAISE_APPLICATION_ERROR(-20004, 'ERROR: No se pueden inscribir más jugadres en el equipo: ' || v_idEquipo || ', max jugadores: 6');
+    END AFTER STATEMENT;
+END maxJugadoresEquipo;
+

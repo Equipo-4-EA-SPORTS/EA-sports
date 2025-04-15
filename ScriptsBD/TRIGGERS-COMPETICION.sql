@@ -1,3 +1,21 @@
+CREATE OR REPLACE TRIGGER noMasUnaCompeticion
+BEFORE INSERT ON competiciones
+DECLARE
+    v_numComp NUMBER;
+    e_demasiadasComp exception;
+BEGIN
+    SELECT COUNT(*) INTO v_numComp
+    FROM competiciones;
+    
+    IF v_numComp = 1 THEN
+        RAISE e_demasiadasComp;
+    END IF;
+EXCEPTION
+    WHEN e_demasiadasComp THEN
+        RAISE_APPLICATION_ERROR(-20001,'Error: No se pueden crear más competiciones por que ya hay una en marcha.');
+END;
+
+
 /*TRIGGER PARA COMPROBAR RESTRICCIONES AL CERRAR COMPETICION
   En el caso de que se quiera cerrar la competicion con 
     menos de 2 jugadores salta una excepcion y no deja continuar.
@@ -11,19 +29,20 @@ BEFORE UPDATE OF estado ON competiciones
 FOR EACH ROW
 DECLARE
     CURSOR c_jugadoresEquipo IS
-        SELECT COUNT(*),idEquipo
-        FROM jugadores
-        GROUP BY idEquipo;
+        SELECT e.nombre, COUNT(j.idJugador) AS num_jugadores
+        FROM equipos e
+        LEFT JOIN jugadores j ON e.idEquipo = j.idEquipo
+        GROUP BY e.nombre;
 
     v_numEquipos NUMBER;
     v_numJugadoresEquipo NUMBER;
-    v_idEquipo jugadores.idEquipo%type;
+    v_nombreEquipo equipos.nombre%type;
     e_minEquipos exception;
     e_numEquiposImpar exception;
     e_numJugadoresEquipo exception;
 BEGIN
 
-    IF :NEW.estado = 'CERRADA' THEN
+    IF :NEW.estado = 'cerrado' THEN
     
         SELECT COUNT(*) INTO v_numEquipos
         FROM equipos;
@@ -38,7 +57,7 @@ BEGIN
         
         OPEN c_jugadoresEquipo;
         LOOP
-            FETCH c_jugadoresEquipo INTO v_numJugadoresEquipo,v_idEquipo;
+            FETCH c_jugadoresEquipo INTO v_nombreEquipo,v_numJugadoresEquipo;
             EXIT WHEN c_jugadoresEquipo%NOTFOUND;
             
             IF v_numJugadoresEquipo <2 THEN
@@ -57,7 +76,7 @@ EXCEPTION
         WHEN e_numEquiposImpar THEN
             RAISE_APPLICATION_ERROR(-20002,'Error: No se puede cerrar la competicion si hay un numero de equipos impares.');
         WHEN e_numJugadoresEquipo THEN
-            RAISE_APPLICATION_ERROR(-20003,'Error: No se puede cerrar la competicion si hay menos de 2 jugadores por equipo. Error en el Equipo: ' || v_idEquipo);
+            RAISE_APPLICATION_ERROR(-20003,'Error: No se puede cerrar la competicion si hay menos de 2 jugadores por equipo. Error en el Equipo: ' || v_nombreEquipo);
         WHEN OTHERS THEN
             RAISE_APPLICATION_ERROR(-20004,'Error desconocido: ' || SQLERRM);
 END;
@@ -96,7 +115,7 @@ EXCEPTION
     WHEN e_noSePuedeUpdatear THEN
         RAISE_APPLICATION_ERROR(-20002,'ERROR: No se puede actualizar los datos de los jugadores si la competicion esta cerrada.');
     WHEN e_noSePuedeDeletear THEN
-        RAISE_APPLICATION_ERROR(-20003,'ERROR: No se puedes eliminar jugadores si la competicion esta cerrada.');
+        RAISE_APPLICATION_ERROR(-20003,'ERROR: No se puede eliminar jugadores si la competicion esta cerrada.');
     WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20004,'Error desconocido: ' || SQLERRM);
 END;
@@ -132,7 +151,7 @@ EXCEPTION
     WHEN e_noSePuedeUpdatear THEN
         RAISE_APPLICATION_ERROR(-20002,'ERROR: No se puede actualizar los datos de los equipos si la competicion esta cerrada.');
     WHEN e_noSePuedeDeletear THEN
-        RAISE_APPLICATION_ERROR(-20003,'ERROR: No se puedes eliminar equipos si la competicion esta cerrada.');
+        RAISE_APPLICATION_ERROR(-20003,'ERROR: No se puede eliminar equipos si la competicion esta cerrada.');
      WHEN OTHERS THEN
         RAISE_APPLICATION_ERROR(-20004,'Error desconocido: ' || SQLERRM);
 END;

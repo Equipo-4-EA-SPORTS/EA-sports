@@ -13,8 +13,8 @@ CREATE TABLE competiciones (
     (START WITH 1 INCREMENT BY 1),
     estado VARCHAR2(10) DEFAULT 'cerrado',
     
-    CONSTRAINT competicion_idComp_pk PRIMARY KEY (idComp),
-    CONSTRAINT competicion_estado_ck CHECK(estado IN ('abierto','cerrado'))
+    CONSTRAINT competiciones_idComp_pk PRIMARY KEY (idComp),
+    CONSTRAINT competiciones_estado_ck CHECK(estado IN ('abierto','cerrado'))
 );
 
 CREATE TABLE jornadas(
@@ -22,8 +22,10 @@ CREATE TABLE jornadas(
     (START WITH 1 INCREMENT BY 1),
     fechaInicio DATE,
     fechaFin DATE,
-
-    CONSTRAINT jornada_idJor_pk PRIMARY KEY (idJor)
+    idComp NUMBER,
+    
+    CONSTRAINT jornadas_idJor_pk PRIMARY KEY (idJor),
+    CONSTRAINT jornadas_idComp_fk FOREIGN KEY (idComp) REFERENCES competiciones
 );
 
 CREATE TABLE roles(
@@ -85,10 +87,10 @@ CREATE TABLE enfrentamientos(
     fecha DATE,
     idJornada NUMBER,
     
-    CONSTRAINT enfrentamiento_idEnf_pk PRIMARY KEY (idEnf),
-    CONSTRAINT enfrentamiento_ganadorEnf_fk FOREIGN KEY (ganadorEnf) REFERENCES equipos(idEquipo) ON DELETE CASCADE,
-    CONSTRAINT enfrentamiento_perdedorEnf_fk FOREIGN KEY (perdedorEnf) REFERENCES equipos(idEquipo) ON DELETE CASCADE,
-    CONSTRAINT enfrentamiento_idJornada_fk FOREIGN KEY (idJornada) REFERENCES jornadas(idJor) ON DELETE CASCADE
+    CONSTRAINT enfrentamientos_idEnf_pk PRIMARY KEY (idEnf),
+    CONSTRAINT enfrentamientos_ganadorEnf_fk FOREIGN KEY (ganadorEnf) REFERENCES equipos(idEquipo) ON DELETE CASCADE,
+    CONSTRAINT enfrentamientos_perdedorEnf_fk FOREIGN KEY (perdedorEnf) REFERENCES equipos(idEquipo) ON DELETE CASCADE,
+    CONSTRAINT enfrentamientos_idJornada_fk FOREIGN KEY (idJornada) REFERENCES jornadas(idJor) ON DELETE CASCADE
 );
 
 CREATE TABLE usuarios(
