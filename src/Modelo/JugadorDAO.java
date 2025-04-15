@@ -178,8 +178,6 @@ public class JugadorDAO {
 
         return valido;
     }
-
-
     public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
 
         try{

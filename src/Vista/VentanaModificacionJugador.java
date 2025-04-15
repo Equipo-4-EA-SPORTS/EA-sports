@@ -279,7 +279,6 @@ public class VentanaModificacionJugador extends JFrame {
         VistaController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
     }
 
-
     public static boolean validarNacionalidad(String nacionalidad) {
         List<String> gentilicios = new ArrayList<>();
         gentilicios.add("francesa");

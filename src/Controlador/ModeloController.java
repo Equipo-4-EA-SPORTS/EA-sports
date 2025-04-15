@@ -86,14 +86,12 @@ public class ModeloController {
     public static void crearCompeticion(){
         CompeticionController.crearCompeticion();
     }
-
     public static int verificarCompeticionCreada(){
         return CompeticionController.verificarCompeticionCreada();
     }
     public static boolean estadoCompeticion() {
         return CompeticionController.estadoCompeticion();
     }
-
     //Jornada
     public static boolean crearJornada(LocalDate fechaInicio) {
         return JornadaController.crearJornada(fechaInicio);

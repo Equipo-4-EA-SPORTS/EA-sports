@@ -7,6 +7,10 @@ public class ventanaEliminarEnfrentamiento extends JDialog {
     private JPanel contentPane;
     private JButton bOk;
     private JButton bCancel;
+    private JComboBox cbEnfrentamientos;
+    private JButton bBorrarEnfrent;
+    private JTextField fechaTF;
+    private JTextField horaTF;
 
     public ventanaEliminarEnfrentamiento() {
         setContentPane(contentPane);

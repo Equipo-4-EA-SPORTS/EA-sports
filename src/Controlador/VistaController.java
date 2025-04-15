@@ -55,7 +55,6 @@ public class VistaController {
     public static boolean buscarNickname(String nickname) {
         return ModeloController.buscarNickname(nickname);
     }
-
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return ModeloController.obtenerRoles(equipoSeleccionado);}
     public static boolean VentanaMostrarJugadores() {

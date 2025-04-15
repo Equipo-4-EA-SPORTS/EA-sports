@@ -27,8 +27,6 @@ public class JugadorController {
     public static boolean eliminarJugador(String jugadorSeleccionado) {
         return JugadorDAO.eliminarJugador(jugadorSeleccionado);
     }
-
-
     public static boolean buscarNickname(String nickname) {
         return JugadorDAO.buscarNickname(nickname);
     }

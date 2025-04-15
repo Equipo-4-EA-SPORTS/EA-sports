@@ -220,6 +220,7 @@ public class VentanaInscribirJugadores extends JFrame {
         gentilicios.add("argelina");
         gentilicios.add("saharaui");
         gentilicios.add("sahariana");
+
         if (gentilicios.contains(nacionalidad.toLowerCase())) {
             return true;
         }else {return false;}
