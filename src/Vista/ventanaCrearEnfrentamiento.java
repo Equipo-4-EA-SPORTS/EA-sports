@@ -20,6 +20,8 @@ public class ventanaCrearEnfrentamiento extends JDialog {
     private JComboBox comboBox1;
     private JTextField tfFecha;
     private JTextField tfHora;
+    private JPanel fechaAB;
+    private JPanel horaAB;
     private List<Equipo> listaEquipos;
 
 
