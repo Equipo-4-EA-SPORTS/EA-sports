@@ -56,8 +56,7 @@ END BEFORE EACH ROW;
         WHEN e_nombreduplicado THEN
             RAISE_APPLICATION_ERROR(-20002, 'YA EXISTE UN EQUIPO CON EL NOMBRE: ' || v_nombre);
     END AFTER STATEMENT;
-
-    END nombreDuplicadoEquipo;
+END nombreDuplicadoEquipo;
 
 
 
