@@ -61,7 +61,7 @@ public class VentanaEliminarJugador extends JDialog{
 
         if (jugadorSeleccionado != null && !jugadorSeleccionado.equals("Haz click para descubrir las opciones")) {
 
-            if (VistaController.ventanaConfirmacion("jugador")) {
+            if (VistaController.ventanaConfirmacion("el Jugador")) {
                 boolean eliminado = VistaController.eliminarJugador(jugadorSeleccionado);
 
                 if (eliminado) {

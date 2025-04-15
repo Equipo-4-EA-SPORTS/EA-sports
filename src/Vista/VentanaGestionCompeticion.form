@@ -45,6 +45,7 @@
                 <item value="Gestionar Enfrentamientos"/>
                 <item value="Gestionar Jornadas"/>
                 <item value="Abrir Competicion"/>
+                <item value="Cerrar Competicion"/>
               </model>
             </properties>
           </component>

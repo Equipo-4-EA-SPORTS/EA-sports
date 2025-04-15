@@ -18,7 +18,7 @@ public class VentanaConfirmacion extends JDialog {
         setSize(650, 150);
         setLocationRelativeTo(null);
 
-        text.setText("¿Estas seguro de que quiere eliminar el "+titulo+"?");
+        text.setText("¿Estas seguro de que quiere eliminar "+titulo+"?");
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

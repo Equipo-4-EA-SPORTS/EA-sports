@@ -19,6 +19,7 @@ public class VentanaGestionCompeticion extends JFrame {
         setResizable(false);
         setSize(400,200);
         setLocationRelativeTo(null);
+        setTitle("Gestión de Competición");
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -68,15 +69,26 @@ public class VentanaGestionCompeticion extends JFrame {
                         JOptionPane.showMessageDialog(pPrincipal,"ERROR. Debes de seleccionar una opcion", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 1:
-                        //GESTION DE ENFRENTAMIENTOS
+                        VistaController.VentanaGestionEnfrentamientos(VentanaGestionCompeticion.this,nombre);
                         break;
                     case 2:
-                        //GESTION DE JORNADAS
+                        VistaController.ventanaGestionJornadas(VentanaGestionCompeticion.this,nombre);
                         break;
                     case 3:
-                        VistaController.abrirCompeticion();
+                        if (VistaController.abrirCompeticion()){
+                            JOptionPane.showMessageDialog(null, "Competición abierta correctamente");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo abrir la competición", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                         break;
+                    case 4:
+                        if(VistaController.ventanaConfirmacion("la Competicion")){
+                            VistaController.cerrarCompeticion();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se puedo abrir la competición", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                 }
+
             }
         });
     }

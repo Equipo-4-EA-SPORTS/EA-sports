@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Equipo {
+
+
     private int idEquipo;
     private String nombre;
     private LocalDate fechaFund;
@@ -59,5 +61,25 @@ public class Equipo {
 
     public void setListaJugadores(List<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipo{" +
+                "fechaFund=" + fechaFund +
+                ", idEquipo=" + idEquipo +
+                ", nombre='" + nombre + '\'' +
+                ", listaRoles=" + listaRoles +
+                ", listaJugadores=" + listaJugadores +
+                '}';
+    }
+
+    public List<String> getListaRoles(){
+        return listaRoles;
+    }
+
+
+    public void setListaRoles(List<String> listaRoles) {
+        this.listaRoles = listaRoles;
     }
 }

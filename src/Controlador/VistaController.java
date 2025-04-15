@@ -21,14 +21,13 @@ public class VistaController {
         ventanaSeleccionUsuario.setVisible(true);
     }
     //Jugadores
-    public static void mostrarinscribirJugador(JFrame ventana) {
-        ventana.dispose();
-        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores(ventana);
+    public static void mostrarinscribirJugador() {
+        VentanaInscribirJugadores inscribir = new VentanaInscribirJugadores();
         inscribir.setVisible(true);
 
     }
 
-    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, int equipo) {
+    public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo) {
         return ModeloController.inscribirJugador(nombre, apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
     }
 
@@ -154,6 +153,31 @@ public class VistaController {
         return !listaEquipos.isEmpty();
     }
 
+    public static void ventanaGestionJornadas(JFrame ventana, String nombre) {
+        ventana.dispose();
+        VentanaGestionJornada vgj = new VentanaGestionJornada(nombre);
+        vgj.setVisible(true);
+    }
+
+    public static void ventanaCrearJornada(JFrame ventana, String nombre) {
+        VentanaCrearJornada vcj = new VentanaCrearJornada(ventana);
+        vcj.setVisible(true);
+    }
+
+    public static boolean crearJornada(LocalDate fechaInicio) {
+        return ModeloController.crearJornada(fechaInicio);
+    }
+
+    public static boolean existeJornada (String numJornada){
+        return ModeloController.existeJornada(numJornada);
+    }
+
+    public static void VentanaGestionEnfrentamientos(JFrame ventana, String nombre) {
+        ventana.dispose();
+        VentanaGestionEnfrentamientos vgj = new VentanaGestionEnfrentamientos(nombre);
+        vgj.setVisible(true);
+    }
+
 
     public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
         return ModeloController.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
@@ -197,8 +221,12 @@ public class VistaController {
         vge.setVisible(true);
     }
 
-    public static void abrirCompeticion(){
-        ModeloController.abrirCompeticion();
+    public static boolean abrirCompeticion(){
+        return ModeloController.abrirCompeticion();
+    }
+
+    public static boolean cerrarCompeticion(){
+        return ModeloController.cerrarCompeticion();
     }
 
     public static void crearCompeticion(){
@@ -213,6 +241,10 @@ public class VistaController {
         return ModeloController.estadoCompeticion();
     }
 
-
-
+    public static void cerrarVentanas(JFrame ventana){
+        ventana.dispose();
+    }
+    public static void cerrarModales(JDialog modal){
+        modal.dispose();
+    }
 }
