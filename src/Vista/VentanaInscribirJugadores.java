@@ -101,6 +101,7 @@ public class VentanaInscribirJugadores extends JFrame {
             }
 
             String nacionalidad = nacionalidadTf.getText();
+            validarNacionalidad(nacionalidad);
             if (nacionalidad.isEmpty()) {
                 throw new CampoObligatorioException("La nacionalidad es un campo obligatorio");
             }
@@ -186,6 +187,44 @@ public class VentanaInscribirJugadores extends JFrame {
         catch (Exception e) {
             JOptionPane.showMessageDialog(contentPane, "ERROR inesperado: " + e.getMessage());
         }
+    }
+    public static boolean validarNacionalidad(String nacionalidad) {
+        List<String> gentilicios = new ArrayList<>();
+        gentilicios.add("francesa");
+        gentilicios.add("italiana");
+        gentilicios.add("alemana");
+        gentilicios.add("china");
+        gentilicios.add("marroquí");
+        gentilicios.add("rumana");
+        gentilicios.add("colombiana");
+        gentilicios.add("venezolana");
+        gentilicios.add("argentina");
+        gentilicios.add("peruana");
+        gentilicios.add("ecuatoriana");
+        gentilicios.add("boliviana");
+        gentilicios.add("paraguaya");
+        gentilicios.add("chilena");
+        gentilicios.add("ucraniana");
+        gentilicios.add("portuguesa");
+        gentilicios.add("nigeriana");
+        gentilicios.add("brasileña");
+        gentilicios.add("hondureña");
+        gentilicios.add("dominicana");
+        gentilicios.add("cubana");
+        gentilicios.add("paquistaní");
+        gentilicios.add("nepalí");
+        gentilicios.add("bangladesí");
+        gentilicios.add("senegalesa");
+        gentilicios.add("senegalés");
+        gentilicios.add("maliense");
+        gentilicios.add("guineana");
+        gentilicios.add("argelina");
+        gentilicios.add("saharaui");
+        gentilicios.add("sahariana");
+
+        if (gentilicios.contains(nacionalidad.toLowerCase())) {
+            return true;
+        }else {return false;}
     }
 
 }

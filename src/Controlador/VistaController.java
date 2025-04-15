@@ -87,6 +87,11 @@ public class VistaController {
         ModeloController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
     }
 
+    public static void mostrarModificarJugador(JFrame ventana) {
+        VentanaModificacionJugador mj = new VentanaModificacionJugador();
+        mj.setVisible(true);
+    }
+
 
     public void mostrarInicio() {
         InicioSesion inicioSesion = new InicioSesion();

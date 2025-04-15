@@ -5,5 +5,5 @@ public class Main {
     VistaController vc = new VistaController();
     vc.mostrarInicio();
 
-    }
+    }   
 }
