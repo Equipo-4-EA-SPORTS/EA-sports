@@ -9,7 +9,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Constructor por defecto que inicializa un jugador sin valores específicos.
+ */
 public class JugadorDAO {
+    /**
+     * Inscribe un jugador en la base de datos con los datos proporcionados.
+     *
+     * @param nombre Nombre del jugador.
+     * @param apellido Apellido del jugador.
+     * @param nacionalidad Nacionalidad del jugador.
+     * @param fechaParseada Fecha de nacimiento del jugador.
+     * @param nickname Apodo o nickname del jugador.
+     * @param sueldoFloat Sueldo del jugador.
+     * @param rol Rol del jugador.
+     * @param equipo Nombre del equipo al que pertenece el jugador.
+     * @return true si el jugador fue inscrito correctamente, false en caso contrario.
+     */
     public static boolean inscribirJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo) {
         boolean insertado = false;
         try{
@@ -40,6 +56,12 @@ public class JugadorDAO {
         return insertado;
     }
 
+    /**
+     * Busca un jugador en la base de datos por su nombre.
+     *
+     * @param nombre Nombre del jugador a buscar.
+     * @return true si el jugador fue encontrado, false en caso contrario.
+     */
     public static boolean buscarJugador(String nombre){
         boolean encontrado=false;
         try{
@@ -59,6 +81,11 @@ public class JugadorDAO {
         return encontrado;
     }
 
+    /**
+     * Obtiene una lista con los nombres de todos los jugadores en la base de datos.
+     *
+     * @return Una lista de nombres de jugadores.
+     */
     public static List<String> listaJugadores(){
         List<String> jugadores = new ArrayList<>();
 
@@ -78,7 +105,12 @@ public class JugadorDAO {
         }
         return jugadores;
     }
-
+    /**
+     * Elimina un jugador de la base de datos por su nombre.
+     *
+     * @param jugadorSeleccionado Nombre del jugador a eliminar.
+     * @return true si el jugador fue eliminado correctamente, false en caso contrario.
+     */
     public static boolean eliminarJugador(String jugadorSeleccionado){
         boolean eliminado = false;
         try{
@@ -99,6 +131,12 @@ public class JugadorDAO {
         return eliminado;
     }
 
+    /**
+     * Verifica si existe un jugador en la base de datos por su nickname.
+     *
+     * @param nickname Nickname del jugador a buscar.
+     * @return true si el nickname existe, false en caso contrario.
+     */
 
     public static boolean buscarNickname(String nickname) {
         boolean existe = false;
@@ -119,7 +157,11 @@ public class JugadorDAO {
         }
         return existe;
     }
-
+    /**
+     * Obtiene una lista de jugadores con sus datos personales y profesionales.
+     *
+     * @return Una lista de arreglos de cadenas, donde cada arreglo contiene los datos de un jugador.
+     */
     public static List<String[]> obtenerJugadores() {
             List<String[]> jugadores = new ArrayList<>();
 
@@ -152,6 +194,12 @@ public class JugadorDAO {
     }
 
     //Comprobacion Para CerrarCoompeticion
+    /**
+     * Verifica si todos los equipos tienen una cantidad válida de jugadores.
+     * La cantidad válida es entre 2 y 6 jugadores por equipo.
+     *
+     * @return true si todos los equipos tienen una cantidad válida de jugadores, false en caso contrario.
+     */
     public static boolean equiposConCantidadValidaDeJugadores() {
         boolean valido = true;
 

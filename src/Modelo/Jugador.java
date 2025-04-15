@@ -1,7 +1,9 @@
 package Modelo;
 
 import java.time.LocalDate;
-
+/**
+ * Clase Jugador que representa a un jugador con información personal y profesional.
+ */
 public class Jugador {
     private int idJugador;
     private String nombre;
@@ -12,6 +14,16 @@ public class Jugador {
     private double sueldo;
 //Constructores
 
+    /**
+     * Constructor que inicializa un jugador con los datos proporcionados.
+     *
+     * @param apellido Apellido del jugador.
+     * @param nombre Nombre del jugador.
+     * @param nacionalidad Nacionalidad del jugador.
+     * @param nickname Apodo o nickname del jugador.
+     * @param fechaNac Fecha de nacimiento del jugador.
+     * @param sueldo Sueldo del jugador.
+     */
     public Jugador( String apellido, String nombre, String nacionalidad, String nickname, LocalDate fechaNac, double sueldo) {
         this.apellido = apellido;
         this.nombre = nombre;
@@ -20,9 +32,15 @@ public class Jugador {
         this.fechaNac = fechaNac;
         this.sueldo = sueldo;
     }
+
+    /**
+     * Constructor por defecto que inicializa un jugador sin valores específicos.
+     */
     public Jugador(){}
 
-    //Getters y Setters
+    /**
+     * Getters y Setters
+     */
 
     public int getIdJugador() {return idJugador;}
 

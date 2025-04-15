@@ -6,8 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 
+/**
+ * Clase JornadaDAO que gestiona las operaciones relacionadas con la tabla de jornadas en la base de datos.
+ */
 public class JornadaDAO {
 
+    /**
+     * Crea una nueva jornada en la base de datos con la fecha de inicio proporcionada.
+     * La fecha de fin se calcula automáticamente sumando una semana a la fecha de inicio.
+     *
+     * @param fechaInicio Fecha de inicio de la jornada.
+     * @return true si la jornada fue creada correctamente, false en caso contrario.
+     */
     public static boolean crearJornada(LocalDate fechaInicio) {
         boolean encontrado = false;
 
@@ -39,6 +49,12 @@ public class JornadaDAO {
 
 
 
+    /**
+     * Verifica si existe una jornada en la base de datos con el número de jornada proporcionado.
+     *
+     * @param numJornada Número de la jornada a verificar.
+     * @return true si la jornada existe, false en caso contrario.
+     */
     public static boolean existeJornada(String numJornada) {
         boolean existe = false;
         try {
