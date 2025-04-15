@@ -30,6 +30,7 @@ public class VentanaInscribirJugadores extends JFrame {
 
 
     public VentanaInscribirJugadores() {
+
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
         setTitle("Inscribir Equipo");
@@ -81,7 +82,7 @@ public class VentanaInscribirJugadores extends JFrame {
             rolCB.setEnabled(true);
             List<String> rolesDisponibles = VistaController.obtenerRoles(equipoSeleccionado);
             rolCB.removeAllItems();
-            rolCB.addItem("Seleccione un rol");
+            rolCB.addItem("Haz click para descubrir los roles");
             for (int i = 0; i < rolesDisponibles.size(); i++) {
                 rolCB.insertItemAt(rolesDisponibles.get(i), i + 1);
             }
@@ -94,25 +95,15 @@ public class VentanaInscribirJugadores extends JFrame {
             if (nombre.isEmpty()) {
                 throw new CampoObligatorioException("El nombre es un campo obligatorio");
             }
-
             String apellido = apellidoTf.getText();
             if (apellido.isEmpty()) {
                 throw new CampoObligatorioException("El apellido es un campo obligatorio");
             }
-
             String nacionalidad = nacionalidadTf.getText();
             if (nacionalidad.isEmpty()) {
                 throw new CampoObligatorioException("La nacionalidad es un campo obligatorio");
             }
 
-            String nickname = nicknameTF.getText();
-            if (nickname.isEmpty()) {
-                throw new CampoObligatorioException("El nickname es un campo obligatorio");
-            }
-
-            if (VistaController.buscarNickname(nickname)) {
-                throw new NombreDuplicadoExcepcion("El nickname ya existe");
-            }
 
             LocalDate fecha;
             if (fechaTF.getText().isEmpty()) {
@@ -128,11 +119,15 @@ public class VentanaInscribirJugadores extends JFrame {
                 throw new FormatoIncorrectoException("El jugador debe de tener 13 años como mínimo");
             }
 
-            String rol = (String) rolCB.getSelectedItem();
-            if (rol == null || rol.isEmpty()) {
-                throw new CampoObligatorioException("El rol es un campo obligatorio");
+
+            String nickname = nicknameTF.getText();
+            if (nickname.isEmpty()) {
+                throw new CampoObligatorioException("El nickname es un campo obligatorio");
             }
 
+            if (VistaController.buscarNickname(nickname)) {
+                throw new NombreDuplicadoExcepcion("El nickname ya existe");
+            }
             String sueldo = sueldoTF.getText();
             if (sueldo.isEmpty()) {
                 throw new CampoObligatorioException("El sueldo es un campo obligatorio");
@@ -150,9 +145,14 @@ public class VentanaInscribirJugadores extends JFrame {
             }
 
             String equipo = equiposCB.getSelectedItem().toString();
-            if (equipo == null || equipo.equals("Selecciona un equipo")) {
+            if (equiposCB.getSelectedIndex() == 0) {
                 throw new CampoObligatorioException("Debes seleccionar un equipo");
             }
+            String rol = (String) rolCB.getSelectedItem();
+            if (rolCB.getSelectedIndex() == 0) {
+                throw new CampoObligatorioException("El rol es un campo obligatorio");
+            }
+
             if (VistaController.inscribirJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipo)){
                 JOptionPane.showMessageDialog(contentPane,"Se ha inscrito correctamente el jugador","Alerta",JOptionPane.INFORMATION_MESSAGE);
                 switch (JOptionPane.showConfirmDialog(contentPane,"Desea inscribir otro jugador?","Pregunta",JOptionPane.YES_NO_OPTION)){
@@ -166,7 +166,7 @@ public class VentanaInscribirJugadores extends JFrame {
                         apellidoTf.setText(null);
                         equiposCB.setSelectedIndex(0);
                         break;
-                    case 1:
+                    default:
                         dispose();
                         break;
                 }
@@ -175,16 +175,16 @@ public class VentanaInscribirJugadores extends JFrame {
             // Aquí podrías continuar con el guardado o lógica del jugador...
 
         } catch (CampoObligatorioException e) {
-            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage());
+            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage(),"ERROR",-1);
         } catch (NombreDuplicadoExcepcion e) {
-            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage());
+            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage(),"ERROR",-1);
         } catch (FormatoIncorrectoException e) {
-            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage());
+            JOptionPane.showMessageDialog(contentPane, "ERROR: " + e.getMessage(),"ERROR",-1);
         }catch (DateTimeParseException e){
-            JOptionPane.showMessageDialog(contentPane,"Error: Fecha con formato invalido");
+            JOptionPane.showMessageDialog(contentPane,"Error: Fecha con formato invalido","ERROR",-1);
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(contentPane, "ERROR inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(contentPane, "ERROR inesperado: " + e.getMessage(),"ERROR",-1);
         }
     }
 

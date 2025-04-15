@@ -51,4 +51,5 @@ public class EquipoController {
         return EquipoDAO.hayCantidadParDeEquipos();
     }
 
+
 }

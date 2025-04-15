@@ -1,5 +1,9 @@
 package Modelo;
 
+import Controlador.EquipoController;
+import Controlador.JugadorController;
+import Controlador.RolesController;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,12 +60,36 @@ public class EquipoRolesDAO {
 
             String plantilla = "DELETE FROM equipoRoles Where idRol=?";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setInt(1,RolesDAO.obtenerPKRol(rol));
+            ps.setInt(1,RolesController.obtenerPKRol(rol));
 
             ps.executeUpdate();
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
+    }
+
+    public static boolean insertarRolJugadorEliminado(String jugador){
+        boolean insertado = false;
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            int idJugador = JugadorController.obtenerEquipoJugador(JugadorController.obtenerPKjugador(jugador));
+            int idRol = RolesController.obtenerPKRol(JugadorController.obtenerRolJugador(jugador));
+
+            String plantilla = "INSERT INTO equipoRoles (idEquipo,idRol) VALUES (?,?)";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1, idJugador);
+            ps.setInt(2, idRol);
+
+            if (ps.executeUpdate()>0){
+                insertado = true;
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return insertado;
     }
 }
