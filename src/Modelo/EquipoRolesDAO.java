@@ -11,7 +11,18 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Clase EquipoRolesDAO que gestiona las operaciones relacionadas con los roles de los equipos en la base de datos.
+ */
 public class EquipoRolesDAO {
+
+    /**
+     * Obtiene la lista de roles asociados a un equipo específico.
+     *
+     * @param nombreEquipo Nombre del equipo del cual se desean obtener los roles.
+     * @return Una lista de nombres de roles asociados al equipo.
+     */
     public static List<String> obtenerRoles(String nombreEquipo){
         List<String> listaRoles = new ArrayList<>();
         try {
@@ -34,6 +45,12 @@ public class EquipoRolesDAO {
 
         return listaRoles;
     }
+
+    /**
+     * Añade los roles predeterminados a un equipo en la base de datos.
+     *
+     * @param nombre Nombre del equipo al cual se le asignarán los roles predeterminados.
+     */
     public static void añadirRolesDefaultEquipo(String nombre){
         try {
             BaseDatos.abrirConexion();
@@ -53,6 +70,11 @@ public class EquipoRolesDAO {
         }
     }
 
+    /**
+     * Elimina un rol específico de todos los equipos en la base de datos.
+     *
+     * @param rol Nombre del rol que se desea eliminar.
+     */
     public static void eliminarRolEquipo(String rol){
         try {
             BaseDatos.abrirConexion();

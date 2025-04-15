@@ -4,9 +4,15 @@ import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+/**
+ * Clase CompeticionDAO que gestiona las operaciones relacionadas con la tabla de competiciones en la base de datos.
+ */
 public class CompeticionDAO {
 
+    /**
+     * Crea una nueva competición en la base de datos con el estado predeterminado.
+     * Muestra un mensaje de error si ocurre algún problema al conectarse a la base de datos.
+     */
     public static void crearCompeticion(){
         try{
             BaseDatos.abrirConexion();
@@ -20,7 +26,11 @@ public class CompeticionDAO {
         }
 
     }
-
+    /**
+     * Abre una competición actualizando su estado a 'abierto' en la base de datos.
+     *
+     * @return true si se actualizó correctamente, false en caso contrario.
+     */
     public static boolean abrirCompeticion(){
 
         boolean abierto = false;
@@ -44,6 +54,11 @@ public class CompeticionDAO {
         return abierto;
     }
 
+    /**
+     * Cierra una competición actualizando su estado a 'cerrado' en la base de datos.
+     *
+     * @return true si se actualizó correctamente, false en caso contrario.
+     */
     public static boolean cerrarCompeticion(){
 
         boolean cerrado = false;
@@ -63,7 +78,11 @@ public class CompeticionDAO {
         }
         return cerrado;
     }
-
+    /**
+     * Verifica si existe al menos una competición creada en la base de datos.
+     *
+     * @return 1 si existe al menos una competición, 0 en caso contrario.
+     */
     public static int verificarCompeticionCreada(){
         int filasSelect = 0;
         try{
@@ -84,7 +103,11 @@ public class CompeticionDAO {
         }
         return filasSelect;
     }
-
+    /**
+     * Verifica si existe alguna competición con el estado 'abierto' en la base de datos.
+     *
+     * @return true si existe una competición abierta, false en caso contrario.
+     */
     public static boolean estadoCompeticion(){
         boolean estado = false;
         try{

@@ -3,6 +3,9 @@ package Modelo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Clase Enfrentamiento que representa un enfrentamiento entre dos equipos.
+ */
 public class Enfrentamiento {
     private int idEnfrentamiento;  // Identificador único del enfrentamiento
     private Equipo equipo1;
@@ -13,7 +16,15 @@ public class Enfrentamiento {
     private LocalTime hora;
     private boolean jugado;  // Si el enfrentamiento ya ha sido jugado
 
-    // Constructor
+    /**
+     * Constructor que inicializa un enfrentamiento con los datos proporcionados.
+     *
+     * @param idEnfrentamiento Identificador único del enfrentamiento.
+     * @param equipo1 Primer equipo participante.
+     * @param equipo2 Segundo equipo participante.
+     * @param fecha Fecha del enfrentamiento.
+     * @param hora Hora del enfrentamiento.
+     */
     public Enfrentamiento(int idEnfrentamiento, Equipo equipo1, Equipo equipo2, LocalDate fecha, LocalTime hora) {
         this.idEnfrentamiento = idEnfrentamiento;
         this.equipo1 = equipo1;
@@ -24,11 +35,20 @@ public class Enfrentamiento {
         this.equipoPerdedor = null;
         this.jugado = false;
     }
-
+    /**
+     * Constructor alternativo que inicializa un enfrentamiento con un identificador y equipos.
+     *
+     * @param idEnfrentamiento Identificador único del enfrentamiento.
+     * @param equipo1 Primer equipo participante.
+     * @param equipo2 Segundo equipo participante.
+     * @param string Información adicional (no utilizada actualmente).
+     */
     public Enfrentamiento(int idEnfrentamiento, Equipo equipo1, Equipo equipo2, String string) {
     }
 
-    // Métodos getters y setters
+    /**
+     * Métodos getters y setters
+     */
     public int getIdEnfrentamiento() {
         return idEnfrentamiento;
     }
@@ -57,6 +77,12 @@ public class Enfrentamiento {
         return equipoGanador;
     }
 
+    /**
+     * Establece el equipo ganador del enfrentamiento.
+     * También actualiza el equipo perdedor y marca el enfrentamiento como jugado.
+     *
+     * @param equipoGanador El equipo ganador.
+     */
     public void setEquipoGanador(Equipo equipoGanador) {
         this.equipoGanador = equipoGanador;
         this.equipoPerdedor = (equipoGanador == equipo1) ? equipo2 : equipo1;  // El perdedor es el que no ganó
