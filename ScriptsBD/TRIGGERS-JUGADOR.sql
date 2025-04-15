@@ -1,4 +1,4 @@
-/*TRIGGER PARA COMPROBAR EL SALARIO MINIMO
+ /*TRIGGER PARA COMPROBAR EL SALARIO MINIMO
   En el caso de que se ponga un salario 
   inferior a 1184 se pondra como valor minimo dicha cantidad
 */

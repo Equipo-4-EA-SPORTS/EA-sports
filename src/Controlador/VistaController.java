@@ -50,9 +50,6 @@ public class VistaController {
         return ModeloController.eliminarJugador(jugadorSeleccionado);
     }
 
-    public static void modificarJugador(JFrame ventana) {
-        ventana.dispose();
-    }
 
 
     public static boolean buscarNickname(String nickname) {
@@ -61,7 +58,6 @@ public class VistaController {
 
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return ModeloController.obtenerRoles(equipoSeleccionado);}
-
     public static boolean VentanaMostrarJugadores() {
         VentanaMostrarJugadores ve = new VentanaMostrarJugadores();
         List<String[]> listaJugadores = ModeloController.obtenerJugadores();
@@ -81,6 +77,15 @@ public class VistaController {
 
     public static List<String> listaEquipos(){
         return ModeloController.listaEquipos();
+    }
+
+    public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
+        ModeloController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname, sueldoFloat, rol, equipoSeleccionado);
+    }
+
+    public static void mostrarModificarJugador(JFrame ventana) {
+        VentanaModificacionJugador mj = new VentanaModificacionJugador();
+        mj.setVisible(true);
     }
 
 

@@ -12,6 +12,7 @@ public class VentanaGestionJugadores extends JFrame {
     private JComboBox opcionesMenu;
     private JLabel tituloAB;
     private JPanel pPrincipal;
+    private JButton volverButton;
 
     public VentanaGestionJugadores(String nombre) {
         setContentPane(pPrincipal);
@@ -67,14 +68,22 @@ public class VentanaGestionJugadores extends JFrame {
                         }
                         break;
                     case 3:
-
+                        boolean encontrado = VistaController.buscarJugador(nombre);
+                        if (encontrado =true) {
+                            VistaController.mostrarModificarJugador(VentanaGestionJugadores.this);
+                        }else{JOptionPane.showMessageDialog(null, "ERROR: No hay jugadores para modificar");
+                        break;}
                         break;
                     case 4:
                         if (!VistaController.VentanaMostrarJugadores()){
                             JOptionPane.showMessageDialog(pPrincipal,"No hay jugadores para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                }
+                        }break;
+                }}
+        });
+        volverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.ventanaAdministrador(VentanaGestionJugadores.this,nombre);
             }
         });
     }
