@@ -180,38 +180,5 @@ public class JugadorDAO {
     }
 
 
-    public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
-
-        try{
-            BaseDatos.abrirConexion();
-            Connection con = BaseDatos.getCon();
-
-            String plantilla = "UPDATE JUGADORES SET " +
-                    "NOMBRE = ?, " +
-                    "APELLIDO = ?, " +
-                    "NACIONALIDAD = ?, " +
-                    "FECHANAC = ?, " +
-                    "NICKNAME = ?, " +
-                    "SUELDO = ?, " +
-                    "ROL = ?, " +
-                    "IDEQUIPO = ? " +
-                    "WHERE NICKNAME = ?";
-            PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1, nombre);
-            ps.setString(2, apellido);
-            ps.setString(3, nacionalidad);
-            ps.setString(4, String.valueOf(fecha));
-            ps.setString(5, nickname);
-            ps.setFloat(6, sueldoFloat);
-            ps.setString(7, rol);
-            ps.setInt(8, equipoSeleccionado);
-            int filas = ps.executeUpdate();
-            if (filas  == 0) {
-                JOptionPane.showMessageDialog(null, "Error al modificar al jugador");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
 
