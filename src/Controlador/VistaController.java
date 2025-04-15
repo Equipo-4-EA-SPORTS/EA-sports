@@ -237,10 +237,5 @@ public class VistaController {
         return ModeloController.estadoCompeticion();
     }
 
-    public static void cerrarVentanas(JFrame ventana){
-        ventana.dispose();
-    }
-    public static void cerrarModales(JDialog modal){
-        modal.dispose();
-    }
+
 }

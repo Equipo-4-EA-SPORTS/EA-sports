@@ -110,4 +110,5 @@ public class ModeloController {
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return EquipoRolesController.obtenerRoles(equipoSeleccionado);
     }
+
 }
