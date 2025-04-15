@@ -5,6 +5,7 @@ import Modelo.JornadaDAO;
 import Modelo.JugadorDAO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModeloController {
@@ -110,5 +111,9 @@ public class ModeloController {
     }
     public static void modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, float sueldoFloat, String rol, int equipoSeleccionado) {
         JugadorController.modificarJugador(nombre, apellido, nacionalidad, fecha, nickname,sueldoFloat, rol, equipoSeleccionado);
+    }
+
+    public static ArrayList<Integer> obtenerEnfrentamientos() {
+        return EnfrentamientoController.obtenerEnfrentamientos();
     }
 }

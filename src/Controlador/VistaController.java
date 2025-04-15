@@ -4,6 +4,7 @@ import Vista.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VistaController {
@@ -246,5 +247,9 @@ public class VistaController {
     }
     public static void cerrarModales(JDialog modal){
         modal.dispose();
+    }
+
+    public ArrayList<Integer> obtenerEnfrentamientos() {
+        return ModeloController.obtenerEnfrentamientos();
     }
 }

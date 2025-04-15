@@ -1,7 +1,10 @@
 package Vista;
 
+import Controlador.VistaController;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class ventanaEliminarEnfrentamiento extends JDialog {
     private JPanel contentPane;
@@ -11,8 +14,14 @@ public class ventanaEliminarEnfrentamiento extends JDialog {
     private JButton bBorrarEnfrent;
     private JTextField fechaTF;
     private JTextField horaTF;
+    private JLabel horaAB;
+    private JLabel fechaAB;
 
     public ventanaEliminarEnfrentamiento() {
+        setSize(500, 300);
+        setLocationRelativeTo(null);
+        setTitle("Eliminar Enfrentamiento");
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(bOk);
@@ -43,6 +52,12 @@ public class ventanaEliminarEnfrentamiento extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        VistaController vc  = new VistaController();
+        ArrayList<Integer> id_enfrentamientos = vc.obtenerEnfrentamientos();
+        for (int i = 0; i < id_enfrentamientos.size(); i++) {
+            cbEnfrentamientos.addItem(id_enfrentamientos.get(i));
+        }
+
     }
 
     private void onOK() {

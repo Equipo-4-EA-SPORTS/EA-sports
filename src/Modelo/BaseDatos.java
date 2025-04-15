@@ -9,7 +9,7 @@ public class BaseDatos
 
     private static Connection con;
 
-    public static void abrirConexion() throws Exception
+    public static Connection abrirConexion() throws Exception
     {
         Class.forName("oracle.jdbc.OracleDriver");
         String user = "equipoMedina"; //poner user y contra de la bd de oracle
