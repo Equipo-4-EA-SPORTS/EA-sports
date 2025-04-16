@@ -13,6 +13,8 @@ BEGIN
 EXCEPTION
     WHEN e_demasiadasComp THEN
         RAISE_APPLICATION_ERROR(-20001,'Error: No se pueden crear más competiciones por que ya hay una en marcha.');
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20004,'Error desconocido: ' || SQLERRM);
 END;
 
 
