@@ -35,7 +35,9 @@ Tiene dos tipos de usuarios:
 
 ![Java](https://img.shields.io/badge/Java-red?logo=coffeescript&logoColor=white)  ![SQL](https://img.shields.io/badge/Oracle_SQL-white?logo=liquibase&logoColor=black)  ![JUnit5](https://img.shields.io/badge/JUnit5-darkgreen?logo=jekyll&logoColor=white)  
 ![Trello](https://img.shields.io/badge/Trello-darkblue?logo=trello&logoColor=white)  ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ_IDEA-darkviolet?logo=intellijidea&logoColor=white)  ![ChatGPT](https://img.shields.io/badge/ChatGPT-white?logo=openai&logoColor=black)  
-![Discord](https://img.shields.io/badge/Discord-blue?logo=discord&logoColor=white)  ![WhatsApp](https://img.shields.io/badge/WhatsApp-darkgreen?logo=whatsapp&logoColor=white)
+![Discord](https://img.shields.io/badge/Discord-blue?logo=discord&logoColor=white)  ![WhatsApp](https://img.shields.io/badge/WhatsApp-darkgreen?logo=whatsapp&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-white?logo=figma&logoColor=darkblue)
+
+Enlace para visualizar interfaz grafica hecha con <a href="https://www.figma.com/design/REcHbXQkO5UzW3m2oZdxm0/Interfaz-Grafica-EA-Sports?node-id=0-1&t=ygrGDAUtUF6U2EPF-1">Figma<a/>
 
 ---
 
