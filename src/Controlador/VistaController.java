@@ -238,4 +238,23 @@ public class VistaController {
     }
 
 
+    //VENTANAS NUEVAS
+
+    public static void VentanaAdministradorV2(String nombre, JFrame ventana) {
+        ventana.dispose();
+        VentanaAdministradorV2 va2 = new VentanaAdministradorV2(nombre);
+        va2.setVisible(true);
+    }
+
+    public static void VentanaGestionJugadoresV2(JFrame ventana, String nombre) {
+        ventana.dispose();
+        VentanaGestionJugadoresV2 vg2 = new VentanaGestionJugadoresV2(nombre);
+        vg2.setVisible(true);
+    }
+    public static void VentanaInscripcionJugadoresV2(JFrame ventana) {
+        ventana.dispose();
+        VentanaInscripcionJugdadorV2 vg2 = new VentanaInscripcionJugdadorV2();
+        vg2.setVisible(true);
+    }
+
 }

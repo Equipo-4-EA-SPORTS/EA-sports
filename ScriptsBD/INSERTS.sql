@@ -14,4 +14,8 @@ INSERT INTO roles (rol) VALUES ('Controlador');
 INSERT INTO roles (rol) VALUES ('Asesino');
 INSERT INTO roles (rol) VALUES ('Mago');
 
+INSERT INTO competiciones (estado) VALUES (DEFAULT);
+
+commit;
+
 

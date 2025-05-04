@@ -8,7 +8,6 @@ import java.sql.ResultSet;
  * Clase CompeticionDAO que gestiona las operaciones relacionadas con la tabla de competiciones en la base de datos.
  */
 public class CompeticionDAO {
-
     /**
      * Crea una nueva competición en la base de datos con el estado predeterminado.
      * Muestra un mensaje de error si ocurre algún problema al conectarse a la base de datos.
@@ -17,9 +16,7 @@ public class CompeticionDAO {
         try{
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
-
-            String plantilla = "INSERT INTO competiciones (estado) VALUES (DEFAULT)";
-            PreparedStatement ps = con.prepareStatement(plantilla);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO competiciones (estado) VALUES (DEFAULT)");
             ps.executeUpdate();
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
