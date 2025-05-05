@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase JornadaDAO que gestiona las operaciones relacionadas con la tabla de jornadas en la base de datos.
@@ -73,6 +75,49 @@ public class JornadaDAO {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return existe;
+    }
+
+    public static List<String[]> obtenerJornadas() {
+        List<String[]> jornadas = new ArrayList<>();
+        try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT fechainicio,fechafin FROM jornadas";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String fechaInicio = rs.getDate("fechainicio").toString();
+                String fechaFin = rs.getDate("fechafin").toString();
+                jornadas.add(new String[]{fechaInicio, fechaFin});
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return jornadas;
+    }
+
+    public static List<String> listaJornadas() {
+        List<String> jornadas = new ArrayList<>();
+        try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT numJornada FROM jornadas";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                jornadas.add(rs.getString(1));
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return jornadas;
     }
 
 }

@@ -103,6 +103,14 @@ public class ModeloController {
         return JornadaController.existeJornada(numJornada);
     }
 
+    public static List<String[]> obtenerJornadas(){
+        return JornadaController.obtenerJornadas();
+    }
+
+    public static List<String> listaJornadas(){
+        return JornadaController.listaJornadas();
+    }
+
     public static boolean buscarNickname(String nickname) {
         return JugadorController.buscarNickname(nickname);
     }

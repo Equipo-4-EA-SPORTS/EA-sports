@@ -45,6 +45,7 @@
                 <item value="Gestionar Equipos"/>
                 <item value="Gestionar Jugadores"/>
                 <item value="Gestionar Competicion"/>
+                <item value="Gestionar Jornadas"/>
               </model>
             </properties>
           </component>
