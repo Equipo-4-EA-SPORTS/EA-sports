@@ -3,7 +3,6 @@ package Vista;
 import Controlador.VistaController;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +25,7 @@ public class VentanaGestionJugadoresV2 extends JFrame {
         setSize(500, 400);
         setLocationRelativeTo(null);
         setResizable(false);
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEAnegro.png"));
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
         setIconImage(imagen.getImage());
         retroceder.addActionListener(new ActionListener() {
             @Override
@@ -74,7 +73,7 @@ public class VentanaGestionJugadoresV2 extends JFrame {
         inscribirJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.VentanaInscripcionJugadoresV2(VentanaGestionJugadoresV2.this);
+                VistaController.ModalInscripcionJugadoresV2();
             }
         });
         eliminarJugador.addActionListener(new ActionListener() {

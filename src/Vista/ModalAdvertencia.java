@@ -13,7 +13,12 @@ public class ModalAdvertencia extends JDialog {
     public ModalAdvertencia() {
         setContentPane(pPrincipal);
         setModal(true);
+        pack();
+        setLocationRelativeTo(null);
         getRootPane().setDefaultButton(eliminarButton);
+        setTitle("¡WARNING!");
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/alerta.png"));
+        setIconImage(imagen.getImage());
 
         eliminarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

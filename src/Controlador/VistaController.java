@@ -251,10 +251,15 @@ public class VistaController {
         VentanaGestionJugadoresV2 vg2 = new VentanaGestionJugadoresV2(nombre);
         vg2.setVisible(true);
     }
-    public static void VentanaInscripcionJugadoresV2(JFrame ventana) {
-        ventana.dispose();
-        VentanaInscripcionJugdadorV2 vg2 = new VentanaInscripcionJugdadorV2();
+    public static void ModalInscripcionJugadoresV2() {
+        ModalInscripcionJugadoresV2 vg2 = new ModalInscripcionJugadoresV2();
         vg2.setVisible(true);
+    }
+
+    public static boolean ModalAdvertencia(){
+        ModalAdvertencia vc = new ModalAdvertencia();
+        vc.setVisible(true);
+        return vc.isConfirmado();
     }
 
 }
