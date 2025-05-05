@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.JornadaDAO;
 import Vista.*;
 
 import javax.swing.*;
@@ -166,6 +167,21 @@ public class VistaController {
 
     public static boolean existeJornada (String numJornada){
         return ModeloController.existeJornada(numJornada);
+    }
+
+    public static List<String[]> obtenerJornadas(){
+        return ModeloController.obtenerJornadas();
+    }
+
+    public static boolean VentanaMostrarJornada() {
+        VentanaMostrarJornada vmj = new VentanaMostrarJornada();
+        List<String> listaJornadas = ModeloController.listaJornadas();
+        vmj.setVisible(!listaJornadas.isEmpty());
+        return !listaJornadas.isEmpty();
+    }
+
+    public static List<String> listaJornadas(){
+        return ModeloController.listaJornadas();
     }
 
     public static void VentanaGestionEnfrentamientos(JFrame ventana, String nombre) {
