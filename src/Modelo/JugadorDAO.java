@@ -229,7 +229,12 @@ public class JugadorDAO {
 
         return valido;
     }
-
+    /**
+     * Obtiene el identificador único (PK) de un jugador en la base de datos por su nombre.
+     *
+     * @param jugador Nombre del jugador cuyo identificador se desea obtener.
+     * @return El identificador del jugador si se encuentra, 0 en caso contrario.
+     */
     public static int obtenerPKjugador(String jugador){
         int idJugador = 0;
         try {
@@ -252,6 +257,12 @@ public class JugadorDAO {
         return idJugador;
     }
 
+    /**
+     * Obtiene el rol de un jugador en la base de datos por su nombre.
+     *
+     * @param jugador Nombre del jugador cuyo rol se desea obtener.
+     * @return El rol del jugador si se encuentra, una cadena vacía en caso contrario.
+     */
     public static String obtenerRolJugador(String jugador){
         String rol = "";
         try {
@@ -271,6 +282,13 @@ public class JugadorDAO {
         }
         return rol;
     }
+
+    /**
+     * Obtiene el identificador del equipo al que pertenece un jugador en la base de datos.
+     *
+     * @param jugador Identificador único (PK) del jugador.
+     * @return El identificador del equipo si se encuentra, 0 en caso contrario.
+     */
     public static int obtenerEquipoJugador(int jugador){
         int idEquipo = 0;
         try {
@@ -293,6 +311,16 @@ public class JugadorDAO {
         return idEquipo;
     }
 
+    /**
+     * Genera un informe de los jugadores que pertenecen a un equipo específico.
+     * Este método utiliza un procedimiento almacenado en la base de datos llamado
+     * `obtener_jugadores_equipo` que recibe el nombre del equipo y devuelve un cursor
+     * con los jugadores asociados a dicho equipo.
+     *
+     * @param nombreEquipo Nombre del equipo cuyos jugadores se desean listar.
+     * @throws Exception Si ocurre algún error al ejecutar el procedimiento almacenado
+     *                   o al interactuar con la base de datos.
+     */
 public static void informeJugadoresEquipo(String nombreEquipo) throws Exception {
     BaseDatos.abrirConexion();
     Connection con = BaseDatos.getCon();

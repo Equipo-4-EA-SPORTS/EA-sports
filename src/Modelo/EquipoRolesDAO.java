@@ -91,6 +91,14 @@ public class EquipoRolesDAO {
         }
     }
 
+    /**
+     * Inserta un rol asociado a un jugador eliminado en la base de datos.
+     * Este método obtiene el identificador del equipo al que pertenece el jugador,
+     * así como el identificador del rol asociado al jugador, y los inserta en la tabla
+     * `equipoRoles`.
+     * @param jugador Nombre del jugador cuyo rol se desea insertar.
+     * @return true si la inserción fue exitosa, false en caso contrario.
+     */
     public static boolean insertarRolJugadorEliminado(String jugador){
         boolean insertado = false;
         try {
