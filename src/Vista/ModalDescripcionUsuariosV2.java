@@ -15,7 +15,7 @@ public class ModalDescripcionUsuariosV2 extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         setTitle("Descripcion de usuario: " + usr);
 
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
         setIconImage(imagen.getImage());
 
         String[] opcionesUsr = {"1. Ver informe de equipos en competición","2. Ver resultados de la ultima jornada"};

@@ -25,7 +25,7 @@ public class VentanaGestionJugadoresV2 extends JFrame {
         setSize(500, 400);
         setLocationRelativeTo(null);
         setResizable(false);
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
         setIconImage(imagen.getImage());
         retroceder.addActionListener(new ActionListener() {
             @Override
@@ -79,7 +79,7 @@ public class VentanaGestionJugadoresV2 extends JFrame {
         eliminarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                VistaController.ModalEliminacionJugadoresV2();
             }
         });
 

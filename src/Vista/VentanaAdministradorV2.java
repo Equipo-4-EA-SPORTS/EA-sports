@@ -24,16 +24,17 @@ public class VentanaAdministradorV2 extends javax.swing.JFrame {
         setContentPane(pPincipal);
         setSize(500, 400);
         setLocationRelativeTo(null);
+        setResizable(false);
 
         Titulo.setText("¡Bienvenido " +nombre+"!");
 
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
         setIconImage(imagen.getImage());
 
         retroceder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VistaController.mostrarinicioSesion(VentanaAdministradorV2.this);
+                VistaController.VentanaSelccionUsuarioV2(VentanaAdministradorV2.this);
             }
         });
         jugadores.addActionListener(new ActionListener() {

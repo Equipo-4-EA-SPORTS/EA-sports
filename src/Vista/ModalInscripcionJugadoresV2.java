@@ -36,18 +36,29 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
         setModal(true);
         setTitle("Inscripcion Jugdador");
         setContentPane(pPrincipal);
-        setSize(350, 325);
-        setLocationRelativeTo(null);
 
         datosJugador.setVisible(false);
         datosEquipo.setVisible(false);
 
+        if (datosJugador.isVisible()) {
+            setSize(350, 300);
+        }
         if (datosPersonales.isVisible()) {
             atrásButton.setEnabled(false);
+            setSize(350, 300);
         }
         if (datosEquipo.isVisible()) {
             siguienteButton.setEnabled(false);
+            setSize(350, 325);
         }
+        setLocationRelativeTo(null);
+
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
+        setIconImage(imagen.getImage());
+
+
+
+
 
         siguienteButton.addActionListener(new ActionListener() {
             @Override
@@ -56,7 +67,6 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
                     datosPersonales.setVisible(false);
                     datosJugador.setVisible(true);
                     atrásButton.setEnabled(true);
-                    setSize(350, 250);
                 }
             }
         });
@@ -68,7 +78,6 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
                     datosEquipo.setVisible(true);
                     atrásButton.setEnabled(true);
                     siguienteButton.setEnabled(false);
-                    setSize(350, 250);
                 }
             }
         });
@@ -79,14 +88,12 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
                     datosJugador.setVisible(false);
                     datosPersonales.setVisible(true);
                     atrásButton.setEnabled(false);
-                    setSize(350, 300);
 
                 }
                 if (datosEquipo.isVisible()) {
                     datosEquipo.setVisible(false);
                     datosJugador.setVisible(true);
                     siguienteButton.setEnabled(true);
-                    setSize(350, 250);
                 }
             }
         });
@@ -102,12 +109,19 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 if (equipos.getSelectedIndex() != 0) {
                     roles.setEnabled(true);
-                    roles.removeAll();
+                    roles.removeAllItems();
                     roles.insertItemAt("Haz click para descubrir los roles",0);
+                    roles.setSelectedIndex(0);
                     List<String> listaRoles = actualizarRoles(equipos.getSelectedItem().toString());
                     for (String role : listaRoles) {
                         roles.addItem(role);
                     }
+                }
+                else{
+                    roles.setEnabled(false);
+                    roles.removeAllItems();
+                    roles.insertItemAt("Haz click para descubrir los roles",0);
+                    roles.setSelectedIndex(0);
                 }
             }
         });
@@ -125,8 +139,6 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
                 dispose();
             }
         });
-
-
     }
     private void onOK() {
         try {
@@ -210,9 +222,6 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
                         break;
                 }
             }
-
-            // Aquí podrías continuar con el guardado o lógica del jugador...
-
         } catch (CampoObligatorioException e) {
             JOptionPane.showMessageDialog(pPrincipal, "ERROR: " + e.getMessage(), "ERROR", -1);
         } catch (NombreDuplicadoExcepcion e) {
@@ -226,7 +235,7 @@ public class ModalInscripcionJugadoresV2 extends JDialog {
         }
     }
     public static void main(String[] args) {
-        VentanaInscripcionJugdadorV2 ventana = new VentanaInscripcionJugdadorV2();
+        ModalInscripcionJugadoresV2 ventana = new ModalInscripcionJugadoresV2();
         ventana.setVisible(true);
     }
     public static List<String> actualizarRoles(String equipo) {
