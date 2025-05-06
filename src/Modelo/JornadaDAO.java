@@ -76,7 +76,13 @@ public class JornadaDAO {
         }
         return existe;
     }
-
+    /**
+     * Obtiene una lista de jornadas con sus fechas de inicio y fin desde la base de datos.
+     *
+     * @return Una lista de arreglos de cadenas, donde cada arreglo contiene dos elementos:
+     *         la fecha de inicio y la fecha de fin de una jornada.
+     *         Si ocurre un error, se devuelve una lista vacía.
+     */
     public static List<String[]> obtenerJornadas() {
         List<String[]> jornadas = new ArrayList<>();
         try{
@@ -99,7 +105,12 @@ public class JornadaDAO {
         }
         return jornadas;
     }
-
+    /**
+     * Obtiene una lista de los números de jornadas existentes en la base de datos.
+     *
+     * @return Una lista de cadenas, donde cada cadena representa el número de una jornada.
+     *         Si ocurre un error, se devuelve una lista vacía.
+     */
     public static List<String> listaJornadas() {
         List<String> jornadas = new ArrayList<>();
         try{
