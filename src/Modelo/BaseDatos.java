@@ -11,7 +11,7 @@ public class BaseDatos
 {
     //Abrir y cerrar la conexión con la base de datos.
 
-    private static Connection con;
+    static Connection con;
 
     /**
      * Abre la conexión con la base de datos Oracle.
