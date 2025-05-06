@@ -1,6 +1,9 @@
 package Modelo;
 
+import oracle.jdbc.internal.OracleTypes;
+
 import javax.swing.*;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -290,9 +293,25 @@ public class JugadorDAO {
         return idEquipo;
     }
 
+public static void informeJugadoresEquipo(String nombreEquipo) throws Exception {
+    BaseDatos.abrirConexion();
+    Connection con = BaseDatos.getCon();
+    // Llamada al procedimiento almacenado
+    CallableStatement cs = con.prepareCall("{ call obtener_jugadores_equipo(?, ?) }");
+    cs.setString(1, "NombreDelEquipo");
+    cs.registerOutParameter(2, OracleTypes.CURSOR);
 
+    cs.execute();
 
+    ResultSet rs = (ResultSet) cs.getObject(2);
+    while (rs.next()) {
+        String nombre = rs.getString("nombre");
+        String apellido = rs.getString("apellido");
+        String rol = rs.getString("rol");
+        double sueldo = rs.getDouble("sueldo");
 
+    }
+}
 
 }
 

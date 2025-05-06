@@ -1,12 +1,14 @@
 package Modelo;
 
+import oracle.jdbc.internal.OracleTypes;
+
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
-import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.util.List;
+
+import static Modelo.BaseDatos.con;
 
 /**
  * Clase EquipoDAO que gestiona las operaciones relacionadas con la tabla de equipos en la base de datos.
@@ -17,11 +19,11 @@ public class EquipoDAO {
      * Inscribe un equipo en la base de datos con el nombre y la fecha de fundación proporcionados.
      *
      * @param nombre Nombre del equipo.
-     * @param fecha Fecha de fundación del equipo.
+     * @param fecha  Fecha de fundación del equipo.
      * @return true si el equipo fue inscrito correctamente, false en caso contrario.
      */
-    public static boolean inscribirEquipo(String nombre,LocalDate fecha){
-        boolean encontrado=false;
+    public static boolean inscribirEquipo(String nombre, LocalDate fecha) {
+        boolean encontrado = false;
 
         try {
             BaseDatos.abrirConexion();
@@ -29,66 +31,68 @@ public class EquipoDAO {
 
             String plantilla = "INSERT INTO equipos (nombre,fechafund) VALUES(?,?)";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1,nombre);
+            ps.setString(1, nombre);
 
-            java.sql.Date fechafund = java.sql.Date.valueOf(fecha);
+            Date fechafund = Date.valueOf(fecha);
 
             ps.setDate(2, fechafund);
 
             int filas = ps.executeUpdate();
-            if(filas>0){
-                encontrado=true;
+            if (filas > 0) {
+                encontrado = true;
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return encontrado;
     }
+
     /**
      * Busca un equipo en la base de datos por su nombre.
      *
      * @param nombre Nombre del equipo a buscar.
      * @return true si el equipo fue encontrado, false en caso contrario.
      */
-    public static boolean buscarEquipo(String nombre){
-        boolean encontrado=false;
-        try{
+    public static boolean buscarEquipo(String nombre) {
+        boolean encontrado = false;
+        try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
             String plantilla = "SELECT * FROM equipos WHERE nombre = ?";
 
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1,nombre);
+            ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                encontrado=true;
+            if (rs.next()) {
+                encontrado = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return encontrado;
     }
+
     /**
      * Busca el nombre de un equipo en la base de datos por su identificador.
      *
      * @param id Identificador del equipo.
      * @return El nombre del equipo si se encuentra, una cadena vacía en caso contrario.
      */
-    public static String buscarEquipoPK(int id){
+    public static String buscarEquipoPK(int id) {
         String nombreEquipo = "";
-        try{
+        try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
             String plantilla = "SELECT nombre FROM equipos WHERE idEquipo = ?";
 
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                nombreEquipo=rs.getString("nombre");
+            if (rs.next()) {
+                nombreEquipo = rs.getString("nombre");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return nombreEquipo;
@@ -99,46 +103,47 @@ public class EquipoDAO {
      *
      * @return Una lista de nombres de equipos.
      */
-    public static List<String> listaEquipos(){
+    public static List<String> listaEquipos() {
         List<String> equipos = new ArrayList<>();
 
-        try{
+        try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
             PreparedStatement ps = con.prepareStatement("SELECT nombre FROM equipos");
 
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 equipos.add(rs.getString(1));
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return equipos;
     }
+
     /**
      * Elimina un equipo de la base de datos por su nombre.
      *
      * @param equipoSeleccionado Nombre del equipo a eliminar.
      * @return true si el equipo fue eliminado correctamente, false en caso contrario.
      */
-    public static boolean eliminarEquipo(String equipoSeleccionado){
+    public static boolean eliminarEquipo(String equipoSeleccionado) {
         boolean eliminado = false;
-        try{
+        try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
             String plantilla = "DELETE FROM equipos WHERE nombre = ?";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1,equipoSeleccionado);
+            ps.setString(1, equipoSeleccionado);
 
             int filas = ps.executeUpdate();
-            if(filas > 0){
+            if (filas > 0) {
                 eliminado = true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return eliminado;
@@ -171,6 +176,7 @@ public class EquipoDAO {
         }
         return equipos;
     }
+
     /**
      * Verifica si hay más de dos equipos registrados en la base de datos.
      *
@@ -198,6 +204,7 @@ public class EquipoDAO {
 
         return resultado;
     }
+
     /**
      * Verifica si la cantidad de equipos registrados en la base de datos es par.
      *
@@ -230,47 +237,48 @@ public class EquipoDAO {
      * Modifica el nombre y/o la fecha de fundación de un equipo en la base de datos.
      *
      * @param nuevoNombre Nuevo nombre del equipo.
-     * @param nuevaFecha Nueva fecha de fundación del equipo.
-     * @param nombre Nombre actual del equipo.
+     * @param nuevaFecha  Nueva fecha de fundación del equipo.
+     * @param nombre      Nombre actual del equipo.
      * @return true si el equipo fue actualizado correctamente, false en caso contrario.
      */
-    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
+    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre) {
         boolean actualizado = false;
 
-        try{
+        try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
             String sentencia = "UPDATE equipos SET nombre = ?, fechafund = ? Where nombre = ?";
 
             PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setString(1,nuevoNombre);
-            ps.setDate(2,java.sql.Date.valueOf(nuevaFecha));
-            ps.setString(3,nombre);
+            ps.setString(1, nuevoNombre);
+            ps.setDate(2, Date.valueOf(nuevaFecha));
+            ps.setString(3, nombre);
 
             int filasAfectadas = ps.executeUpdate();
 
-            if (filasAfectadas>0){
+            if (filasAfectadas > 0) {
                 actualizado = true;
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
 
         return actualizado;
     }
+
     /**
      * Modifica solo el nombre de un equipo en la base de datos.
      *
      * @param nuevoNombre Nuevo nombre del equipo.
-     * @param nombre Nombre actual del equipo.
+     * @param nombre      Nombre actual del equipo.
      * @return true si el equipo fue actualizado correctamente, false en caso contrario.
      */
-    public static boolean modificarEquipo(String nuevoNombre,String nombre){
+    public static boolean modificarEquipo(String nuevoNombre, String nombre) {
         boolean actualizado = false;
-        try{
+        try {
 
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
@@ -278,17 +286,17 @@ public class EquipoDAO {
             String sentencia = "UPDATE equipos SET nombre = ? Where nombre = ?";
 
             PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setString(1,nuevoNombre);
-            ps.setString(2,nombre);
+            ps.setString(1, nuevoNombre);
+            ps.setString(2, nombre);
 
             int filasAfectadas = ps.executeUpdate();
 
-            if (filasAfectadas>0){
+            if (filasAfectadas > 0) {
                 actualizado = true;
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace(); // Opcional: lo imprime en consola
 
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
@@ -296,17 +304,18 @@ public class EquipoDAO {
 
         return actualizado;
     }
+
     /**
      * Modifica solo la fecha de fundación de un equipo en la base de datos.
      *
      * @param nuevaFecha Nueva fecha de fundación del equipo.
-     * @param nombre Nombre actual del equipo.
+     * @param nombre     Nombre actual del equipo.
      * @return true si el equipo fue actualizado correctamente, false en caso contrario.
      */
-    public static boolean modificarEquipo(LocalDate nuevaFecha,String nombre){
+    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre) {
 
         boolean actualizado = false;
-        try{
+        try {
 
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
@@ -314,17 +323,17 @@ public class EquipoDAO {
             String sentencia = "UPDATE equipos SET fechafund = ? Where nombre = ?";
 
             PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setDate(1,java.sql.Date.valueOf(nuevaFecha));
-            ps.setString(2,nombre);
+            ps.setDate(1, Date.valueOf(nuevaFecha));
+            ps.setString(2, nombre);
 
             int filasAfectadas = ps.executeUpdate();
 
-            if (filasAfectadas>0){
+            if (filasAfectadas > 0) {
                 actualizado = true;
             }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
         }
         return actualizado;
@@ -336,7 +345,7 @@ public class EquipoDAO {
      * @param nombre Nombre del equipo.
      * @return El identificador del equipo si se encuentra, 0 en caso contrario.
      */
-    public static int obtenerPKequipo(String nombre){
+    public static int obtenerPKequipo(String nombre) {
         int idEquipo = 0;
         try {
             BaseDatos.abrirConexion();
@@ -344,7 +353,7 @@ public class EquipoDAO {
 
             String plantilla = "SELECT idEquipo FROM equipos Where nombre=?";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1,nombre);
+            ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
 
 
@@ -357,8 +366,31 @@ public class EquipoDAO {
         }
         return idEquipo;
     }
+    /**
+     * Genera un informe de los equipos que participan en una competición específica.
+     * Este método utiliza un procedimiento almacenado en la base de datos llamado
+     * `informe_equipos_competicion` que recibe un identificador de competición y
+     * devuelve un cursor con los equipos asociados a dicha competición.
+     *
+     * @param idComp El identificador de la competición para la cual se generará el informe.
+     * @throws Exception Si ocurre algún error al ejecutar el procedimiento almacenado
+     *                   o al interactuar con la base de datos.
+     */
+    public static void informeEquiposCompeticion(int idComp) throws Exception {
+        BaseDatos.abrirConexion();
+        Connection con = BaseDatos.getCon();
+        // Llamar al procedimiento almacenado
+        CallableStatement stmt = con.prepareCall("{ call informe_equipos_competicion(?, ?) }");
+        stmt.setInt(1, idComp);
+        stmt.registerOutParameter(2, OracleTypes.CURSOR);
+        stmt.execute();
 
+        ResultSet rs = (ResultSet) stmt.getObject(2);
+        while (rs.next()) {
+            System.out.println("Equipo: " + rs.getString("nombre_equipo"));
 
+        }
+    }
 
 
 }
