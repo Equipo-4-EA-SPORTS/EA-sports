@@ -25,10 +25,10 @@ public class VentanaPrincipalV2 extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 int estado = VistaController.verificarCompeticionCreada();
                 if (estado>0) {
-                    VistaController.mostrarinicioSesion(VentanaPrincipalV2.this);
+                    VistaController.VentanaSelccionUsuarioV2(VentanaPrincipalV2.this);
                 } else {
                     VistaController.crearCompeticion();
-                    VistaController.mostrarinicioSesion(VentanaPrincipalV2.this);
+                    VistaController.VentanaSelccionUsuarioV2(VentanaPrincipalV2.this);
                 }
             }
         });

@@ -10,9 +10,6 @@ public class Main {
      * @param args Argumentos de línea de comandos (no utilizados en este programa).
      */
     public static void main(String[] args) {
-    VistaController vc = new VistaController();
-    vc.mostrarInicio();
-    
-
+        VistaController.VentanaPrincipalV2();
     }
 }

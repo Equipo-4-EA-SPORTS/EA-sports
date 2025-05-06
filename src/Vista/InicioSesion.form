@@ -21,8 +21,7 @@
           <defaultCapable value="false"/>
           <focusPainted value="false"/>
           <focusable value="false"/>
-          <icon value="Vista/Fotos/EA_logo.png"/>
-          <requestFocusEnabled value="false"/>
+          <requestFocusEnabled value="true"/>
           <rolloverEnabled value="false"/>
           <text value=""/>
           <verifyInputWhenFocusTarget value="false"/>

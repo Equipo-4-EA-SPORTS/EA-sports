@@ -240,6 +240,11 @@ public class VistaController {
 
     //VENTANAS NUEVAS
 
+    public static void VentanaPrincipalV2(){
+        VentanaPrincipalV2 vp2 = new VentanaPrincipalV2();
+        vp2.setVisible(true);
+    }
+
     public static void VentanaAdministradorV2(String nombre, JFrame ventana) {
         ventana.dispose();
         VentanaAdministradorV2 va2 = new VentanaAdministradorV2(nombre);
@@ -260,6 +265,23 @@ public class VistaController {
         ModalAdvertencia vc = new ModalAdvertencia();
         vc.setVisible(true);
         return vc.isConfirmado();
+    }
+
+    public static void ModalDescripcionUsuariosV2(String nombre){
+        ModalDescripcionUsuariosV2 vdu2 = new ModalDescripcionUsuariosV2(nombre);
+        vdu2.setVisible(true);
+    }
+
+    public static void VentanaInciarSesionV2(String tipoUsr,JFrame ventana){
+        ventana.dispose();
+        VentanaIniciarSesionV2 vis2 = new VentanaIniciarSesionV2(tipoUsr);
+        vis2.setVisible(true);
+    }
+
+    public static void VentanaSelccionUsuarioV2(JFrame ventana){
+        ventana.dispose();
+        VentanaSeleccionUsuarioV2 vsu2 = new VentanaSeleccionUsuarioV2();
+        vsu2.setVisible(true);
     }
 
 }

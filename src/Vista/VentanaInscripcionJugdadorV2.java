@@ -39,6 +39,9 @@ public class VentanaInscripcionJugdadorV2 extends JFrame {
         setSize(350, 325);
         setLocationRelativeTo(null);
 
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
+        setIconImage(imagen.getImage());
+
         datosJugador.setVisible(false);
         datosEquipo.setVisible(false);
 

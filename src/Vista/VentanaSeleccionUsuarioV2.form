@@ -85,7 +85,7 @@
               <contentAreaFilled value="false"/>
               <focusPainted value="false"/>
               <focusable value="false"/>
-              <icon value="Vista/Fotos/alerta.png"/>
+              <icon value="Vista/Fotos/help.png"/>
               <label value=""/>
               <text value=""/>
             </properties>
@@ -99,7 +99,7 @@
               <contentAreaFilled value="false"/>
               <focusPainted value="false"/>
               <focusable value="false"/>
-              <icon value="Vista/Fotos/alerta.png"/>
+              <icon value="Vista/Fotos/help.png"/>
               <label value=""/>
               <text value=""/>
             </properties>

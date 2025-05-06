@@ -27,6 +27,9 @@ public class VentanaAdministradorV2 extends javax.swing.JFrame {
 
         Titulo.setText("¡Bienvenido " +nombre+"!");
 
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
+        setIconImage(imagen.getImage());
+
         retroceder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,6 +57,7 @@ public class VentanaAdministradorV2 extends javax.swing.JFrame {
 
             }
         };
+
         jugadores.addMouseListener(listener);
         equipos.addMouseListener(listener);
         jornadas.addMouseListener(listener);
