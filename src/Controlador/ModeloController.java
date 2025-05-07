@@ -133,28 +133,8 @@ public class ModeloController {
      * @param nombre Nombre actual del equipo.
      * @return true si el equipo fue modificado correctamente, false en caso contrario.
      */
-    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
-        return EquipoController.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
-    }
-    /**
-     * Modifica el nombre de un equipo en la base de datos.
-     *
-     * @param nuevoNombre Nuevo nombre del equipo.
-     * @param nombre Nombre actual del equipo.
-     * @return true si el equipo fue modificado correctamente, false en caso contrario.
-     */
-    public static boolean modificarEquipo(String nuevoNombre, String nombre){
-        return EquipoController.modificarEquipo(nuevoNombre,nombre);
-    }
-    /**
-     * Modifica la fecha de creación de un equipo en la base de datos.
-     *
-     * @param nuevaFecha Nueva fecha de creación del equipo.
-     * @param nombre Nombre actual del equipo.
-     * @return true si el equipo fue modificado correctamente, false en caso contrario.
-     */
-    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
-        return EquipoController.modificarEquipo(nuevaFecha,nombre);
+    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, Boolean duplicado, String nombre){
+        return EquipoController.modificarEquipo(nuevoNombre,nuevaFecha,duplicado,nombre);
     }
 
     //Métodos relacionados con competiciones
@@ -269,6 +249,8 @@ public class ModeloController {
     public static boolean buscarNickname(String nickname) {
         return JugadorController.buscarNickname(nickname);
     }
+
+
     /**
      * Obtiene una lista de roles disponibles para un equipo seleccionado.
      *
@@ -281,6 +263,22 @@ public class ModeloController {
 
     public static List<String> seleccionarGanador(List<String> equipos,int numJor){
         return VistaController.ModalSeleccionGanador(equipos,numJor);
+    }
+
+    public static List<String> listaNicknames(){
+        return JugadorController.listaNicknames();
+    }
+
+    public static boolean modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, Float sueldoFloat, String rol, String equipo,Boolean duplicado,String nickname_viejo,Boolean cambiarRoles) {
+        return JugadorController.modificarJugador(nombre,apellido,nacionalidad,fecha,nickname,sueldoFloat,rol,equipo,duplicado,nickname_viejo,cambiarRoles);
+    }
+
+    public static int obtenerCantidadJugadoreEquipo(String equipo){
+        return JugadorController.obtenerCantidadJugadoreEquipo(equipo);
+    }
+
+    public static String obtenerRolJugadorNick(String nickname){
+        return JugadorController.obtenerRolJugadorNick(nickname);
     }
 
 }

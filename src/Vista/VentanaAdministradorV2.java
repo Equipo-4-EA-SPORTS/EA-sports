@@ -31,6 +31,36 @@ public class VentanaAdministradorV2 extends javax.swing.JFrame {
         ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
         setIconImage(imagen.getImage());
 
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu Jusuario = new JMenu("Usuario");
+        JMenu JotrasOpciones = new JMenu("Otras opciones");
+
+        JMenuItem JcambiarUsuario = new JMenuItem("Cambiar de Usuario");
+        JMenuItem Jsalir = new JMenuItem("Salir");
+
+        Jusuario.add(JcambiarUsuario);
+        JotrasOpciones.add(Jsalir);
+
+        menuBar.add(Jusuario);
+        menuBar.add(JotrasOpciones);
+
+        setJMenuBar(menuBar);
+
+        JcambiarUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.VentanaSelccionUsuarioV2(VentanaAdministradorV2.this);
+            }
+        });
+
+        Jsalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
         retroceder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,6 +71,12 @@ public class VentanaAdministradorV2 extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 VistaController.VentanaGestionJugadoresV2(VentanaAdministradorV2.this,nombre);
+            }
+        });
+        equipos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.VentanaGestionEquiposV2(VentanaAdministradorV2.this,nombre);
             }
         });
 

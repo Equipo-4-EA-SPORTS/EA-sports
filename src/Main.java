@@ -12,8 +12,7 @@ public class Main {
      * @param args Argumentos de línea de comandos (no utilizados en este programa).
      */
     public static void main(String[] args) {
-        CompeticionDAO.generarCalendarioCompe();
-        //VistaController.VentanaPrincipalV2();
+        VistaController.VentanaPrincipalV2();
     }
 
 }

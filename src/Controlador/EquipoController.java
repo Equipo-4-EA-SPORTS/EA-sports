@@ -67,32 +67,12 @@ public class EquipoController {
      *
      * @param nuevoNombre Nuevo nombre del equipo.
      * @param nuevaFecha Nueva fecha de inscripción del equipo.
-     * @param nombre Nombre actual del equipo.
      * @return true si la modificación fue exitosa, false en caso contrario.
      */
-    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
-        return EquipoDAO.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
+    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, Boolean duplicado,String nombre){
+        return EquipoDAO.modificarEquipo(nuevoNombre,nuevaFecha,duplicado,nombre);
     }
-    /**
-     * Modifica el nombre de un equipo en la base de datos.
-     *
-     * @param nuevoNombre Nuevo nombre del equipo.
-     * @param nombre Nombre actual del equipo.
-     * @return true si la modificación fue exitosa, false en caso contrario.
-     */
-    public static boolean modificarEquipo(String nuevoNombre, String nombre){
-        return EquipoDAO.modificarEquipo(nuevoNombre,nombre);
-    }
-    /**
-     * Modifica la fecha de inscripción de un equipo en la base de datos.
-     *
-     * @param nuevaFecha Nueva fecha de inscripción del equipo.
-     * @param nombre Nombre actual del equipo.
-     * @return true si la modificación fue exitosa, false en caso contrario.
-     */
-    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
-        return EquipoDAO.modificarEquipo(nuevaFecha,nombre);
-    }
+
     /**
      * Obtiene el identificador único (PK) de un equipo en la base de datos por su nombre.
      *

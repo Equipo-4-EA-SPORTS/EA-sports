@@ -3,8 +3,10 @@ package Vista;
 import Controlador.VistaController;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
@@ -21,6 +23,10 @@ public class ModalMostrarJugadoresV2 extends JDialog {
         setResizable(false);
         setLocationRelativeTo(null);
 
+        setTitle("Lista de Jugadores");
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
+        setIconImage(imagen.getImage());
+
         // Configurar columnas
         String[] columnas = {"Nombre", "Apellido","Nacionalidad","FechaNacimiento","Nickname","Sueldo","Rol","Equipo"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
@@ -35,6 +41,12 @@ public class ModalMostrarJugadoresV2 extends JDialog {
 
         tablaJugadores.setModel(modelo);
         tablaJugadores.setEnabled(false); // Para que no se pueda editar
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < tablaJugadores.getColumnCount(); i++) {
+            tablaJugadores.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
 
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
         tablaJugadores.setRowSorter(sorter);
@@ -74,7 +86,6 @@ public class ModalMostrarJugadoresV2 extends JDialog {
 
     public static void main(String[] args) {
         ModalMostrarJugadoresV2 dialog = new ModalMostrarJugadoresV2();
-        dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }

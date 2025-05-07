@@ -60,7 +60,7 @@ public class ModalEliminacionJugadresV2 extends JDialog {
     private void onOK() {
         String jugadorSeleccionado = (String) jugadores.getSelectedItem();
 
-        if (jugadorSeleccionado != null && !jugadorSeleccionado.equals("Haz click para descubrir las opciones")) {
+        if (jugadores.getSelectedIndex() != 0) {
 
             if (VistaController.ModalAdvertencia()) {
                 boolean eliminado = VistaController.eliminarJugador(jugadorSeleccionado);
