@@ -2,6 +2,10 @@
 SET SERVEROUTPUT ON;
 
 /*Procedimiento informe_equipos_competicion:*/
+
+    /*En Java: Se emplea en EquipoDAO para generar un informe de los equipos que participan en una competiciÃ³n especÃ­fica.*/
+
+-- Este procedimiento recibe un ID de competiciï¿½n y devuelve un cursor con la informaciï¿½n de los equipos
 DECLARE
     v_cursor SYS_REFCURSOR;
     v_nombre_equipo equipos.nombre%TYPE;
@@ -11,7 +15,7 @@ DECLARE
     v_sueldo_minimo NUMBER;
     v_sueldo_promedio NUMBER;
 BEGIN
-    -- Llamar al procedimiento con un ID de competición, por ejemplo el 1
+    -- Llamar al procedimiento con un ID de competiciï¿½n, por ejemplo el 1
     informe_equipos_competicion(1, v_cursor);
 
     -- Recorremos el cursor
@@ -26,17 +30,22 @@ BEGIN
         EXIT WHEN v_cursor%NOTFOUND;
 
         DBMS_OUTPUT.PUT_LINE('Equipo: ' || v_nombre_equipo);
-        DBMS_OUTPUT.PUT_LINE('Fecha Fundación: ' || TO_CHAR(v_fecha_fundacion, 'DD/MM/YYYY'));
+        DBMS_OUTPUT.PUT_LINE('Fecha Fundaciï¿½n: ' || TO_CHAR(v_fecha_fundacion, 'DD/MM/YYYY'));
         DBMS_OUTPUT.PUT_LINE('Cantidad Jugadores: ' || v_cantidad_jugadores);
-        DBMS_OUTPUT.PUT_LINE('Sueldo Máximo: ' || v_sueldo_maximo);
-        DBMS_OUTPUT.PUT_LINE('Sueldo Mínimo: ' || v_sueldo_minimo);
+        DBMS_OUTPUT.PUT_LINE('Sueldo Mï¿½ximo: ' || v_sueldo_maximo);
+        DBMS_OUTPUT.PUT_LINE('Sueldo Mï¿½nimo: ' || v_sueldo_minimo);
         DBMS_OUTPUT.PUT_LINE('Sueldo Promedio: ' || v_sueldo_promedio);
         DBMS_OUTPUT.PUT_LINE('-----------------------------');
     END LOOP;
 
     CLOSE v_cursor;
 END;
+
 /*Procedimiento obtener_jugadores_equipo*/
+
+    /*En Java: Se emplea en JugadorDAO para generar un informe de los jugadores que pertenecen a un equipo especÃ­fico.*/
+
+-- Este procedimiento recibe el nombre de un equipo y devuelve un cursor con la informaciï¿½n de los jugadores
 DECLARE
     v_cursor SYS_REFCURSOR;
     v_nombre jugadores.nombre%TYPE;
