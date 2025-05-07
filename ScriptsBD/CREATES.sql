@@ -23,9 +23,10 @@ CREATE TABLE jornadas(
     fechaInicio DATE,
     fechaFin DATE,
     idComp NUMBER,
+    numJor NUMBER,
     
     CONSTRAINT jornadas_idJor_pk PRIMARY KEY (idJor),
-    CONSTRAINT jornadas_idComp_fk FOREIGN KEY (idComp) REFERENCES competiciones
+    CONSTRAINT jornadas_idComp_fk FOREIGN KEY (idComp) REFERENCES competiciones ON DELETE CASCADE
 );
 
 CREATE TABLE roles(
@@ -42,6 +43,7 @@ CREATE TABLE equipos(
     (START WITH 1 INCREMENT BY 1),
     nombre VARCHAR2(50),
     fechaFund DATE,
+    victorias NUMBER DEFAULT 0,
     
     CONSTRAINT equipos_idEquipo_pk PRIMARY KEY (idEquipo)
 );
@@ -54,8 +56,8 @@ CREATE TABLE equipoRoles(
     idRol NUMBER,
 
     CONSTRAINT equipoRoles_idEquipoRol_pk PRIMARY KEY (idEquipoRol),
-    CONSTRAINT equipoRoles_idEquipo_fk FOREIGN KEY (idEquipo) REFERENCES equipos,
-        CONSTRAINT equipoRoles_idRol_fk FOREIGN KEY (idRol) REFERENCES roles
+    CONSTRAINT equipoRoles_idEquipo_fk FOREIGN KEY (idEquipo) REFERENCES equipos ON DELETE CASCADE,
+    CONSTRAINT equipoRoles_idRol_fk FOREIGN KEY (idRol) REFERENCES roles ON DELETE CASCADE
 );
 
 
@@ -75,7 +77,6 @@ CREATE TABLE jugadores(
     CONSTRAINT jugadores_idJugador_pk PRIMARY KEY (idJugador),
     CONSTRAINT jugadores_rol_ck CHECK(rol IN ('Duelista','Controlador','Centinela','Iniciador','Asesino','Mago')),
     CONSTRAINT jugadores_idEquipo_fk FOREIGN KEY (idEquipo) REFERENCES equipos(idEquipo) ON DELETE CASCADE
-    
 );
 
 CREATE TABLE enfrentamientos(
@@ -83,7 +84,7 @@ CREATE TABLE enfrentamientos(
     (START WITH 1 INCREMENT BY 1),
     ganadorEnf NUMBER,
     perdedorEnf NUMBER,
-    hora VARCHAR(5),
+    hora DATE,
     fecha DATE,
     idJornada NUMBER,
     
