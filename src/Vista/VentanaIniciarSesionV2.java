@@ -33,28 +33,40 @@ public class VentanaIniciarSesionV2 extends javax.swing.JFrame {
         iniciarSesiónButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String passw = new String(contrasena.getPassword());
-                try {
-                    if (nombre.equals("")){
-                        throw new CampoObligatorioException("Error: El campo nombre es obligatorio!");
-                    }
-                    if (contrasena.equals("")) {
-                        throw new CampoObligatorioException("Error: El campo contraseña el obligatorio!");
-                    }
-                    else{
-                        if (VistaController.inciarSesionUsuario(nombre.getText(),passw,tipoUsuario)){
-                            VistaController.VentanaAdministradorV2(nombre.getText(),VentanaIniciarSesionV2.this);
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null,"Error: Contraseña o Usuario incorrectos","Error",JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
-                }catch (CampoObligatorioException u){
-                    JOptionPane.showMessageDialog(null,u.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-                }
-
+                iniciarSesion(tipoUsuario);
             }
         });
+        contrasena.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    iniciarSesion(tipoUsuario);
+                }
+            }
+        });
+    }
+
+    public void iniciarSesion(String tipoUsuario) {
+        String passw = new String(contrasena.getPassword());
+        try {
+            if (nombre.equals("")){
+                throw new CampoObligatorioException("Error: El campo nombre es obligatorio!");
+            }
+            if (contrasena.equals("")) {
+                throw new CampoObligatorioException("Error: El campo contraseña el obligatorio!");
+            }
+            else{
+                if (VistaController.inciarSesionUsuario(nombre.getText(),passw,tipoUsuario)){
+                    VistaController.VentanaAdministradorV2(nombre.getText(),VentanaIniciarSesionV2.this);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error: Contraseña o Usuario incorrectos","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }catch (CampoObligatorioException u){
+            JOptionPane.showMessageDialog(null,u.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
 

@@ -1,14 +1,8 @@
 package Controlador;
 
-import Modelo.BaseDatos;
-import Modelo.EquipoDAO;
 import Modelo.EquipoRolesDAO;
 import Modelo.JugadorDAO;
 
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.List;
 /**
@@ -33,7 +27,7 @@ public class JugadorController {
         boolean insertado =  JugadorDAO.inscribirJugador(nombre,apellido,nacionalidad,fechaParseada,nickname,sueldoFloat, rol, equipo);
 
         if (insertado){
-            EquipoRolesDAO.eliminarRolEquipo(rol);
+            EquipoRolesDAO.eliminarRolEquipo(rol,equipo);
         }
 
         return insertado;
@@ -80,6 +74,8 @@ public class JugadorController {
     public static boolean buscarNickname(String nickname) {
         return JugadorDAO.buscarNickname(nickname);
     }
+
+
 
     /**
      * Obtiene una lista de jugadores con sus detalles almacenados en la base de datos.
@@ -131,4 +127,21 @@ public class JugadorController {
         return JugadorDAO.obtenerEquipoJugador(idJugador);
     }
 
+    public static List<String> listaNicknames(){
+        return JugadorDAO.listaNicknames();
+    }
+
+    public static boolean modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, Float sueldoFloat, String rol, String equipo,Boolean duplicado,String nickname_viejo,Boolean cambiarRoles) {
+        if (cambiarRoles){
+            EquipoRolesDAO.eliminarRolEquipo(rol,equipo);
+            EquipoRolesDAO.insertarRolJugadorEliminado(nickname_viejo);
+        }
+        return JugadorDAO.modificarJugador(nombre,apellido,nacionalidad,fecha,nickname,sueldoFloat,rol,equipo,duplicado,nickname_viejo);
+    }
+    public static int obtenerCantidadJugadoreEquipo(String equipo){
+        return JugadorDAO.obtenerCantidadJugadoreEquipo(equipo);
+    }
+    public static String obtenerRolJugadorNick(String nickname){
+        return JugadorDAO.obtenerRolJugadorNick(nickname);
+    }
 }

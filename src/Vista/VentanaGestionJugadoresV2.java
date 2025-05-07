@@ -82,6 +82,18 @@ public class VentanaGestionJugadoresV2 extends JFrame {
                 VistaController.ModalEliminacionJugadoresV2();
             }
         });
+        modificarJugador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.ModalSeleccionarJugadorV2();
+            }
+        });
+        mostrarJugadores.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.ModalMostrarJugadoresV2();
+            }
+        });
 
     }
 

@@ -241,23 +241,34 @@ public class EquipoDAO {
      * @param nombre      Nombre actual del equipo.
      * @return true si el equipo fue actualizado correctamente, false en caso contrario.
      */
-    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre) {
+    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, Boolean duplicado,String nombre) {
         boolean actualizado = false;
 
         try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
+            String plantilla;
+            PreparedStatement ps;
+            int filasActualizadas;
+            if (!duplicado){
+                plantilla = "UPDATE equipos SET nombre = ?, fechafund = ? Where nombre = ?";
+                ps = con.prepareStatement(plantilla);
+                ps.setString(1, nuevoNombre);
+                java.sql.Date fechanac = java.sql.Date.valueOf(nuevaFecha);
+                ps.setDate(2, fechanac);
+                ps.setString(3,nombre);
+            }else {
+                plantilla = "UPDATE equipos SET fechafund = ? Where nombre = ?";
+                ps = con.prepareStatement(plantilla);
+                java.sql.Date fechafund = java.sql.Date.valueOf(nuevaFecha);
+                ps.setDate(1, fechafund);
+                ps.setString(2,nombre);
 
-            String sentencia = "UPDATE equipos SET nombre = ?, fechafund = ? Where nombre = ?";
+            }
 
-            PreparedStatement ps = con.prepareStatement(sentencia);
-            ps.setString(1, nuevoNombre);
-            ps.setDate(2, Date.valueOf(nuevaFecha));
-            ps.setString(3, nombre);
+            filasActualizadas = ps.executeUpdate();
 
-            int filasAfectadas = ps.executeUpdate();
-
-            if (filasAfectadas > 0) {
+            if (filasActualizadas>0){
                 actualizado = true;
             }
 
