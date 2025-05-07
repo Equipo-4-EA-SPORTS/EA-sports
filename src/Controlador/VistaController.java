@@ -156,14 +156,7 @@ public class VistaController {
         vgj.setVisible(true);
     }
 
-    public static void ventanaCrearJornada(JFrame ventana, String nombre) {
-        VentanaCrearJornada vcj = new VentanaCrearJornada(ventana);
-        vcj.setVisible(true);
-    }
 
-    public static boolean crearJornada(LocalDate fechaInicio) {
-        return ModeloController.crearJornada(fechaInicio);
-    }
 
     public static boolean existeJornada (String numJornada){
         return ModeloController.existeJornada(numJornada);
@@ -302,4 +295,12 @@ public class VistaController {
         ModalEliminacionJugadresV2 mej2 = new ModalEliminacionJugadresV2();
         mej2.setVisible(true);
     }
+
+    public static List<String> ModalSeleccionGanador(List<String> equipo,int numJor){
+        ModalSeleccionGanadroV2 mdg2 = new ModalSeleccionGanadroV2();
+        mdg2.ModalSeleccionGanadroV2(equipo,numJor);
+        mdg2.setVisible(true);
+        return mdg2.getGanadorPerdedor();
+    }
+
 }

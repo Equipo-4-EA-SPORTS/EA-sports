@@ -1,9 +1,19 @@
 package Modelo;
 
+import Controlador.ModeloController;
+import Controlador.VistaController;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * Clase CompeticionDAO que gestiona las operaciones relacionadas con la tabla de competiciones en la base de datos.
  */
@@ -122,6 +132,56 @@ public class CompeticionDAO {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return estado;
+    }public static void generarCalendarioCompe(){
+        List<String> equipos = EquipoDAO.listaEquipos();
+        int n = equipos.size();
+        int jornadas = n - 1;
+        int partidosPorJornada = n / 2;
+        Random rand = new Random();
+
+        List<String> rotacion = new ArrayList<>(equipos);
+        LocalDate fechaInicio = LocalDate.now().plusWeeks(1);
+
+        System.out.println("Calendario del torneo (todos contra todos):");
+
+        for (int j = 0; j < jornadas; j++) {
+            LocalDate inicioSemana = fechaInicio.plusWeeks(j);
+            int numJor = j+1;
+            LocalDate finJor = inicioSemana.plusDays(6);
+            System.out.println("\nJornada " + (numJor) + " - Semana del: " + inicioSemana + " al " + finJor);
+            JornadaDAO.crearJornada(numJor,inicioSemana,finJor);
+            for (int i = 0; i < partidosPorJornada; i++) {
+                String local = rotacion.get(i);
+                String visitante = rotacion.get(n - 1 - i);
+
+                // Día aleatorio de la semana
+                int diasDespues = rand.nextInt(7); // 0 a 6
+                LocalDate diaPartido = inicioSemana.plusDays(diasDespues);
+
+                // Hora aleatoria entre 15:00 y 21:00
+                int hora = 15 + rand.nextInt(7); // 15 a 21
+                int minuto = rand.nextBoolean() ? 0 : 30; // 00 o 30
+
+                LocalDateTime fechaHoraPartido = LocalDateTime.of(diaPartido, LocalTime.of(hora, minuto));
+
+                // Elegir ganador al azar
+                List<String> equiposJugando = new ArrayList<>();
+                equiposJugando.add(visitante);
+                equiposJugando.add(local);
+                List<String> gandor_perdedor = ModeloController.seleccionarGanador(equiposJugando,numJor);
+
+                System.out.println(" - " + local + " vs " + visitante);
+                System.out.println("   Fecha y hora: " + fechaHoraPartido);
+                System.out.println("   Ganador: " + gandor_perdedor.get(0));
+                System.out.println("   Perdedor: " + gandor_perdedor.get(1));
+
+                EnfrentamientoDAO.crearEnfrentamiento(diaPartido,LocalTime.of(hora,minuto),gandor_perdedor.get(0),gandor_perdedor.get(1),numJor);
+                EquipoDAO.insertarGanador(gandor_perdedor.get(0));
+            }
+
+            // Rotar todos menos el primer equipo
+            rotacion.add(1, rotacion.remove(rotacion.size() - 1));
+        }
     }
 
 }
