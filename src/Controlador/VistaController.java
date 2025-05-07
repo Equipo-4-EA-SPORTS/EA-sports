@@ -350,4 +350,8 @@ public class VistaController {
         mse2.setVisible(true);
     }
 
+    public static List<String[]> obtenerEnfrentamientos(){
+        return ModeloController.obtenerEnfrentamientos();
+    }
+
 }
