@@ -1,38 +1,59 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Preuba {
-        private static Random rand = new Random();
-        public static void main(String[] args) {
-            List<String> equipos = Arrays.asList("Equipo A", "Equipo B", "Equipo C", "Equipo D","Equipo E","Equipo F");
-            generarCalendario(equipos);
-        }
+    private static Random rand = new Random();
 
-        public static void generarCalendario(List<String> equipos) {
-            int n = equipos.size();
-            int jornadas = n - 1;
-            int partidosPorJornada = n / 2;
+    public static void main(String[] args) {
+        List<String> equipos = Arrays.asList("Equipo A", "Equipo B", "Equipo C", "Equipo D", "Equipo E", "Equipo F");
+        generarCalendario(equipos);
+    }
 
-            List<String> rotacion = new ArrayList<>(equipos);
+    public static void generarCalendario(List<String> equipos) {
+        int n = equipos.size();
+        int jornadas = n - 1;
+        int partidosPorJornada = n / 2;
 
-            System.out.println("Calendario del torneo (todos contra todos):");
+        List<String> rotacion = new ArrayList<>(equipos);
+        LocalDate fechaInicio = LocalDate.now().plusWeeks(1);
 
-            for (int j = 0; j < jornadas; j++) {
-                System.out.println("Jornada " + (j + 1));
-                for (int i = 0; i < partidosPorJornada; i++) {
-                    ArrayList<String> equiposJugando = new ArrayList<>();
-                    String local = rotacion.get(i);
-                    String visitante = rotacion.get(n - 1 - i);
-                    equiposJugando.add(local);
-                    equiposJugando.add(visitante);
-                    System.out.println(" - " + local + " vs " + visitante);
-                    System.out.println("Ganador del enfrentamiento: "+ equiposJugando.get(rand.nextInt(equiposJugando.toArray().length)));
-                }
-                // Rotar todos menos el primer equipo
-                rotacion.add(1, rotacion.remove(rotacion.size() - 1));
+        System.out.println("Calendario del torneo (todos contra todos):");
+
+        for (int j = 0; j < jornadas; j++) {
+            LocalDate inicioSemana = fechaInicio.plusWeeks(j);
+            System.out.println("\nJornada " + (j + 1) + " - Semana del: " + inicioSemana + " al " + inicioSemana.plusDays(6));
+
+            for (int i = 0; i < partidosPorJornada; i++) {
+                String local = rotacion.get(i);
+                String visitante = rotacion.get(n - 1 - i);
+
+                // Día aleatorio de la semana
+                int diasDespues = rand.nextInt(7); // 0 a 6
+                LocalDate diaPartido = inicioSemana.plusDays(diasDespues);
+
+                // Hora aleatoria entre 15:00 y 21:00
+                int hora = 15 + rand.nextInt(7); // 15 a 21
+                int minuto = rand.nextBoolean() ? 0 : 30; // 00 o 30
+
+                LocalDateTime fechaHoraPartido = LocalDateTime.of(diaPartido, LocalTime.of(hora, minuto));
+
+                // Elegir ganador al azar
+                String ganador = rand.nextBoolean() ? local : visitante;
+                String perdedor = ganador.equals(local) ? visitante : local;
+
+                System.out.println(" - " + local + " vs " + visitante);
+                System.out.println("   Fecha y hora: " + fechaHoraPartido);
+                System.out.println("   Ganador: " + ganador);
+                System.out.println("   Perdedor: " + perdedor);
             }
-        }
 
+            // Rotar todos menos el primer equipo
+            rotacion.add(1, rotacion.remove(rotacion.size() - 1));
+        }
+    }
 }
