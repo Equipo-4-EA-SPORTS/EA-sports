@@ -78,13 +78,13 @@ Enlace para visualizar interfaz grafica hecha con <a href="https://www.figma.com
 
 Esta es la pantalla principal de la aplicación, donde se muestra el logo de EA Sports y el botón para comenzar.
 
-![Pantalla principal](imgReadme/inicioSesion.png)
+![Pantalla principal](imgReadme/ventanaPrincipalV2)
 
 En esta ventana se muestran dos opciones
   - Inicio de sesion como usuario
   - Inicio de sesion como adminstrador
 
-![Selección de usuario](imgReadme/seleccionUsuario.png)
+![Selección de usuario](imgReadme/seleccionUsuario)
 
 
 ---
