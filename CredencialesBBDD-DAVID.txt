@@ -1,4 +1,0 @@
-usuario: equipoMedina
-contraseña: Jm12345
-host: ccsatserv.dnsdojo.com
-nombre del servicio: xepdb1
