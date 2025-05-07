@@ -89,15 +89,17 @@ public class JornadaDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "SELECT fechainicio,fechafin FROM jornadas";
+            String plantilla = "SELECT idJor,fechainicio,fechafin FROM jornadas";
             PreparedStatement ps = con.prepareStatement(plantilla);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                Integer idJor = rs.getInt("idJor");
+                String idJorStr = String.valueOf(idJor);
                 String fechaInicio = rs.getDate("fechainicio").toString();
                 String fechaFin = rs.getDate("fechafin").toString();
-                jornadas.add(new String[]{fechaInicio, fechaFin});
+                jornadas.add(new String[]{idJorStr,fechaInicio, fechaFin});
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -117,7 +119,7 @@ public class JornadaDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "SELECT numJornada FROM jornadas";
+            String plantilla = "SELECT idJor FROM jornadas";
             PreparedStatement ps = con.prepareStatement(plantilla);
 
             ResultSet rs = ps.executeQuery();
