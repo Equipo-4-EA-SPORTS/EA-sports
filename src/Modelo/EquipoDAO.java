@@ -392,5 +392,23 @@ public class EquipoDAO {
         }
     }
 
+    public static void insertarGanador(String ganador){
+        try {
+
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String sentencia = "UPDATE equipos SET victorias = victorias+1 Where nombre = ?";
+
+            PreparedStatement ps = con.prepareStatement(sentencia);
+            ps.setString(1, ganador);
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+    }
+
 
 }

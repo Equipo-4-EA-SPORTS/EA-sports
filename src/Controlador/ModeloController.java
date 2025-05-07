@@ -234,15 +234,6 @@ public class ModeloController {
     //Métodos relacionados con jornadas
 
     /**
-     * Crea una nueva jornada con la fecha de inicio proporcionada.
-     *
-     * @param fechaInicio Fecha de inicio de la jornada.
-     * @return true si la jornada fue creada correctamente, false en caso contrario.
-     */
-    public static boolean crearJornada(LocalDate fechaInicio) {
-        return JornadaController.crearJornada(fechaInicio);
-    }
-    /**
      * Verifica si una jornada existe en la base de datos.
      *
      * @param numJornada Número de la jornada a verificar.
@@ -286,6 +277,10 @@ public class ModeloController {
      */
     public static List<String> obtenerRoles(String equipoSeleccionado) {
         return EquipoRolesController.obtenerRoles(equipoSeleccionado);
+    }
+
+    public static List<String> seleccionarGanador(List<String> equipos,int numJor){
+        return VistaController.ModalSeleccionGanador(equipos,numJor);
     }
 
 }

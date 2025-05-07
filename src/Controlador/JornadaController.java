@@ -11,15 +11,6 @@ import java.util.List;
 public class JornadaController {
 
     /**
-     * Crea una nueva jornada en la base de datos con la fecha de inicio proporcionada.
-     *
-     * @param fechaInicio Fecha de inicio de la jornada.
-     * @return true si la jornada fue creada correctamente, false en caso contrario.
-     */
-    public static boolean crearJornada(LocalDate fechaInicio) {
-        return JornadaDAO.crearJornada(fechaInicio);
-    }
-    /**
      * Verifica si existe una jornada en la base de datos con el número proporcionado.
      *
      * @param numJornada Número de la jornada a verificar.
