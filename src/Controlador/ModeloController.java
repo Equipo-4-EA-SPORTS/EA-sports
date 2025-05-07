@@ -281,4 +281,8 @@ public class ModeloController {
         return JugadorController.obtenerRolJugadorNick(nickname);
     }
 
+    public static List<String[]> obtenerEnfrentamientos(){
+        return EnfrentamientoController.obtenerEnfrentamientos();
+    }
+
 }
