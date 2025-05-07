@@ -70,6 +70,8 @@ public class VentanaAdministrador extends javax.swing.JFrame {
                     case 3:
                         VistaController.ventanaGestionCompeticion(VentanaAdministrador.this,nombre);
                         break;
+                    case 4:
+                        VistaController.ventanaGestionJornadas(VentanaAdministrador.this,nombre);
                 }
             }
         });

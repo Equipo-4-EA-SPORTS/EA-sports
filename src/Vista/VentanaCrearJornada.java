@@ -72,6 +72,7 @@ public class VentanaCrearJornada extends JFrame {
 
             // Crear la jornada con la fecha de inicio y la fecha de fin generada
             boolean jornadaCreada = VistaController.crearJornada(fechaInicio);
+            tfFechaInicio.setText(""); // Vaciar el campo de texto
 
             if (jornadaCreada) {
                 JOptionPane.showMessageDialog(this, "Jornada creada correctamente.");
@@ -85,6 +86,5 @@ public class VentanaCrearJornada extends JFrame {
             JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Usa dd/MM/yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 
 }

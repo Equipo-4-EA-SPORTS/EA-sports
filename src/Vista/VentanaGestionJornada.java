@@ -73,6 +73,11 @@ public class VentanaGestionJornada extends JFrame {
                             JOptionPane.showMessageDialog(contentPane, "No se pueden crear enfrentamientos si la competición está abierta");
                         }
                         break;
+                    case 2:
+                        if (!VistaController.VentanaMostrarJornada()){
+                            JOptionPane.showMessageDialog(contentPane,"No hay jornadas para mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        break;
                 }
             }
         });
