@@ -169,6 +169,19 @@ public class VistaController {
         return ModeloController.existeJornada(numJornada);
     }
 
+    public static boolean VentanaMostrarJornada() {
+        VentanaMostrarJornada vmj = new VentanaMostrarJornada();
+        List<String> listaJornadas = ModeloController.listaJornadas();
+        vmj.setVisible(!listaJornadas.isEmpty());
+        return !listaJornadas.isEmpty();
+    }
+
+    public static List<String[]> obtenerJornadas(){
+        return ModeloController.obtenerJornadas();
+    }
+
+
+
     public static void VentanaGestionEnfrentamientos(JFrame ventana, String nombre) {
         ventana.dispose();
         VentanaGestionEnfrentamientos vgj = new VentanaGestionEnfrentamientos(nombre);

@@ -13,14 +13,14 @@ public class VentanaMostrarJornada extends JDialog {
     private JButton bCerrar;
     private JTable tablaJornadas;
 
-    public void VentanaMostrarJornadas() {
+    public VentanaMostrarJornada() {
         setContentPane(contentPane);
         setModal(true);
         setSize(400,250);
         setLocationRelativeTo(null);
 
         //Config columnas
-        String[] columnas = {"Fecha de inicio", "Fecha de fin"};
+        String[] columnas = {"Numero de jornada", "Fecha de inicio", "Fecha de fin"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
         //obtener lista de jornadas desde el controlador
