@@ -84,7 +84,7 @@ public class VistaController {
     }
 
 
-    public void mostrarInicio() {
+    public static void mostrarInicio() {
         InicioSesion inicioSesion = new InicioSesion();
         inicioSesion.setVisible(true);
     }
