@@ -250,7 +250,7 @@
                     </constraints>
                     <properties>
                       <model>
-                        <item value="Haz click para descubiri las opciones"/>
+                        <item value="Haz click para descubiri los equipos"/>
                       </model>
                     </properties>
                   </component>
@@ -260,7 +260,7 @@
                     </constraints>
                     <properties>
                       <model>
-                        <item value="Haz click para descubrir las opciones"/>
+                        <item value="Haz click para descubrir los roles"/>
                       </model>
                     </properties>
                   </component>

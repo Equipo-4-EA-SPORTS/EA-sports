@@ -18,7 +18,7 @@ public class VentanaPrincipalV2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Ventana Principal");
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
         setIconImage(imagen.getImage());
         comenzarButton.addActionListener(new ActionListener() {
             @Override

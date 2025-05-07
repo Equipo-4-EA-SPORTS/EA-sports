@@ -18,6 +18,10 @@ public class ModalEliminacionJugadresV2 extends JDialog {
         getRootPane().setDefaultButton(eliminar);
         setSize(575,200);
         setLocationRelativeTo(null);
+        setTitle("Eliminacion de Jugadres");
+
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
+        setIconImage(imagen.getImage());
 
         List<String> listaJugadores = VistaController.listaJugadores();
 

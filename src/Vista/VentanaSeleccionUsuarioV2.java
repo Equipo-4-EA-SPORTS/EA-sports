@@ -21,7 +21,7 @@ public class VentanaSeleccionUsuarioV2 extends JFrame{
         setResizable(false);
         setTitle("¡Bienvenido!");
 
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/LogoEA.png"));
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Vista/Fotos/FaviconEA.png"));
         setIconImage(imagen.getImage());
 
         usuario.setCursor(new Cursor(Cursor.HAND_CURSOR));

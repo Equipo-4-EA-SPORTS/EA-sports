@@ -284,4 +284,9 @@ public class VistaController {
         vsu2.setVisible(true);
     }
 
+    public static void ModalEliminacionJugadoresV2(){
+        ModalEliminacionJugadresV2 mej2 = new ModalEliminacionJugadresV2();
+        mej2.setVisible(true);
+    }
+
 }
