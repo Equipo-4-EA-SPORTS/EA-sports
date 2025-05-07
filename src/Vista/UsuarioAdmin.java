@@ -34,6 +34,10 @@ public class UsuarioAdmin extends JFrame {
             }
         });
     }
+    public static void main(String[] args) {
+        UsuarioAdmin ventana = new UsuarioAdmin();
+        ventana.setVisible(true);
+    }
 
 }
 

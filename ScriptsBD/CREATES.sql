@@ -103,3 +103,5 @@ CREATE TABLE usuarios(
     CONSTRAINT usuarios_idUsuario_pk PRIMARY KEY (idUsuario),
     CONSTRAINT usuarios_tipoUsuario_ck CHECK(tipoUsuario IN ('administrador','usuario'))
 );
+
+commit;
