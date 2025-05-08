@@ -104,18 +104,18 @@ public class VentanaModificacionEquipo extends JDialog {
                             throw new CampoObligatorioException("Error: Los campos seleccionados son obligatorios");
                         }
                         fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        actualizado =  VistaController.modificarEquipo(nuevoNombre.getText(), fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
+                        //actualizado =  VistaController.modificarEquipo(nuevoNombre.getText(), fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     } else if (nuevoNombreRadioButton.isSelected()) {
                         if (nuevoNombre.getText().isEmpty()){
                             throw new CampoObligatorioException("Error: Los campos seleccionados son obligatorios");
                         }
-                        actualizado = VistaController.modificarEquipo(nuevoNombre.getText(),equipos.getItemAt(equipos.getSelectedIndex()).toString());
+                        //actualizado = VistaController.modificarEquipo(nuevoNombre.getText(),equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     } else if (nuevaFechaDeFundacionRadioButton.isSelected()) {
                         if (nuevaFecha.getText().isEmpty()){
                             throw new CampoObligatorioException("Error: Los campos seleccionados son obligatorios");
                         }
                         fechaParseada = LocalDate.parse(nuevaFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        actualizado = VistaController.modificarEquipo(fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
+                        //actualizado = VistaController.modificarEquipo(fechaParseada,equipos.getItemAt(equipos.getSelectedIndex()).toString());
                     }else{
                         throw new OpcionSeleccionarObligatorioException();
                     }

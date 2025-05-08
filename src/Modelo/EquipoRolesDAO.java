@@ -1,6 +1,5 @@
 package Modelo;
 
-import Controlador.EquipoController;
 import Controlador.JugadorController;
 import Controlador.RolesController;
 
@@ -75,14 +74,15 @@ public class EquipoRolesDAO {
      *
      * @param rol Nombre del rol que se desea eliminar.
      */
-    public static void eliminarRolEquipo(String rol){
+    public static void eliminarRolEquipo(String rol,String equipo){
         try {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            String plantilla = "DELETE FROM equipoRoles Where idRol=?";
+            String plantilla = "DELETE FROM equipoRoles Where idRol=? and idEquipo=?";
             PreparedStatement ps = con.prepareStatement(plantilla);
             ps.setInt(1,RolesController.obtenerPKRol(rol));
+            ps.setInt(2,EquipoDAO.obtenerPKequipo(equipo));
 
             ps.executeUpdate();
 
@@ -105,12 +105,12 @@ public class EquipoRolesDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            int idJugador = JugadorController.obtenerEquipoJugador(JugadorController.obtenerPKjugador(jugador));
+            int idEquipo = JugadorController.obtenerEquipoJugador(JugadorController.obtenerPKjugador(jugador));
             int idRol = RolesController.obtenerPKRol(JugadorController.obtenerRolJugador(jugador));
 
             String plantilla = "INSERT INTO equipoRoles (idEquipo,idRol) VALUES (?,?)";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setInt(1, idJugador);
+            ps.setInt(1, idEquipo);
             ps.setInt(2, idRol);
 
             if (ps.executeUpdate()>0){

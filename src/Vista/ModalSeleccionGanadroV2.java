@@ -25,6 +25,7 @@ public class ModalSeleccionGanadroV2 extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         setSize(500,200);
         setLocationRelativeTo(null);
+        setDefaultLookAndFeelDecorated(false);
 
         Equipo1.setSelected(true);
 

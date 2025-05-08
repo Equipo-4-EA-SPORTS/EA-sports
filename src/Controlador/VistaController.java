@@ -46,13 +46,16 @@ public class VistaController {
     public static List<String> listaJugadores(){
         return ModeloController.listaJugadores();
     }
+    public static List<String> listaNicknames(){
+        return ModeloController.listaNicknames();
+    }
 
     public static boolean eliminarJugador(String jugadorSeleccionado) {
         return ModeloController.eliminarJugador(jugadorSeleccionado);
     }
 
-    public static void modificarJugador(JFrame ventana) {
-        ventana.dispose();
+    public static boolean modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fecha, String nickname, Float sueldoFloat, String rol, String equipo,Boolean duplicado,String nickname_viejo,Boolean cambiarRoles) {
+        return ModeloController.modificarJugador(nombre,apellido,nacionalidad,fecha,nickname,sueldoFloat,rol,equipo,duplicado,nickname_viejo,cambiarRoles);
     }
 
 
@@ -182,14 +185,8 @@ public class VistaController {
     }
 
 
-    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, String nombre){
-        return ModeloController.modificarEquipo(nuevoNombre,nuevaFecha,nombre);
-    }
-    public static boolean modificarEquipo(String nuevoNombre,String nombre){
-        return ModeloController.modificarEquipo(nuevoNombre,nombre);
-    }
-    public static boolean modificarEquipo(LocalDate nuevaFecha, String nombre){
-        return ModeloController.modificarEquipo(nuevaFecha,nombre);
+    public static boolean modificarEquipo(String nuevoNombre, LocalDate nuevaFecha, Boolean duplicado, String nombre){
+        return ModeloController.modificarEquipo(nuevoNombre,nuevaFecha,duplicado,nombre);
     }
 
     public static boolean buscarEquipo(String nombre){
@@ -263,6 +260,11 @@ public class VistaController {
         VentanaGestionJugadoresV2 vg2 = new VentanaGestionJugadoresV2(nombre);
         vg2.setVisible(true);
     }
+    public static void VentanaGestionEquiposV2(JFrame ventana, String nombre) {
+        ventana.dispose();
+        VentanaGestionEquiposV2 vg2 = new VentanaGestionEquiposV2(nombre);
+        vg2.setVisible(true);
+    }
     public static void ModalInscripcionJugadoresV2() {
         ModalInscripcionJugadoresV2 vg2 = new ModalInscripcionJugadoresV2();
         vg2.setVisible(true);
@@ -301,6 +303,55 @@ public class VistaController {
         mdg2.ModalSeleccionGanadroV2(equipo,numJor);
         mdg2.setVisible(true);
         return mdg2.getGanadorPerdedor();
+    }
+
+    public static void ModalMostrarJugadoresV2(){
+        ModalMostrarJugadoresV2 mmj2 = new ModalMostrarJugadoresV2();
+        mmj2.setVisible(true);
+    }
+
+    public static void ModalModificarJugadorV2(JDialog modal,String jugador){
+        modal.dispose();
+        ModalModificarJugadoresV2 mmj2 = new ModalModificarJugadoresV2(jugador);
+        mmj2.setVisible(true);
+    }
+
+    public static void ModalSeleccionarJugadorV2(){
+        ModalSeleccionJugadorV2 msj2 = new ModalSeleccionJugadorV2();
+        msj2.setVisible(true);
+    }
+
+    public static int obtenerCantidadJugadoreEquipo(String equipo){
+        return ModeloController.obtenerCantidadJugadoreEquipo(equipo);
+    }
+
+    public static String obtenerRolJugadorNick(String nickname){
+        return ModeloController.obtenerRolJugadorNick(nickname);
+    }
+    public static void ModalEliminacionEquiposV2(){
+        ModalEliminacionEquiposV2 mee2 = new ModalEliminacionEquiposV2();
+        mee2.setVisible(true);
+    }
+    public static void ModalMostrarEquiposV2(){
+        ModalMostrarEquiposV2 mme2 = new ModalMostrarEquiposV2();
+        mme2.setVisible(true);
+    }
+    public static void ModalInscripcionEquiposV2(){
+        ModalInscripcionEquipoV2 mme2 = new ModalInscripcionEquipoV2();
+        mme2.setVisible(true);
+    }
+    public static void ModalModificarEquipoV2(JDialog modal,String equipo){
+        modal.dispose();
+        ModalModificarEquipoV2 mme2 = new ModalModificarEquipoV2(equipo);
+        mme2.setVisible(true);
+    }
+    public static void ModalSeleccionarEquipoV2(){
+        ModalSeleccionEquipoV2 mse2 = new ModalSeleccionEquipoV2();
+        mse2.setVisible(true);
+    }
+
+    public static List<String[]> obtenerEnfrentamientos(){
+        return ModeloController.obtenerEnfrentamientos();
     }
 
 }

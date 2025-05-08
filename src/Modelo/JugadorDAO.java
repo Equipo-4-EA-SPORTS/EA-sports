@@ -160,6 +160,8 @@ public class JugadorDAO {
         }
         return existe;
     }
+
+
     /**
      * Obtiene una lista de jugadores con sus datos personales y profesionales.
      *
@@ -283,6 +285,26 @@ public class JugadorDAO {
         return rol;
     }
 
+    public static String obtenerRolJugadorNick(String nick){
+        String rol = "";
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "Select rol From jugadores WHERE nickname = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1,obtenerPKjugador(nick));
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                rol = rs.getString("rol");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return rol;
+    }
+
     /**
      * Obtiene el identificador del equipo al que pertenece un jugador en la base de datos.
      *
@@ -339,7 +361,99 @@ public static void informeJugadoresEquipo(String nombreEquipo) throws Exception 
         double sueldo = rs.getDouble("sueldo");
 
     }
+
+
 }
+    public static List<String> listaNicknames(){
+    List<String> nicknames = new ArrayList<>();
+    try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT nickname FROM jugadores";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                nicknames.add(rs.getString("nickname"));
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return nicknames;
+    }
+
+    public static boolean modificarJugador(String nombre, String apellido, String nacionalidad, LocalDate fechaParseada, String nickname, float sueldoFloat, String rol, String equipo,Boolean duplicado,String nickname_viejo) {
+        boolean modificado = false;
+        try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+            String plantilla;
+            PreparedStatement ps;
+            int filasActualizadas;
+            if (!duplicado){
+                plantilla = "UPDATE jugadores SET nombre = ?,apellido =?,nacionalidad = ?,fechanac = ?, nickname = ?, sueldo = ?, rol = ?, idequipo = ? Where nickname = ?";
+                ps = con.prepareStatement(plantilla);
+                ps.setString(1, nombre);
+                ps.setString(2, apellido);
+                ps.setString(3, nacionalidad);
+                java.sql.Date fechanac = java.sql.Date.valueOf(fechaParseada);
+
+                ps.setDate(4, fechanac);
+                ps.setString(5,nickname);
+                ps.setFloat(6,sueldoFloat);
+                ps.setString(7,rol);
+                ps.setInt(8,EquipoDAO.obtenerPKequipo(equipo));
+                ps.setString(9,nickname_viejo);
+            }else {
+                plantilla = "UPDATE jugadores SET nombre = ?,apellido =?,nacionalidad = ?,fechanac = ?, sueldo = ?, rol = ?, idequipo = ? WHere nickname = ?";
+                ps = con.prepareStatement(plantilla);
+                ps.setString(1, nombre);
+                ps.setString(2, apellido);
+                ps.setString(3, nacionalidad);
+                java.sql.Date fechanac = java.sql.Date.valueOf(fechaParseada);
+
+                ps.setDate(4, fechanac);
+                ps.setFloat(5,sueldoFloat);
+                ps.setString(6,rol);
+                ps.setInt(7,EquipoDAO.obtenerPKequipo(equipo));
+                ps.setString(8,nickname_viejo);
+
+            }
+
+            filasActualizadas = ps.executeUpdate();
+
+            if (filasActualizadas>0){
+                modificado = true;
+            }
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return modificado;
+    }
+
+    public static int obtenerCantidadJugadoreEquipo(String nombre){
+        int cantidad=0;
+        try{
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+            String plantilla = "SELECT Count(*) cantidad FROM jugadores WHERE idEquipo = ?";
+
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,nombre);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                cantidad= rs.getInt("cantidad");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return cantidad;
+    }
 
 }
 
