@@ -103,8 +103,8 @@ public class JugadorController {
      * @param jugador Nombre del jugador del cual se desea obtener la clave primaria.
      * @return La clave primaria del jugador si se encuentra, 0 en caso contrario.
      */
-    public static int obtenerPKjugador(String jugador){
-        return JugadorDAO.obtenerPKjugador(jugador);
+    public static int obtenerPKjugadorNick(String jugador){
+        return JugadorDAO.obtenerPKjugadorNick(jugador);
     }
 
     /**

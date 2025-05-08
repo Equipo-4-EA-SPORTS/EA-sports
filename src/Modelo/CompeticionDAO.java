@@ -22,36 +22,15 @@ public class CompeticionDAO {
      * Crea una nueva competición en la base de datos con el estado predeterminado.
      * Muestra un mensaje de error si ocurre algún problema al conectarse a la base de datos.
      */
-    public static void crearCompeticion(){
-        try{
-            BaseDatos.abrirConexion();
-            Connection con = BaseDatos.getCon();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO competiciones (estado) VALUES (DEFAULT)");
-            ps.executeUpdate();
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
-    /**
-     * Abre una competición actualizando su estado a 'abierto' en la base de datos.
-     *
-     * @return true si se actualizó correctamente, false en caso contrario.
-     */
     public static boolean abrirCompeticion(){
-
         boolean abierto = false;
-
         try{
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO competiciones (estado) VALUES ('abierto')");
+            int filas = ps.executeUpdate();
 
-            String plantilla = "UPDATE competiciones SET estado='abierto'";
-            PreparedStatement ps = con.prepareStatement(plantilla);
-
-            int filasAfectadas = ps.executeUpdate();
-
-            if (filasAfectadas > 0) {
+            if (filas<0){
                 abierto = true;
             }
 
@@ -60,7 +39,6 @@ public class CompeticionDAO {
         }
         return abierto;
     }
-
     /**
      * Cierra una competición actualizando su estado a 'cerrado' en la base de datos.
      *
@@ -101,9 +79,7 @@ public class CompeticionDAO {
             ResultSet filas = ps.executeQuery();
 
             if (filas.next()){
-                if (filas.getInt("cant")!=0){
-                    filasSelect=1;
-                }
+                filasSelect=filas.getInt("cant");
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -164,7 +140,6 @@ public class CompeticionDAO {
 
                 LocalDateTime fechaHoraPartido = LocalDateTime.of(diaPartido, LocalTime.of(hora, minuto));
 
-                // Elegir ganador al azar
                 List<String> equiposJugando = new ArrayList<>();
                 equiposJugando.add(visitante);
                 equiposJugando.add(local);

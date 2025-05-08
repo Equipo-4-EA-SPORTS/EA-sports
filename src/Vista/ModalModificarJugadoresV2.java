@@ -182,7 +182,7 @@ public class ModalModificarJugadoresV2 extends JDialog {
             }
 
             boolean duplicado = false;
-            if (!nickname_viejo.equals(nickname)) {
+            if (nickname_viejo.equals(nickname)) {
                 if (VistaController.buscarNickname(nickname)) {
                     throw new NombreDuplicadoExcepcion("El nickname ya existe");
                 }
@@ -209,7 +209,8 @@ public class ModalModificarJugadoresV2 extends JDialog {
             if (equipos.getSelectedIndex() == 0) {
                 throw new CampoObligatorioException("Debes seleccionar un equipo");
             }
-            if (VistaController.obtenerCantidadJugadoreEquipo(equipo) < 6){
+
+            if (VistaController.obtenerCantidadJugadoreEquipo(equipo) >= 6){
                 throw new Exception("Este equipo ya tiene 6 jugadores");
             }
             String rol = (String) roles.getSelectedItem();

@@ -190,9 +190,6 @@ public class ModeloController {
     /**
      * Crea una nueva competición.
      */
-    public static void crearCompeticion(){
-        CompeticionController.crearCompeticion();
-    }
 
     /**
      * Verifica si una competición ya ha sido creada.

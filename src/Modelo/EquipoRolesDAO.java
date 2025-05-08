@@ -105,7 +105,7 @@ public class EquipoRolesDAO {
             BaseDatos.abrirConexion();
             Connection con = BaseDatos.getCon();
 
-            int idEquipo = JugadorController.obtenerEquipoJugador(JugadorController.obtenerPKjugador(jugador));
+            int idEquipo = JugadorController.obtenerEquipoJugador(JugadorController.obtenerPKjugadorNick(jugador));
             int idRol = RolesController.obtenerPKRol(JugadorController.obtenerRolJugador(jugador));
 
             String plantilla = "INSERT INTO equipoRoles (idEquipo,idRol) VALUES (?,?)";

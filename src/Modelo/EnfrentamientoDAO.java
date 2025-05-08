@@ -45,7 +45,7 @@ public class EnfrentamientoDAO {
             while (rs.next()) {
                 String idJorStr = String.valueOf(rs.getInt("idEnf"));
                 String fechaInicio = rs.getDate("fecha").toString();
-                String hora = rs.getDate("hora").toString();
+                String hora = Time.valueOf( rs.getString("hora")).toString();
                 String ganadorenf = EquipoDAO.buscarEquipoPK(rs.getInt("ganadorenf"));
                 String perdedorenf = EquipoDAO.buscarEquipoPK(rs.getInt("perdedorenf"));
                 String idjornada = rs.getString("idjornada");

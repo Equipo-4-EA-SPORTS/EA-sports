@@ -79,6 +79,24 @@ public class VentanaAdministradorV2 extends javax.swing.JFrame {
                 VistaController.VentanaGestionEquiposV2(VentanaAdministradorV2.this,nombre);
             }
         });
+        jornadas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.VentanaGestionJornadasV2(VentanaAdministradorV2.this,nombre);
+            }
+        });
+        enfrentamientos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.VentanaGestionEnfrentamientosV2(VentanaAdministradorV2.this,nombre);
+            }
+        });
+        competicion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaController.VentanaGestionCompeticionV2(VentanaAdministradorV2.this,nombre);
+            }
+        });
 
 
         MouseAdapter listener = new MouseAdapter() {

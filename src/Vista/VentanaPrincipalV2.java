@@ -23,13 +23,7 @@ public class VentanaPrincipalV2 extends javax.swing.JFrame {
         comenzarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int estado = VistaController.verificarCompeticionCreada();
-                if (estado>0) {
-                    VistaController.VentanaSelccionUsuarioV2(VentanaPrincipalV2.this);
-                } else {
-                    VistaController.crearCompeticion();
-                    VistaController.VentanaSelccionUsuarioV2(VentanaPrincipalV2.this);
-                }
+                VistaController.VentanaSelccionUsuarioV2(VentanaPrincipalV2.this);
             }
         });
     }
