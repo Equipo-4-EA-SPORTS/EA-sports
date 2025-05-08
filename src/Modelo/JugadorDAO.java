@@ -258,6 +258,27 @@ public class JugadorDAO {
         }
         return idJugador;
     }
+    public static int obtenerPKjugadorNick(String jugador){
+        int idJugador = 0;
+        try {
+            BaseDatos.abrirConexion();
+            Connection con = BaseDatos.getCon();
+
+            String plantilla = "SELECT idJugador FROM jugadores WHERE nickname = ?";
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setString(1,jugador);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()){
+                idJugador=rs.getInt("idJugador");
+            }
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+        }
+        return idJugador;
+    }
 
     /**
      * Obtiene el rol de un jugador en la base de datos por su nombre.
@@ -273,7 +294,7 @@ public class JugadorDAO {
 
             String plantilla = "Select rol From jugadores WHERE idJugador = ?";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setInt(1,obtenerPKjugador(jugador));
+            ps.setInt(1,obtenerPKjugadorNick(jugador));
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()){
@@ -293,7 +314,7 @@ public class JugadorDAO {
 
             String plantilla = "Select rol From jugadores WHERE nickname = ?";
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setInt(1,obtenerPKjugador(nick));
+            ps.setString(1,nick);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()){
@@ -444,7 +465,7 @@ public static void informeJugadoresEquipo(String nombreEquipo) throws Exception 
             String plantilla = "SELECT Count(*) cantidad FROM jugadores WHERE idEquipo = ?";
 
             PreparedStatement ps = con.prepareStatement(plantilla);
-            ps.setString(1,nombre);
+            ps.setInt(1,EquipoDAO.obtenerPKequipo(nombre));
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 cantidad= rs.getInt("cantidad");

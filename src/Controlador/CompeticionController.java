@@ -44,13 +44,6 @@ public class CompeticionController {
         }
         return cerrado;
     }
-
-    /**
-     * Crea una nueva competición en la base de datos.
-     */
-    public static void crearCompeticion(){
-        CompeticionDAO.crearCompeticion();
-    }
     /**
      * Verifica si ya existe una competición creada en la base de datos.
      *

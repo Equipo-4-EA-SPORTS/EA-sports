@@ -68,7 +68,7 @@
                 <properties>
                   <font name="Gadugi" size="20" style="1"/>
                   <foreground color="-1"/>
-                  <text value="!Bienvenido al sistema de gestion de compticiones EA-Sports!"/>
+                  <text value="!Bienvenido al sistema de gestion de competiciones EA-Sports!"/>
                 </properties>
               </component>
             </children>
